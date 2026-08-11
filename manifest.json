@@ -1,0 +1,24 @@
+{
+  "name": "Tour d'Italia — 17 Sept – 1 Oct 2026",
+  "short_name": "Tour d'Italia",
+  "description": "Venice, Florence, Rome and Palermo — the family itinerary, offline.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#EFEADF",
+  "theme_color": "#6E2A19",
+  "lang": "en-GB",
+  "categories": [
+    "travel",
+    "lifestyle"
+  ],
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

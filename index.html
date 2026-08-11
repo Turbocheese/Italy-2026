@@ -1,0 +1,1920 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"><link rel="manifest" href="manifest.json"><link rel="icon" type="image/svg+xml" href="icon.svg"><link rel="apple-touch-icon" href="icon.svg"><meta name="theme-color" content="#A8482F"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Tour d'Italia"><script>if("serviceWorker" in navigator){var standalone=window.self===window.top;window.addEventListener("load",function(){if(standalone){navigator.serviceWorker.register("./sw.js").catch(function(){})}else{navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){r.unregister()})}).catch(function(){});if(window.caches&&caches.keys){caches.keys().then(function(ks){ks.forEach(function(k){if(k.indexOf("tour-ditalia")===0)caches.delete(k)})}).catch(function(){})}}})}</script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet"><style>
+:root{
+  --bg:oklch(0.152 0.010 68);--surf:oklch(0.196 0.011 68);--elev:oklch(0.128 0.010 68);
+  --ink:oklch(0.965 0.008 84);--body:oklch(0.855 0.010 82);--muted:oklch(0.665 0.012 78);--faint:oklch(0.505 0.012 76);
+  --line:oklch(0.285 0.012 70);--line2:oklch(0.365 0.014 70);
+  --olive:oklch(0.78 0.115 128);--brass:oklch(0.83 0.135 78);--terra:oklch(0.72 0.155 36);
+  --hair:linear-gradient(180deg,oklch(1 0 0/.10),oklch(1 0 0/.02));
+  --inset:inset 0 1px 0 oklch(1 0 0/.055);
+  --r:10px;--r-sm:7px;--r-lg:16px;--r-sheet:22px;
+  --sh:0 1px 2px oklch(0 0 0/.4),0 8px 24px oklch(0 0 0/.28);
+  --sh-lift:0 2px 4px oklch(0 0 0/.44),0 18px 48px oklch(0 0 0/.4);
+  --e:cubic-bezier(0.16,1,0.3,1);
+  --grain:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNDAnIGhlaWdodD0nMTQwJz48ZmlsdGVyIGlkPSduJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nLjg1JyBudW1PY3RhdmVzPSczJy8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9JzE0MCcgaGVpZ2h0PScxNDAnIGZpbHRlcj0ndXJsKCNuKScgb3BhY2l0eT0nLjQyJy8+PC9zdmc+");
+}
+body[data-theme="light"]{
+  --bg:oklch(0.972 0.008 84);--surf:oklch(0.998 0.003 84);--elev:oklch(0.938 0.010 82);
+  --ink:oklch(0.24 0.016 58);--body:oklch(0.39 0.014 60);--muted:oklch(0.535 0.014 64);--faint:oklch(0.665 0.013 70);
+  --line:oklch(0.892 0.010 80);--line2:oklch(0.828 0.012 78);
+  --olive:oklch(0.50 0.082 128);--brass:oklch(0.62 0.115 76);--terra:oklch(0.52 0.142 38);
+  --hair:linear-gradient(180deg,oklch(0.24 0.016 58/.10),oklch(0.24 0.016 58/.03));
+  --inset:inset 0 1px 0 oklch(1 0 0/.7);
+  --sh:0 1px 2px oklch(0.24 0.016 58/.06),0 6px 18px oklch(0.24 0.016 58/.05);
+  --sh-lift:0 2px 6px oklch(0.24 0.016 58/.08),0 18px 44px oklch(0.24 0.016 58/.10);
+}
+.mono{font-family:'Geist Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.grain::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:var(--grain);background-size:140px;opacity:.16;mix-blend-mode:overlay}
+.edge{border:1px solid transparent;background-origin:border-box;background-clip:padding-box,border-box}
+.press{transition:transform .16s var(--e),box-shadow .22s var(--e),border-color .22s var(--e)}
+.press:active{transform:scale(.985)}
+@keyframes sheen{0%{transform:translateX(-120%) skewX(-18deg)}100%{transform:translateX(320%) skewX(-18deg)}}
+@keyframes pulseDot{0%,100%{box-shadow:0 0 0 0 var(--pulse)}55%{box-shadow:0 0 0 7px transparent}}
+@keyframes floatIn{from{opacity:0;transform:translateY(10px) scale(.995)}to{opacity:1;transform:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes shimmerBtn{0%{transform:translateX(-130%) skewX(-20deg)}100%{transform:translateX(360%) skewX(-20deg)}}
+@keyframes meteor{0%{transform:translate(0,0) rotate(215deg);opacity:0}12%{opacity:1}100%{transform:translate(-320px,320px) rotate(215deg);opacity:0}}
+body{margin:0;background:var(--bg);overflow-x:hidden;-webkit-text-size-adjust:100%}
+*{-webkit-tap-highlight-color:transparent}
+[data-scroller]{scrollbar-width:none;-ms-overflow-style:none}
+[data-scroller]::-webkit-scrollbar{display:none}
+a{color:var(--terra)}a:hover{color:var(--brass)}
+@keyframes flourish{0%{transform:scaleX(0);opacity:1}70%{transform:scaleX(1);opacity:1}100%{transform:scaleX(1);opacity:0}}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+:focus-visible{outline:2px solid var(--brass);outline-offset:2px;border-radius:var(--r-sm)}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+@media print{[data-chrome]{display:none!important}body{background:#fff}}
+</style></helmet>
+<template id="__bundler_thumbnail" data-bg-color="#6E2A19">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#6E2A19"/>
+    <g stroke="rgba(250,246,238,.16)" stroke-width="2" fill="none">
+      <path d="M0 200h1200M0 400h1200M0 600h1200M300 0v800M600 0v800M900 0v800"/>
+    </g>
+    <text x="600" y="440" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="300" fill="#FAF6EE">TI</text>
+    <text x="600" y="540" text-anchor="middle" font-family="Georgia, serif" font-size="58" font-style="italic" fill="rgba(250,246,238,.8)">Tour d'Italia</text>
+  </svg>
+</template>
+<div style="min-height:100vh;background:{{ pageBg }};font-family:Geist,system-ui,sans-serif;color:var(--ink);padding-bottom:calc(96px + env(safe-area-inset-bottom,0px));touch-action:manipulation;overflow-x:hidden">
+
+  <div class="grain" style="position:relative;overflow:hidden;padding:calc(26px + env(safe-area-inset-top,0px)) 18px 20px;background:{{ band }};--ink:#FAF6EE;--body:rgba(250,246,238,.95);--muted:rgba(250,246,238,.92);--faint:rgba(250,246,238,.86);--line:rgba(250,246,238,.18);--line2:rgba(250,246,238,.3);--surf:rgba(250,246,238,.12);--hair:linear-gradient(180deg,rgba(255,255,255,.34),rgba(255,255,255,.06));--inset:inset 0 1px 0 rgba(255,255,255,.16);--sh:0 10px 30px rgba(0,0,0,.22)">
+    <div style="position:absolute;inset:-40% -20% auto -20%;height:150%;pointer-events:none;background:radial-gradient(58% 52% at 24% 2%,rgba(255,255,255,.3) 0%,transparent 60%)"></div>
+    <div style="position:absolute;inset:0;pointer-events:none;opacity:.9;background:{{ motif }}"></div>
+    <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.16))"></div>
+    <div style="position:relative;display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
+      <div style="flex:1;min-width:0">
+        <div style="display:inline-flex;align-items:center;gap:7px;padding:5px 10px 5px 7px;border-radius:999px;background:oklch(1 0 0/.05);border:1px solid var(--line)">
+          <span style="width:5px;height:5px;border-radius:50%;background:#FAF6EE;--pulse:rgba(250,246,238,.55);animation:pulseDot 2.6s var(--e) infinite"></span>
+          <span class="mono" style="font-size:9.5px;letter-spacing:.02em;color:var(--muted);white-space:nowrap">17 Sep – 1 Oct 2026 · 6 travellers</span>
+        </div>
+        <div style="position:relative;margin-top:12px;overflow:hidden">
+          <div style="font:400 34px/1.02 'Instrument Serif',Georgia,serif;color:var(--ink);letter-spacing:-.012em">Tour d'Italia</div>
+          <div style="margin-top:1px;font:italic 400 38px/1.02 'Instrument Serif',Georgia,serif;letter-spacing:-.015em;color:#FAF6EE;text-shadow:0 2px 24px rgba(0,0,0,.28)">{{ legName }}</div>
+          <span style="position:absolute;top:0;bottom:0;width:34%;pointer-events:none;background:linear-gradient(90deg,transparent,oklch(1 0 0/.10),transparent);animation:sheen 5.5s var(--e) infinite"></span>
+        </div>
+        <div class="mono" style="margin-top:9px;display:flex;align-items:center;gap:7px;font-size:10px;color:var(--faint)"><span style="width:4px;height:4px;border-radius:50%;background:var(--faint)"></span>{{ ambientLabel }}</div>
+      </div>
+      <div onClick="{{ cycleTheme }}" class="press" style="flex:none;display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:999px;border:1px solid var(--line2);background:oklch(1 0 0/.04);color:var(--muted);font-size:14px;cursor:pointer">{{ themeMark }}</div>
+    </div>
+
+    <div onClick="{{ toggleOverview }}" class="edge press" style="position:relative;margin:18px 0 0;padding:15px 16px;border-radius:var(--r-lg);background-image:linear-gradient(var(--surf),var(--surf)),var(--hair);box-shadow:var(--sh),var(--inset);cursor:pointer">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="min-width:0;flex:1">
+          <div class="mono" style="font-size:10px;line-height:1;color:var(--faint)">{{ overviewKicker }}</div>
+          <div style="margin-top:8px;display:flex;align-items:baseline;gap:8px">
+            <sc-if value="{{ showCount }}" hint-placeholder-val="{{ true }}">
+              <span class="mono" style="font-size:30px;line-height:1;font-weight:500;color:var(--ink);letter-spacing:-.02em">{{ tickDays }}</span>
+            </sc-if>
+            <span style="font:400 19px/1.1 'Instrument Serif',serif;color:var(--ink)">{{ countdownLine }}</span>
+          </div>
+        </div>
+        <div style="flex:none;width:46px;height:46px;border-radius:50%;background:{{ ringBand }};display:flex;align-items:center;justify-content:center">
+          <div class="mono" style="width:34px;height:34px;border-radius:50%;background:var(--surf);display:flex;align-items:center;justify-content:center;font-size:9.5px;font-weight:500;color:var(--ink)">{{ tickPct }}%</div>
+        </div>
+        <div style="flex:none;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--faint)">{{ overviewChev }}</div>
+      </div>
+      <div style="margin-top:14px;height:3px;border-radius:2px;background:rgba(250,246,238,.22);overflow:hidden"><div style="height:100%;border-radius:2px;background:#FAF6EE;box-shadow:0 0 14px rgba(250,246,238,.7);width:{{ tripBar }};transition:width .5s var(--e)"></div></div>
+      <div class="mono" style="margin-top:10px;display:flex;flex-wrap:wrap;gap:14px;font-size:10.5px;color:var(--muted)">
+        <span style="white-space:nowrap">{{ decideLabel }}</span>
+        <span style="white-space:nowrap">{{ resLabel }}</span>
+      </div>
+
+      <sc-if value="{{ overviewOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top:14px;padding-top:14px;border-top:1px solid rgba(246,241,231,.22);display:flex;flex-direction:column;gap:12px;animation:rise .22s ease both">
+          <sc-for list="{{ legCards }}" as="l" hint-placeholder-count="5">
+            <div style="padding:11px 0;border-top:1px solid var(--line)">
+              <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px">
+                <span style="font:400 16px/1 'Instrument Serif',serif;color:var(--ink)">{{ l.name }}</span>
+                <span class="mono" style="font-size:10.5px;color:var(--faint)">{{ l.dates }}</span>
+              </div>
+              <div style="margin-top:6px;font:400 11.5px/1.45 Geist,sans-serif;color:var(--muted)">{{ l.base }}</div>
+            </div>
+          </sc-for>
+          <div>
+            <div class="mono" style="font-size:10px;color:var(--faint)">Fixed anchors</div>
+            <div style="margin-top:9px;display:flex;flex-direction:column;gap:7px">
+              <sc-for list="{{ anchors }}" as="a" hint-placeholder-count="6">
+                <div style="display:flex;gap:11px;font:400 11.5px/1.4 Geist,sans-serif;color:var(--body)"><span class="mono" style="flex:none;width:82px;font-size:10.5px;color:var(--muted)">{{ a.when }}</span><span style="flex:1;min-width:0">{{ a.what }}</span></div>
+              </sc-for>
+            </div>
+          </div>
+          <div>
+            <div class="mono" style="font-size:10px;color:var(--faint)">Every day</div>
+            <div style="margin-top:6px;display:flex;flex-direction:column">
+              <sc-for list="{{ dayLines }}" as="dl" hint-placeholder-count="8">
+                <div onClick="{{ dl.go }}" style="display:flex;gap:11px;padding:9px 0;border-top:1px solid var(--line);font:400 11.5px/1.35 Geist,sans-serif;color:var(--body);cursor:pointer"><span class="mono" style="flex:none;width:82px;font-size:10.5px;color:var(--muted)">{{ dl.when }}</span><span style="flex:1;min-width:0">{{ dl.title }}</span></div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+
+    <div data-scroller style="position:relative;margin:13px -18px 0;padding:0 18px;overflow-x:auto;-webkit-overflow-scrolling:touch">
+      <div style="display:inline-flex;gap:3px;padding:4px;border-radius:999px;background:rgba(0,0,0,.18);border:1px solid rgba(250,246,238,.16)">
+        <sc-for list="{{ legPills }}" as="p" hint-placeholder-count="5">
+          <div onClick="{{ p.go }}" class="press" style="flex:none;display:flex;align-items:center;gap:7px;white-space:nowrap;min-height:36px;padding:0 14px;border-radius:999px;font:500 11.5px/1 Geist,sans-serif;background:{{ p.bg }};color:{{ p.fg }};box-shadow:{{ p.sh }};cursor:pointer">
+            <span style="width:6px;height:6px;border-radius:50%;background:{{ p.dot }};box-shadow:{{ p.dotGlow }}"></span>{{ p.name }}
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <div data-chrome data-scroller style="position:sticky;top:0;z-index:20;display:flex;gap:2px;padding:0 12px;background:{{ tabBarBg }};backdrop-filter:blur(14px) saturate(1.3);border-bottom:1px solid var(--line);overflow-x:auto;-webkit-overflow-scrolling:touch">
+    <sc-for list="{{ dayTabs }}" as="t" hint-placeholder-count="8">
+      <div onClick="{{ t.go }}" style="flex:none;width:46px;min-height:54px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border-bottom:2px solid {{ t.br }};box-shadow:{{ t.sh }};cursor:pointer;transition:color .2s var(--e)">
+        <div class="mono" style="font-size:9.5px;color:{{ t.dowC }}">{{ t.dow }}</div>
+        <div class="mono" style="font-size:14px;font-weight:500;color:{{ t.numC }}">{{ t.date }}</div>
+        <div style="height:4px;display:flex;align-items:center;font-size:7px;color:{{ t.markC }}">{{ t.mark }}</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="display:flex;flex-direction:column;padding:18px 16px 0;gap:14px">
+    <sc-if value="{{ day.occ }}" hint-placeholder-val="{{ false }}">
+      <div style="position:relative;padding:14px 15px;border-radius:var(--r);background:var(--surf);border:1px solid var(--brass);box-shadow:var(--sh)">
+        <div style="position:absolute;left:0;right:0;top:0;height:2px;background:var(--brass);border-radius:var(--r) var(--r) 0 0"></div>
+        <div style="display:flex;align-items:flex-start;gap:11px">
+          <span style="flex:none;margin-top:1px;font:400 16px/1 'Instrument Serif',serif;color:var(--brass)">❧</span>
+          <div style="min-width:0">
+            <div style="font:500 12.5px/1.3 Geist,sans-serif;color:var(--brass)">{{ day.occLabel }}</div>
+            <div style="margin-top:6px;font:400 13px/1.5 Geist,sans-serif;color:var(--body);text-wrap:pretty">{{ day.occNote }}</div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <div>
+      <div class="mono" style="font-size:10.5px;color:{{ accent }}">{{ day.kicker }}</div>
+      <h2 style="margin:11px 0 0;font:400 27px/1.1 'Instrument Serif',Georgia,serif;letter-spacing:-.005em;text-wrap:pretty;color:var(--ink)">{{ day.title }}</h2>
+      <div style="margin:9px 0 0;font:400 13px/1.55 Geist,sans-serif;color:var(--muted);text-wrap:pretty;max-width:34em">{{ day.sub }}</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+      <div style="padding:12px 12px 12px 0"><div class="mono" style="font-size:9.5px;color:var(--faint)">{{ wxLabel }}</div><div class="mono" style="margin-top:7px;font-size:15px;font-weight:500;color:var(--ink)">{{ wxValue }}</div></div>
+      <div style="padding:12px;border-left:1px solid var(--line)"><div class="mono" style="font-size:9.5px;color:var(--faint)">Sunset</div><div class="mono" style="margin-top:7px;font-size:15px;font-weight:500;color:var(--ink)">{{ day.sunset }}</div></div>
+      <div style="padding:12px;border-left:1px solid var(--line)"><div class="mono" style="font-size:9.5px;color:var(--faint)">{{ paceLabel }}</div><div class="mono" style="margin-top:7px;font-size:15px;font-weight:500;color:{{ paceColor }}">{{ pace }}</div></div>
+    </div>
+
+    <div onClick="{{ toggleBrief }}" style="padding:13px 14px;background:var(--surf);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);cursor:pointer">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="mono" style="flex:none;font-size:10.5px;color:{{ accent }}">Day brief</span>
+        <span style="flex:1;min-width:0;font:400 11.5px/1.3 Geist,sans-serif;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">What to wear, what's open, the rain plan and easier routes</span>
+        <span style="flex:none;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--faint)">{{ briefChev }}</span>
+      </div>
+      <sc-if value="{{ briefOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px;animation:rise .2s ease both">
+          <sc-for list="{{ briefRows }}" as="brief" hint-placeholder-count="4">
+            <div style="display:flex;gap:9px">
+              <span style="flex:none;width:96px;font:500 12px/1.55 Geist,sans-serif;color:var(--ink)">{{ brief.k }}</span>
+              <span style="flex:1;min-width:0;font:400 12.5px/1.55 Geist,sans-serif;color:var(--body);text-wrap:pretty">{{ brief.v }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
+
+    <div style="padding:2px 0 0">
+      <div style="display:flex;align-items:center;gap:9px">
+        <span class="mono" style="flex:none;font-size:10px;color:{{ insightColor }}">{{ insightKind }}</span>
+        <span style="flex:1;height:1px;background:var(--line)"></span>
+      </div>
+      <div style="margin-top:9px;font:400 14.5px/1.55 'Instrument Serif',Georgia,serif;color:var(--body);text-wrap:pretty;max-width:34em">{{ day.insight }}</div>
+    </div>
+
+    <div>
+      <div class="mono" style="display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:10px;color:var(--faint)">
+        <span>{{ ribbonFrom }}</span>
+        <span style="letter-spacing:.06em">The shape of the day</span>
+        <span>{{ ribbonTo }}</span>
+      </div>
+      <div style="position:relative;margin-top:8px;height:10px;border-radius:5px;overflow:hidden;background:var(--elev);display:flex;gap:1px">
+        <sc-for list="{{ ribbon }}" as="seg" hint-placeholder-count="9">
+          <div onClick="{{ seg.go }}" title="{{ seg.title }}" style="flex:{{ seg.flex }};background:{{ seg.bg }};cursor:pointer"></div>
+        </sc-for>
+        <span style="position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--ink);box-shadow:0 0 8px var(--ink);left:{{ ribbonNow }}"></span>
+      </div>
+      <div class="mono" style="margin-top:8px;display:flex;flex-wrap:wrap;gap:12px;font-size:9.5px;color:var(--faint)">
+        <span style="display:inline-flex;align-items:center;gap:5px"><span style="width:7px;height:7px;border-radius:2px;background:{{ accent }}"></span>Sights</span>
+        <span style="display:inline-flex;align-items:center;gap:5px"><span style="width:7px;height:7px;border-radius:2px;background:var(--brass)"></span>Tables</span>
+        <span style="display:inline-flex;align-items:center;gap:5px"><span style="width:7px;height:7px;border-radius:2px;background:var(--olive)"></span>Markets</span>
+        <span style="display:inline-flex;align-items:center;gap:5px"><span style="width:7px;height:7px;border-radius:2px;background:var(--line2)"></span>Rest</span>
+        <span style="display:inline-flex;align-items:center;gap:5px"><span style="width:7px;height:7px;border-radius:2px;background:var(--faint)"></span>Moving</span>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:12px">
+      <div style="flex:1;height:2px;background:var(--line);overflow:hidden"><div style="height:100%;background:{{ accent }};width:{{ dayBar }};transition:width .4s var(--e)"></div></div>
+      <span class="mono" style="font-size:10.5px;color:var(--muted)">{{ doneLabel }}</span>
+      <span onClick="{{ resetDay }}" style="display:inline-flex;align-items:center;min-height:34px;padding:0 11px;border-radius:var(--r);border:1px solid var(--line);background:var(--surf);font:500 10.5px/1 Geist,sans-serif;color:var(--muted);cursor:pointer">Reset</span>
+    </div>
+
+    <sc-if value="{{ dayComplete }}" hint-placeholder-val="{{ false }}">
+      <div style="position:relative;overflow:hidden;padding:13px 15px;border-radius:var(--r);background:var(--surf);border:1px solid var(--brass)">
+        <div style="position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--brass);transform-origin:left;animation:flourish 1.5s var(--e) both"></div>
+        <div style="font:400 15px/1.45 'Instrument Serif',serif;color:var(--body)">Every stop ticked. That's the whole day — go and sit down somewhere.</div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ nowChip }}" hint-placeholder-val="{{ false }}">
+      <div style="position:relative;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh)">
+        <span style="position:absolute;left:50%;top:50%;width:220%;aspect-ratio:1;transform-origin:0 0;background:conic-gradient(transparent 0 74%,{{ accent }} 88%,transparent 100%);animation:spin 4.2s linear infinite;pointer-events:none"></span>
+        <div style="position:relative;margin:1px;border-radius:calc(var(--r-lg) - 1px);background:var(--surf);padding:13px 15px;display:flex;align-items:center;gap:11px">
+          <span style="flex:none;width:7px;height:7px;border-radius:50%;background:{{ accent }};--pulse:color-mix(in oklab,{{ accent }} 60%,transparent);animation:pulseDot 2.2s var(--e) infinite"></span>
+          <span style="flex:1;min-width:0;font:500 12.5px/1.45 Geist,sans-serif;color:var(--ink)">{{ nowChipText }}</span>
+          <span onClick="{{ shareToday }}" class="press" style="position:relative;overflow:hidden;flex:none;display:inline-flex;align-items:center;min-height:34px;padding:0 13px;border-radius:999px;background:{{ accent }};color:var(--elev);font:600 11px/1 Geist,sans-serif;cursor:pointer">
+            <span style="position:relative;z-index:1">Share</span>
+            <span style="position:absolute;top:0;bottom:0;width:40%;background:linear-gradient(90deg,transparent,oklch(1 0 0/.5),transparent);animation:shimmerBtn 2.8s var(--e) infinite"></span>
+          </span>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-for list="{{ stops }}" as="s" hint-placeholder-count="8">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <sc-if value="{{ s.showPart }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;align-items:center;gap:12px;margin:22px 0 2px">
+            <span class="mono" style="flex:none;font-size:10.5px;color:{{ accent }}">{{ s.partGhost }}</span>
+            <span style="flex:none;font:italic 400 21px/1 'Instrument Serif',Georgia,serif;color:var(--ink)">{{ s.partLabel }}</span>
+            <span style="flex:1;height:1px;background:var(--line)"></span>
+          </div>
+        </sc-if>
+        <div style="display:flex;gap:12px;opacity:{{ s.opacity }}">
+          <div style="flex:none;width:52px;display:flex;flex-direction:column;align-items:flex-end;padding-top:14px">
+            <span class="mono" style="font-size:12.5px;font-weight:500;color:{{ s.timeColor }}">{{ s.t }}</span>
+            <span class="mono" style="margin-top:5px;font-size:9px;color:var(--faint);text-align:right;line-height:1.3">{{ s.tag }}</span>
+          </div>
+          <div style="flex:none;width:9px;display:flex;flex-direction:column;align-items:center;padding-top:17px">
+            <span style="flex:none;width:7px;height:7px;border-radius:50%;background:{{ s.dotBg }};border:1.5px solid {{ s.edge }};box-shadow:{{ s.dotGlow }}"></span>
+            <span style="flex:1;width:1px;margin-top:5px;background:var(--line)"></span>
+          </div>
+          <div onTouchStart="{{ s.ts }}" onTouchEnd="{{ s.te }}" style="flex:1;min-width:0;background:{{ s.bg }};border:{{ s.border }};border-radius:{{ s.radius }};box-shadow:{{ s.shadow }};padding:{{ s.pad }};display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;align-items:flex-start;gap:10px">
+              <span onClick="{{ s.openOptions }}" style="flex:1;min-width:0;font:{{ s.nameWeight }} 15.5px/1.35 Geist,sans-serif;color:var(--ink);text-decoration:{{ s.strike }};text-wrap:pretty;cursor:pointer">{{ s.n }}<sc-if value="{{ s.hasOptions }}" hint-placeholder-val="{{ false }}"><span class="mono" style="margin-left:8px;font-size:10px;color:{{ accent }};white-space:nowrap">{{ s.optionHint }}</span></sc-if></span>
+              <span onClick="{{ s.mark }}" style="flex:none;width:26px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:var(--r-sm);border:1px solid {{ s.boxColor }};background:{{ s.boxBg }};font-size:12px;color:var(--surf);cursor:pointer;transition:background .18s var(--e)">{{ s.boxMark }}</span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:5px">
+              <sc-for list="{{ s.badges }}" as="b" hint-placeholder-count="2">
+                <span style="display:inline-flex;align-items:center;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis;font:500 10.5px/1.5 Geist,sans-serif;padding:3px 7px;border-radius:var(--r-sm);border:1px solid {{ b.br }};background:{{ b.bg }};color:{{ b.fg }}">{{ b.t }}</span>
+              </sc-for>
+            </div>
+            <sc-if value="{{ s.hasRows }}" hint-placeholder-val="{{ true }}">
+              <div style="border-top:1px solid var(--line);padding-top:11px;display:flex;flex-direction:column;gap:9px">
+                <sc-for list="{{ s.rows }}" as="r" hint-placeholder-count="3">
+                  <div style="display:flex;gap:10px"><span class="mono" style="flex:none;width:44px;font-size:9.5px;line-height:1.7;color:var(--faint)">{{ r.k }}</span><span style="flex:1;min-width:0;font:400 12.5px/1.6 Geist,sans-serif;color:{{ r.c }};text-wrap:pretty">{{ r.v }}</span></div>
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{ s.hasShops }}" hint-placeholder-val="{{ false }}">
+              <div style="border-top:1px solid var(--line);padding-top:11px">
+                <div class="mono" style="font-size:9.5px;color:var(--faint)">{{ s.shopCount }}</div>
+                <div style="margin-top:9px;display:grid;grid-template-columns:1fr 1fr;gap:5px">
+                  <sc-for list="{{ s.shops }}" as="sh" hint-placeholder-count="4">
+                    <div style="display:flex;align-items:stretch;border-radius:var(--r-sm);border:1px solid var(--line);overflow:hidden">
+                      <div onClick="{{ sh.go }}" style="flex:1;min-width:0;display:flex;align-items:center;gap:8px;padding:9px 8px 9px 9px;cursor:pointer">
+                        <span class="mono" style="flex:none;font-size:9.5px;color:{{ accent }}">{{ sh.i }}</span>
+                        <span style="flex:1;min-width:0;font:400 11px/1.35 Geist,sans-serif;color:var(--body);text-wrap:pretty">{{ sh.n }}</span>
+                      </div>
+                      <a href="{{ sh.map }}" target="_blank" rel="noopener" style="flex:none;width:30px;display:flex;align-items:center;justify-content:center;border-left:1px solid var(--line);color:var(--faint);font-size:11px;text-decoration:none">↗</a>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-if>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+              <sc-if value="{{ s.hasPlace }}" hint-placeholder-val="{{ true }}">
+                <a href="{{ s.mapUrl }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:none;min-height:38px;padding:0 13px;font:500 11.5px/1 Geist,sans-serif;text-decoration:none;border-radius:var(--r);border:1px solid var(--line2);background:var(--surf);color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Maps</a>
+              </sc-if>
+              <sc-if value="{{ s.hasPlace }}" hint-placeholder-val="{{ true }}">
+                <a href="{{ s.walkUrl }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:none;min-height:38px;padding:0 13px;font:500 11.5px/1 Geist,sans-serif;text-decoration:none;border-radius:var(--r);border:1px solid var(--line);color:var(--muted)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M13 4.5a1.6 1.6 0 1 0 0-.1M11 21l1.6-5.4-2.6-2.3.9-4.3 3 2.2 2.6.9M8.5 21l2-4.4M6.5 11l2-2.2 2.4-.6"/></svg>Walk route</a>
+              </sc-if>
+              <span onClick="{{ s.mark }}" style="margin-left:auto;white-space:nowrap;font:600 11px/1 Geist,sans-serif;color:var(--faint);cursor:pointer">{{ s.markLabel }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </sc-for>
+
+    <div style="padding:10px 0 6px;font:400 11.5px/1.5 Geist,sans-serif;color:var(--faint);text-wrap:pretty">Swipe a card right to tick it off, or tap the box</div>
+  </div>
+
+  <div data-chrome style="position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:30;display:flex;gap:2px;padding:6px;border-radius:999px;background:color-mix(in oklab,var(--elev) 82%,transparent);backdrop-filter:blur(18px) saturate(1.4);border:1px solid var(--line2);box-shadow:var(--sh-lift),var(--inset)">
+    <div onClick="{{ openCurrency }}" class="press" style="flex:none;width:62px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:52px;border-radius:999px;background:{{ tabBg.cur }};font:500 9.5px/1 Geist,sans-serif;color:{{ tabColors.cur }};cursor:pointer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:19px;height:19px"><circle cx="12" cy="12" r="9"/><path d="M15 9.5A4 4 0 0 0 9 13a4 4 0 0 0 6 3.5M8 12h5"/></svg>Currency</div>
+    <div onClick="{{ goToday }}" class="press" style="flex:none;width:62px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:52px;border-radius:999px;background:{{ tabBg.today }};font:500 9.5px/1 Geist,sans-serif;color:{{ tabColors.today }};cursor:pointer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:19px;height:19px"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/><circle cx="12" cy="15.5" r="1.6" fill="currentColor" stroke="none"/></svg>Today</div>
+    <div onClick="{{ openSearch }}" class="press" style="flex:none;width:62px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:52px;border-radius:999px;background:{{ tabBg.search }};font:500 9.5px/1 Geist,sans-serif;color:{{ tabColors.search }};cursor:pointer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:19px;height:19px"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.9-3.9"/></svg>Search</div>
+    <div onClick="{{ openMore }}" class="press" style="flex:none;width:62px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:52px;border-radius:999px;background:{{ tabBg.more }};font:500 9.5px/1 Geist,sans-serif;color:{{ tabColors.more }};cursor:pointer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:19px;height:19px"><path d="M4 7h16M4 12h16M4 17h10"/></svg>More</div>
+  </div>
+
+  <sc-if value="{{ panelOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;z-index:40;background:rgba(25,22,18,.55);display:flex;align-items:flex-end">
+      <div onClick="{{ closePanel }}" style="position:absolute;inset:0"></div>
+      <div style="position:relative;width:100%;max-height:86vh;overflow-y:auto;background:var(--bg);border-radius:var(--r-sheet) var(--r-sheet) 0 0;border-top:1px solid var(--line2);padding:10px 16px calc(24px + env(safe-area-inset-bottom,0px));animation:rise .26s var(--e) both">
+        <div style="display:flex;justify-content:center;padding-bottom:12px"><span style="width:34px;height:4px;border-radius:2px;background:var(--line2)"></span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px">
+          <div style="font:400 22px/1.1 'Instrument Serif',serif;color:var(--ink)">{{ panelTitle }}</div>
+          <div onClick="{{ closePanel }}" style="flex:none;width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:var(--r);border:1px solid var(--line);background:var(--surf);font-size:13px;color:var(--muted);cursor:pointer">✕</div>
+        </div>
+
+        <sc-if value="{{ isCurrency }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="padding:15px;border-radius:var(--r);background:var(--surf);border:1px solid var(--line);box-shadow:var(--sh)">
+              <div class="mono" style="font-size:10px;color:var(--faint)">Live rate</div>
+              <div class="mono" style="margin-top:9px;font-size:24px;font-weight:500;color:var(--ink)">{{ rateLine }}</div>
+              <div style="margin-top:7px;font:400 11.5px/1.4 Geist,sans-serif;color:var(--muted)">{{ rateNote }}</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-end">
+              <div style="flex:1">
+                <div class="mono" style="font-size:10px;color:var(--faint)">{{ fromLabel }}</div>
+                <input type="number" inputMode="decimal" value="{{ amount }}" onChange="{{ setAmount }}" class="mono" style="margin-top:8px;width:100%;box-sizing:border-box;min-height:46px;padding:0 12px;border-radius:var(--r);border:1px solid var(--line2);background:var(--surf);color:var(--ink);font-size:16px;font-weight:500" />
+              </div>
+              <div onClick="{{ swap }}" style="flex:none;width:46px;height:46px;display:flex;align-items:center;justify-content:center;border-radius:var(--r);border:1px solid var(--line2);background:var(--surf);font-size:14px;color:var(--ink);cursor:pointer">⇄</div>
+              <div style="flex:1">
+                <div class="mono" style="font-size:10px;color:var(--faint)">{{ toLabel }}</div>
+                <div class="mono" style="margin-top:8px;min-height:46px;display:flex;align-items:center;padding:0 12px;border-radius:var(--r);border:1px solid var(--line);background:transparent;color:var(--muted);font-size:16px;font-weight:500">{{ converted }}</div>
+              </div>
+            </div>
+            <div>
+              <div class="mono" style="font-size:10px;color:var(--faint)">Quick convert</div>
+              <div style="margin-top:10px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px">
+                <sc-for list="{{ quickAmounts }}" as="q" hint-placeholder-count="4">
+                  <div onClick="{{ q.go }}" class="mono" style="min-height:42px;display:flex;align-items:center;justify-content:center;border-radius:var(--r);border:1px solid var(--line);background:var(--surf);font-size:11.5px;color:var(--ink);cursor:pointer">{{ q.label }}</div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isSearch }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <input type="text" value="{{ query }}" onChange="{{ setQuery }}" placeholder="Stops, shops, notes, booking refs…" style="width:100%;box-sizing:border-box;min-height:48px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--surf);color:var(--ink);font:400 14px/1 Geist,sans-serif" />
+            <div style="font:600 11px/1 Geist,sans-serif;letter-spacing:.1em;color:var(--muted)">{{ searchCount }}</div>
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <sc-for list="{{ results }}" as="r" hint-placeholder-count="4">
+                <div onClick="{{ r.go }}" style="padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer">
+                  <div style="font:600 10.5px/1 Geist,sans-serif;letter-spacing:.01em;color:{{ accent }}">{{ r.where }}</div>
+                  <div style="margin-top:6px;font:500 13.5px/1.35 Geist,sans-serif;color:var(--ink)">{{ r.name }}</div>
+                  <div style="margin-top:4px;font:400 11.5px/1.45 Geist,sans-serif;color:var(--muted)">{{ r.note }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isJourney }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div style="font:400 13px/1.6 Geist,sans-serif;color:var(--muted);text-wrap:pretty;max-width:34em">Drawn to scale — the cities sit where they really sit, which is why Palermo looks so far from the rest. It is.</div>
+            <div style="position:relative;align-self:center;width:{{ journey.w }};height:{{ journey.h }}">
+              <sc-for list="{{ journey.hops }}" as="hop" hint-placeholder-count="4">
+                <div style="position:absolute;left:{{ hop.left }};top:{{ hop.top }};width:{{ hop.width }};height:2px;background:{{ hop.style }};opacity:{{ hop.opacity }};transform-origin:0 50%;transform:{{ hop.rotate }};animation:rise .5s var(--e) both;animation-delay:{{ hop.delay }}"></div>
+              </sc-for>
+              <sc-for list="{{ journey.nodes }}" as="nd" hint-placeholder-count="4">
+                <div onClick="{{ nd.go }}" style="position:absolute;left:{{ nd.left }};top:{{ nd.top }};transform:translate(-50%,-50%);cursor:pointer;animation:floatIn .5s var(--e) both;animation-delay:{{ nd.delay }}">
+                  <span style="display:block;width:11px;height:11px;border-radius:50%;background:{{ nd.dot }};box-shadow:{{ nd.ring }}"></span>
+                  <div style="position:absolute;top:-7px;white-space:nowrap;{{ nd.labelSide }}">
+                    <div style="font:400 16px/1 'Instrument Serif',serif;color:var(--ink)">{{ nd.name }}</div>
+                    <div class="mono" style="margin-top:4px;font-size:9.5px;color:var(--faint)">{{ nd.dates }} · {{ nd.nights }}</div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <sc-for list="{{ journey.hops }}" as="hp" hint-placeholder-count="4">
+                <div style="display:flex;align-items:baseline;gap:11px;padding:11px 0;border-top:1px solid var(--line)">
+                  <span class="mono" style="flex:none;width:52px;font-size:10px;color:{{ accent }}">{{ hp.km }}</span>
+                  <div style="flex:1;min-width:0">
+                    <div style="font:500 12.5px/1.35 Geist,sans-serif;color:var(--ink)">{{ hp.mode }} · {{ hp.label }}</div>
+                    <div class="mono" style="margin-top:4px;font-size:10px;color:var(--muted)">{{ hp.when }}</div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isStamps }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div class="mono" style="font-size:10.5px;color:{{ accent }}">{{ stampCount }}</div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+              <sc-for list="{{ stamps }}" as="stp" hint-placeholder-count="9">
+                <div onClick="{{ stp.go }}" style="aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border-radius:50%;border:{{ stp.border }};color:{{ stp.color }};opacity:{{ stp.op }};transform:{{ stp.tilt }};cursor:pointer">
+                  <div class="mono" style="font-size:8.5px;letter-spacing:.1em">{{ stp.dow }}</div>
+                  <div style="font:400 15px/1 'Instrument Serif',serif">{{ stp.city }}</div>
+                  <div class="mono" style="font-size:9px">{{ stp.date }}</div>
+                  <div class="mono" style="font-size:8px;opacity:.7">{{ stp.count }}</div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="font:400 12px/1.55 Geist,sans-serif;color:var(--muted);text-wrap:pretty">A day inks itself once every stop on it is ticked off.</div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isMore }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <sc-for list="{{ moreItems }}" as="m" hint-placeholder-count="9">
+              <div onClick="{{ m.go }}" style="display:flex;align-items:center;gap:12px;min-height:52px;padding:0 14px;border-radius:10px;background:var(--surf);border:1px solid var(--line);cursor:pointer">
+                <span style="flex:none;font:400 15px/1 'Instrument Serif',serif;color:{{ accent }}">{{ m.mark }}</span>
+                <span style="flex:1;min-width:0;font:600 12.5px/1.3 Geist,sans-serif;color:var(--ink)">{{ m.label }}</span>
+                <span style="flex:none;font:600 10px/1 Geist,sans-serif;color:var(--muted)">{{ m.meta }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isSheet }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:18px">
+            <sc-for list="{{ sheetSections }}" as="sec" hint-placeholder-count="4">
+              <div>
+                <div style="font:600 11px/1 Geist,sans-serif;letter-spacing:.01em;color:{{ accent }}">{{ sec.title }}</div>
+                <div style="margin-top:10px;display:flex;flex-direction:column;gap:8px">
+                  <sc-for list="{{ sec.items }}" as="it" hint-placeholder-count="3">
+                    <div onClick="{{ it.go }}" style="padding:12px 13px;border-radius:10px;background:var(--surf);border:1px solid {{ it.br }};display:flex;gap:11px;align-items:flex-start">
+                      <sc-if value="{{ it.tickable }}" hint-placeholder-val="{{ false }}">
+                        <span style="flex:none;margin-top:1px;width:22px;height:22px;border-radius:6px;border:1.5px solid {{ it.boxColor }};background:{{ it.boxBg }};display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:#F6F1E7">{{ it.boxMark }}</span>
+                      </sc-if>
+                      <div style="flex:1;min-width:0">
+                        <div style="font:600 12.5px/1.35 Geist,sans-serif;color:var(--ink);text-decoration:{{ it.strike }};text-wrap:pretty">{{ it.label }}</div>
+                        <div style="margin-top:5px;font:400 11.5px/1.5 Geist,sans-serif;color:var(--muted);text-wrap:pretty">{{ it.value }}</div>
+                        <sc-if value="{{ it.hasMap }}" hint-placeholder-val="{{ false }}">
+                          <a href="{{ it.mapUrl }}" target="_blank" rel="noopener" style="margin-top:9px;display:inline-flex;align-items:center;white-space:nowrap;min-height:38px;padding:0 13px;border-radius:8px;border:1px solid {{ accent }};color:{{ accent }};font:600 11px/1 Geist,sans-serif;text-decoration:none">Open in Maps</a>
+                        </sc-if>
+                      </div>
+                      <sc-if value="{{ it.hasFlag }}" hint-placeholder-val="{{ false }}">
+                        <span style="flex:none;font:600 9.5px/1.2 Geist,sans-serif;padding:6px 8px;border-radius:5px;background:{{ it.flagBg }};color:{{ it.flagFg }}">{{ it.flag }}</span>
+                      </sc-if>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isArrival }}" hint-placeholder-val="{{ false }}">
+    <div class="grain" style="position:fixed;inset:0;z-index:60;background:{{ band }};color:#FAF6EE;display:flex;flex-direction:column;padding:calc(28px + env(safe-area-inset-top,0px)) 22px calc(28px + env(safe-area-inset-bottom,0px));animation:floatIn .3s var(--e) both">
+      <div style="position:absolute;inset:0;pointer-events:none;background:{{ motif }};opacity:.5"></div>
+      <div style="position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px">
+        <span class="mono" style="font-size:34px;line-height:1;font-weight:500;letter-spacing:-.02em">{{ arrival.clock }}</span>
+        <div onClick="{{ closePanel }}" class="press" style="flex:none;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:999px;border:1px solid rgba(250,246,238,.3);font-size:15px;cursor:pointer">✕</div>
+      </div>
+      <div style="position:relative;flex:1;display:flex;flex-direction:column;justify-content:center;gap:18px;padding:24px 0">
+        <div>
+          <div class="mono" style="font-size:10px;color:rgba(250,246,238,.7)">{{ arrival.nowLabel }}</div>
+          <div style="margin-top:12px;display:flex;align-items:baseline;gap:12px">
+            <span class="mono" style="flex:none;font-size:15px;font-weight:500;color:rgba(250,246,238,.85)">{{ arrival.time }}</span>
+            <span style="font:400 34px/1.1 'Instrument Serif',Georgia,serif;text-wrap:pretty">{{ arrival.name }}</span>
+          </div>
+          <sc-if value="{{ arrival.hasWhere }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:12px;font:400 13px/1.5 Geist,sans-serif;color:rgba(250,246,238,.8)">{{ arrival.where }}</div>
+          </sc-if>
+        </div>
+        <div style="height:1px;background:rgba(250,246,238,.2)"></div>
+        <div style="display:flex;align-items:baseline;gap:12px">
+          <span class="mono" style="flex:none;font-size:10px;color:rgba(250,246,238,.7);width:52px">Then</span>
+          <div style="flex:1;min-width:0">
+            <div style="font:400 15px/1.4 Geist,sans-serif;text-wrap:pretty">{{ arrival.nextLine }}</div>
+            <sc-if value="{{ arrival.hasGap }}" hint-placeholder-val="{{ false }}">
+              <div class="mono" style="margin-top:6px;font-size:10.5px;color:rgba(250,246,238,.72)">in {{ arrival.gapLine }}</div>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+      <div style="position:relative;display:flex;gap:10px">
+        <sc-if value="{{ arrival.hasWhere }}" hint-placeholder-val="{{ false }}">
+          <a href="{{ arrival.walk }}" target="_blank" rel="noopener" class="press" style="flex:1;display:inline-flex;align-items:center;justify-content:center;min-height:54px;border-radius:var(--r-lg);border:1px solid rgba(250,246,238,.32);color:#FAF6EE;text-decoration:none;font:600 13px/1 Geist,sans-serif">Walk there</a>
+        </sc-if>
+        <div onClick="{{ arrival.mark }}" class="press" style="flex:1;display:inline-flex;align-items:center;justify-content:center;min-height:54px;border-radius:var(--r-lg);background:#FAF6EE;color:{{ accent }};font:600 13px/1 Geist,sans-serif;cursor:pointer">{{ arrival.doneMark }}</div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ canInstall }}" hint-placeholder-val="{{ false }}">
+    <div data-chrome style="position:fixed;left:14px;right:14px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:45;display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;background:{{ accent }};color:#F6F1E7;box-shadow:0 10px 30px rgba(25,22,18,.28)">
+      <span style="flex:none;font:400 17px/1 'Instrument Serif',serif">⌂</span>
+      <span style="flex:1;min-width:0;font:500 12px/1.4 Geist,sans-serif">Keep it on the home screen — it works with no signal.</span>
+      <span onClick="{{ install }}" style="flex:none;display:inline-flex;align-items:center;min-height:38px;padding:0 14px;border-radius:8px;background:#F6F1E7;color:{{ accent }};font:600 11.5px/1 Geist,sans-serif;cursor:pointer">Install</span>
+      <span onClick="{{ dismissInstall }}" style="flex:none;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:rgba(246,241,231,.2);font-size:12px;cursor:pointer">✕</span>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;left:16px;right:16px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:50;padding:13px 15px;border-radius:10px;background:var(--ink);color:var(--bg);font:600 12px/1.4 Geist,sans-serif;animation:rise .2s ease both">{{ toastText }}</div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844}}">
+/* ── palette ─────────────────────────────────────────────── */
+const LEGS = [
+  { id: "T", name: "Getting there", accent: "#6B7A4A", deep: "#3F4A2C", dates: "17 Sept · 1 Oct", base: "Turkish Airlines via Istanbul · PNR UKQNVL",
+    motif: "repeating-linear-gradient(100deg,rgba(246,241,231,.07) 0 1px,transparent 1px 11px)" },
+  { id: "V", name: "Venice", accent: "#2E5F5D", deep: "#1B3A39", dates: "18 – 21 Sept", base: "Corte Pisani 1178, Santa Croce · host Giacomo",
+    motif: "repeating-linear-gradient(45deg,rgba(246,241,231,.05) 0 8px,transparent 8px 16px),repeating-linear-gradient(-45deg,rgba(246,241,231,.05) 0 8px,transparent 8px 16px)" },
+  { id: "F", name: "Florence", accent: "#A8482F", deep: "#6E2A19", dates: "21 – 24 Sept", base: "Via Vincenzo Gioberti 91, Sant'Ambrogio · hosts Simone & Nico",
+    motif: "repeating-linear-gradient(0deg,rgba(246,241,231,.07) 0 1px,transparent 1px 26px),repeating-linear-gradient(90deg,rgba(246,241,231,.07) 0 1px,transparent 1px 26px)" },
+  { id: "R", name: "Rome", accent: "#7E2B2B", deep: "#4A1717", dates: "24 – 30 Sept", base: "Via Rattazzi 2F (Esquilino) → Via Agostino Valiero 12 (Monteverde)",
+    motif: "repeating-radial-gradient(circle at 0 100%,transparent 0 20px,rgba(246,241,231,.07) 20px 21px,transparent 21px 42px)" },
+  { id: "P", name: "Palermo", accent: "#C2872A", deep: "#8A5A12", dates: "26 – 27 Sept", base: "Attico SensoCanti, Via Vittorio Emanuele",
+    motif: "repeating-conic-gradient(from 45deg at 50% 50%,rgba(246,241,231,.08) 0 25%,transparent 0 50%) 0 0/34px 34px" }
+];
+const KIND = {
+  travel:  { tag: "Travel",  tone: "muted",  compact: true },
+  stay:    { tag: "Base",    tone: "olive" },
+  meal:    { tag: "Table",   tone: "terra",  warm: true },
+  market:  { tag: "Market",  tone: "olive" },
+  shop:    { tag: "Browse",  tone: "muted" },
+  sight:   { tag: "Sight",   tone: "accent" },
+  ticket:  { tag: "Timed entry", tone: "accent" },
+  church:  { tag: "Church",  tone: "brass" },
+  photo:   { tag: "Photo",   tone: "brass" },
+  rest:    { tag: "Rest",    tone: "brass",  dashed: true },
+  free:    { tag: "Free",    tone: "muted",  dashed: true },
+  errand:  { tag: "Errand",  tone: "olive" },
+  note:    { tag: "Note",    tone: "brass" }
+};
+/* ── the trip ─────────────────────────────────────────────── */
+const D = (leg, date, dow, kicker, title, sub, sunset, wx, insightKind, insight, stops, occ) =>
+  ({ leg, date, dow, kicker, title, sub, sunset, wx, insightKind, insight, stops, occ });
+const S = (t, n, k, o) => Object.assign({ t, n, k }, o || {});
+
+const DAYS = [
+  D("T", "2026-09-17", "THU", "Thursday 17 Sept · Day 0", "Changi, then the long way east",
+    "Out of Singapore at 23:05 · Istanbul at dawn · Venice by breakfast", "19:00", "31° Singapore", "heads-up",
+    "Turkish opens check-in three hours out and closes it 90 minutes before departure — for six people with 30kg each, aim to be at the counter by 21:35, not 22:00.", [
+    S("20:30", "Group meets at Changi Terminal 1", "travel", { w: "Six passengers, one PNR — easier to check in together than to chase each other through the terminal.", x: "Row of check-in counters, departure level", a: "Changi Airport Terminal 1" }),
+    S("21:35", "Check-in & bag drop, Turkish Airlines", "travel", { h: "Counter closes 90 min before the 23:05 departure.", w: "30 kg checked and 8 kg cabin each, all on PNR UKQNVL (Traveloka 1339639830).", b: ["30kg + 8kg each"], x: "Immigration, then the gate" }),
+    S("23:05", "TK · Singapore (SIN) → Istanbul (IST)", "travel", { h: "Lands Istanbul 05:15 on the 18th.", w: "Sleep on this leg — the layover is only 1h35m and Venice starts the same morning.", b: ["PNR UKQNVL"], x: "1h 35m in Istanbul" }),
+    S("—", "Packing checklist", "note", { w: "Open the checklist from More at any time — it saves what you've ticked.", b: ["Tap to open"], sheet: "packing" })
+  ]),
+
+  D("V", "2026-09-18", "FRI", "Friday 18 Sept · Venice Day 1", "Dorsoduro first, then back toward home",
+    "Longest walk while you're fresh · check-in 17:30 · the day ends 7 minutes from the door", "19:25", "24° / 15°", "heads-up",
+    "Al Squero and Cantine del Vino già Schiavi both shut on Sundays — that single fact is why Dorsoduro sits today and Cannaregio waits until Sunday.", [
+    S("06:50", "TK · Istanbul → Venice Marco Polo", "travel", { h: "Lands Venice 08:20.", x: "Immigration & baggage" }),
+    S("08:20", "Land Venice", "travel", { h: "Ticket arrival. Planner: follow the ticket.", w: "The 10:20 immigration block is deliberate buffer in case of delay — not a real 2-hour queue.", x: "Immigration, then the van" }),
+    S("10:20", "Clear immigration & baggage", "travel", { x: "Van transfer, 15–20 min", w: "Six people and six checked bags — the van is booked rather than the water bus for exactly this reason." }),
+    S("10:45", "Van drops you at Piazzale Roma", "travel", { x: "Walk 12–15 min to Corte Pisani", a: "Piazzale Roma, Venice" }),
+    S("11:00", "Corte Pisani — bag drop only", "stay", { h: "Check-in is not until 17:30.", w: "Drop bags, keep a day bag, and start the day light.", a: "Corte Pisani 1178, Santa Croce, Venice", x: "Walk 16 min into Dorsoduro" }),
+    S("11:26", "Gallerie dell'Accademia", "ticket", { h: "Checked Aug 2026: Tue–Sun 8:15am – 7:15pm, Mon 8:15am – 2pm only. The museum's own site states 9am – 7pm with ticket sales ending 6pm — sources disagree on the morning hour, so don't bank on an 8:15 entry.", p: "Booked — price settled.", r: "confirmed", w: "Friday is deliberate — Monday is a half-day that ends at 2pm, so an afternoon visit would have failed.", a: "Gallerie dell'Accademia, Venice", x: "Walk 3 min" }),
+    S("12:14", "Osteria Al Squero", "meal", { h: "Fri 10am – 8:30pm · closed Sundays.", w: "Cicchetti and a spritz looking across at the gondola workshop.", r: "walkin", a: "Osteria Al Squero, Dorsoduro, Venice", x: "Walk 8 min" }),
+    S("12:37", "Lunch: Panini e Vini da Babbo", "meal", { h: "Open daily 7am – 11pm.", r: "none", w: "No reservation system exists — walk in and expect to wait a little with six.", a: "Panini e Vini da Babbo, Venice", x: "Walk 3 min" }),
+    S("13:40", "Dorsoduro browse", "shop", { h: "Living in the Past opens at noon, so this timing works.", sh: ["Gelateria il Doge", "Vintageria Venezia Le Chic", "Living in the Past (vinyl)", "La Casa Di Loto"], tr: "gelato", b: ["Some hours unposted"], x: "Walk 3 min" }),
+    S("14:23", "Coffee: Majer", "meal", { h: "Fri 7am – 8pm.", r: "walkin", a: "Majer, Venice", x: "Walk 5 min" }),
+    S("14:50", "Church of San Rocco", "church", { p: "free", x: "Next door" }),
+    S("15:05", "Scuola Grande di San Rocco", "sight", { h: "9:30am – 6pm daily.", p: "€10–14", w: "A full hour now that the Frari is off the plan — the Tintorettos deserve it.", rest: "Grandma & Sarah at Lunula Caffetteria, 2 min away, open till 6pm", a: "Scuola Grande di San Rocco, Venice", x: "Walk 3 min" }),
+    S("16:08", "Buffer — walk home at a relaxed pace", "free", { w: "Deliberately empty. First day, six people, long flight." }),
+    S("17:30", "Check in & freshen up at Corte Pisani", "stay", { h: "Your 5:30pm slot.", a: "Corte Pisani 1178, Santa Croce, Venice", x: "Walk 3 min" }),
+    S("18:00", "Grocery run: Conad", "errand", { h: "Open Friday till 9pm.", w: "Groceries done before 7pm, per the trip rule.", a: "Conad, Santa Croce, Venice", x: "Walk 3 min home, 4 min to dinner" }),
+    S("18:35", "Pre-dinner stroll near Rio Marin", "free", {}),
+    S("19:30", "Dinner: Osteria Ae Saracche", "meal", { h: "Fri 12 – 10pm.", r: "confirmed", a: "Osteria Ae Saracche, Venice", x: "Walk 4 min home" }),
+    S("21:00", "Walk home, early night", "free", { w: "Tomorrow starts at 7:00am." })
+  ]),
+
+  D("V", "2026-09-19", "SAT", "Saturday 19 Sept · Venice Day 2", "Rialto → San Marco → Castello",
+    "Depart 7:00am · Doge's Palace at opening · birthday dinner fixed at 7:00pm", "19:23", "24° / 15°", "fact",
+    "The Rialto was the Grand Canal's only bridge for more than three centuries — these stalls have traded on the same stones since the eleventh.", [
+    S("07:00", "Depart Corte Pisani", "travel", { x: "Walk 5 min" }),
+    S("07:05", "Coffee: Al Cafetier", "meal", { h: "Sat 7am – 10pm.", r: "walkin", a: "Al Cafetier, Venice", x: "Walk 9 min" }),
+    S("07:40", "Rialto Market", "market", { h: "Sat 7:30am – 3pm · closed Sundays; stalls break down by 11am.", w: "Early start beats the crowds — the quietest hour of its day.", tr: "photo", a: "Rialto Market, Venice", x: "Walk 15 min via the bridge" }),
+    S("09:00", "Ponte di Rialto crossing", "photo", { w: "The photo stop is folded into the walk rather than made a separate errand.", tr: "photo", a: "Ponte di Rialto, Venice" }),
+    S("09:15", "Doge's Palace", "ticket", { h: "Opens 9:00am — you hold the 9:15 slot.", p: "Booked — price settled.", r: "confirmed", w: "The palace only: you're not using the Correr, Archaeological Museum or Marciana that the ticket also covers. Moved here from the afternoon for the emptiest window of the day, and through 26 Sept the palace runs late to 11pm on Fri and Sat, so there's no closing pressure.", a: "Palazzo Ducale, Venice", x: "Adjacent" }),
+    S("11:00", "St Mark's Basilica", "church", { h: "Booked for 11:00 — the visit runs 11:00 to 11:30.", r: "confirmed", b: ["Booked ✓", "Shoulders & knees", "No large bags"], w: "Tickets are held, so the queue question is settled. Bags still go to the cloakroom before you enter, and security adds 10–20 minutes on top of the slot.", a: "Basilica di San Marco, Venice", x: "Walk 15 min" }),
+    S("11:45", "Bar All'Arco cicchetti", "meal", { h: "Sat 10am – 2:30pm · closed Sundays.", r: "walkin", a: "Bar All'Arco, Venice", x: "Walk 5 min" }),
+    S("12:20", "QUORAMI + Sangueblu Vintage", "shop", { h: "11am – 6:30pm.", sh: ["QUORAMI (belts)", "Sangueblu Vintage"], x: "Walk 5 min" }),
+    S("13:00", "Lunch: L'Bacaro de' Bischeri", "meal", { r: "none", w: "No reservation system — walk in.", a: "L'Bacaro de' Bischeri, Venice", x: "Walk 15 min" }),
+    S("14:15", "St Mark's Campanile", "ticket", { h: "Lift to the top, no stairs.", p: "~€12 pp", rest: "Grandma & Sarah decide on the day; everyone else free-explores Piazza San Marco and La Fenice either way", a: "Campanile di San Marco, Venice", x: "Short walk" }),
+    S("14:45", "Rest block: café on Piazza San Marco", "rest", { w: "Group reunites here regardless of who climbed." }),
+    S("15:30", "Gondola ride", "sight", { h: "9am – 9pm daily.", x: "Walk 3 min" }),
+    S("16:00", "Libreria Acqua Alta", "shop", { a: "Libreria Acqua Alta, Venice", x: "Walk 4 min" }),
+    S("16:23", "Scriba Venice — bookbinder", "shop", { h: "9am – 10pm daily.", x: "Walk 8 min" }),
+    S("16:42", "Maranteghe 2 Vintage & Second Hand", "shop", { w: "Sister branch of the Cannaregio shop you'll see tomorrow.", x: "Walk 24 min" }),
+    S("17:05", "Aperitivo: Bacaro Risorto Castello", "meal", { w: "Locals-only feel — used here rather than as a nightcap.", r: "walkin", x: "Walk 25 min" }),
+    S("17:25", "Walk back toward Santa Croce", "travel", { w: "The longest single leg of the evening — it's why the buffer after it is generous." }),
+    S("17:50", "Buffer — freshen up before dinner", "free", { w: "70 minutes rather than the 40 the earlier draft had." }),
+    S("19:00", "Birthday dinner: Hostaria Osottoosopra", "meal", { h: "Fixed 7:00pm, Santa Croce.", p: "moderate", r: "confirmed", b: ["4.8 ★"], occ: 1, w: "Ceci's birthday, celebrated early — the one dinner that isn't after 7:30pm.", a: "Hostaria Osottoosopra, Venice", x: "Walk home 8 min" }),
+    S("20:30", "Walk back to the Airbnb", "free", {})
+  ], { label: "Ceci's birthday dinner — celebrated early", note: "Her actual birthday is the 27th, in Palermo. Tonight is the sit-down: 7:00pm sharp at Hostaria Osottoosopra, booked and confirmed." }),
+
+  D("V", "2026-09-20", "SUN", "Sunday 20 Sept · Venice Day 3", "Cannaregio, then a bacaro crawl",
+    "Depart 7:00am · unhurried morning · the afternoon is three bacari and a gelato", "19:20", "23° / 15°", "family",
+    "Tonight's dinner is deliberately undecided. If the bacaro crawl has filled everyone up, it becomes a laundry-and-feet-up block instead — no one has to be brave about it.", [
+    S("07:00", "Depart Corte Pisani", "travel", { x: "Walk 10 min" }),
+    S("07:10", "Ponte delle Guglie", "photo", { w: "Photo stop over the Cannaregio Canal.", tr: "photo", a: "Ponte delle Guglie, Venice", x: "Walk 10 min" }),
+    S("07:35", "Ponte dei Tre Archi", "photo", { w: "Venice's only surviving triple-arch bridge.", tr: "photo", a: "Ponte dei Tre Archi, Venice", x: "Walk 10 min" }),
+    S("08:05", "Coffee: BarAonda", "meal", { h: "Sun 7am – 11pm.", w: "Canal-side, with time to actually sit rather than grab and go.", r: "walkin", x: "Walk 10 min" }),
+    S("08:50", "Despar Teatro Italia", "market", { h: "Sun 8am – 9pm.", w: "Pantry shopping inside a frescoed theatre — sightseeing and groceries in one stop.", a: "Despar Teatro Italia, Venice", x: "Walk 10 min" }),
+    S("09:35", "sullaluna libreria & bistrot", "shop", { h: "Sun 8:30am – 3pm.", x: "Walk 10 min" }),
+    S("10:15", "Cannaregio vintage crawl", "shop", { h: "Maranteghe Sun 10am – 7pm, closed Wednesdays.", sh: ["Maranteghe Vintage & Second Hand", "Adil Vintage Shop", "Charity Shop T.I.B.E.R.I.A.D.E."], b: ["Hours unposted — bonus stops"], rest: "Rest built in: canal-side bench, or back at sullaluna", x: "Walk 10 min" }),
+    S("11:55", "Vintageria Venezia Capsule", "shop", { h: "10:30am – 6:30pm daily.", x: "Short walk" }),
+    S("12:45", "Lunch: La Corte 1642", "meal", { h: "Sun 11:30am – 3:30pm.", r: "phone", w: "Not bookable online — call or walk in and book in person earlier in the day.", a: "La Corte 1642, Venice", x: "Walk toward Fondamente Nove" }),
+    S("14:15", "Free wander to the Fondamente Nove waterfront", "free", { w: "Buffer before I Gesuiti reopens at 3pm." }),
+    S("15:00", "Campo dei Gesuiti — Santa Maria Assunta", "church", { h: "Sun 10am – 1pm & 3 – 7pm.", p: "€1–2", w: "Baroque marble and a Titian, in a campo that stays quiet.", a: "Chiesa di Santa Maria Assunta, Venice", x: "Walk 12 min" }),
+    S("15:45", "Bacaro 1 — Ristorante La Cantina", "meal", { w: "Cicchetti and wine on Strada Nova.", r: "walkin", x: "Walk 15 min" }),
+    S("16:37", "Bacaro 2 — Ostaria al Ponte", "meal", { w: "Canal-side, second of three.", r: "walkin", x: "Walk 18 min" }),
+    S("17:33", "Bacaro 3 — Al Merca", "meal", { w: "Stand-up only, so it's naturally the last and quickest.", r: "walkin", x: "Walk 2 min" }),
+    S("18:17", "Dessert: SUSO Gelatoteca", "meal", { h: "9:30am – 11:30pm daily.", w: "Tiramisu-flavoured gelato — Two Sizes Tiramisu is Rome-only, so this covers the craving here.", tr: "tiramisu", a: "SUSO Gelatoteca, Sotoportego de la Bissa 5453, Venice", x: "Walk 20 min" }),
+    S("18:55", "Buffer — walk back, freshen up", "free", {}),
+    S("20:00", "Dinner — undecided by design", "meal", { r: "tbc", w: "Deliberately open. You'll most likely be full from the bacaro crawl — if anyone's peckish, grab takeaway near the Airbnb; otherwise this becomes laundry and packing for the 6:15am train.", b: ["Takeaway or laundry"] }),
+    S("21:30", "Early night — pack for the 6:15am train", "free", {})
+  ]),
+
+  D("F", "2026-09-21", "MON", "Monday 21 Sept · Florence Day 1", "Arrival, and bags 370 metres from the door",
+    "6:15am out of Venice · storage in Sant'Ambrogio, not at the station · Monday closes the Uffizi and Accademia", "19:22", "26° / 14°", "heads-up",
+    "Monday shuts both the Uffizi and the Accademia, which is why they sit on Tuesday and Wednesday — today is churches, shops and the Medici.", [
+    S("06:15", "Depart Corte Pisani for Venezia Santa Lucia", "travel", { w: "Early, but the 07:05 train is worth the hour.", a: "Venezia Santa Lucia station", x: "Walk to the station" }),
+    S("07:05", "Italo 8903 · Venezia S.L. → Firenze S.M.", "travel", { h: "Arrives 09:20.", b: ["ticket SJGU4K", "coach 2 · seats 24–29", "Prima Business"], p: "€239.40 for six", h2: "", x: "Taxis with the luggage" }),
+    S("09:35", "Taxis to Luggage Storage Florence", "travel", { h: "€5/bag/day.", w: "Storing by the Airbnb beats the station: pickup and check-in happen in the same place at 3pm, saving a 40–50 min backtrack.", a: "Luggage Storage Florence, Borgo la Croce 19, Florence", x: "~15–20 min with luggage for six" }),
+    S("09:55", "Drop bags", "errand", { p: "€5/bag/day", x: "Taxi back to the centre" }),
+    S("10:05", "Taxi back to Centro Storico / SMN", "travel", { x: "~15–20 min" }),
+    S("10:30", "Officina Profumo-Farmaceutica di Santa Maria Novella", "sight", { h: "9:30am – 8pm daily.", a: "Officina Profumo-Farmaceutica di Santa Maria Novella, Florence", x: "Walk 3 min" }),
+    S("11:20", "Basilica di Santa Maria Novella + piazza", "church", { h: "Mon 9am – 5:30pm.", a: "Basilica di Santa Maria Novella, Florence", x: "Walk 3 min" }),
+    S("11:50", "Via del Moro / Belle Donne vintage", "shop", { h: "Todo Modo opens Mon 4–8pm.", sh: ["Tartan Vintage (4.9)", "HunterVintage (4.3)", "Humana Vintage (4.2)", "Todo Modo", "Calzoleria Toscana"], x: "Walk 12 min" }),
+    S("12:25", "Walk toward Sant'Ambrogio, browsing", "shop", { sh: ["Biscottificio Antonio Mattei (cantucci)"], w: "A ten-minute detour off the route, right by Piazza Santa Trinita." }),
+    S("13:30", "Lunch: Trattoria Marione", "meal", { h: "Daily 12–3pm & 6:30–10:30pm.", r: "confirmed", b: ["4.4 ★", "Confirmed 6 Aug"], w: "Backup is Trattoria Sostanza (4.5, butter chicken, phone reservation only, pricier).", a: "Trattoria Marione, Florence", x: "Walk toward the Airbnb" }),
+    S("14:30", "Continue toward Sant'Ambrogio", "free", {}),
+    S("15:00", "Check in & freshen up", "stay", { w: "Bags are 370 m away — collect on the way in or straight after.", a: "Via Vincenzo Gioberti 91, Florence", x: "Walk 5 min" }),
+    S("15:45", "Badia Fiorentina", "church", { h: "Monday only, 3 – 6pm.", w: "Shortened to 25 minutes on your note, which is what let the flea market move 20 minutes earlier.", sh: ["Fotoautomatica booth (by the Bargello)", "Forno Ghibellina"], x: "Walk 5 min" }),
+    S("16:10", "Coffee: Caffè Gilli", "meal", { h: "Daily 8am – midnight, trading since 1733.", r: "walkin", x: "Walk 5 min" }),
+    S("16:30", "Paperback Exchange + Pegna dal 1860", "shop", { sh: ["Paperback Exchange (4.7)", "Pegna dal 1860, Via dello Studio 26R"], x: "Walk 5 min" }),
+    S("16:50", "Vintage55 + Dolce Vita Vintage", "shop", { sh: ["Vintage55 (4.2)", "Dolce Vita Vintage (4.1)"], x: "Walk 8 min" }),
+    S("17:15", "Medici Riccardi Palace", "ticket", { h: "Mon 9am – 7pm.", sh: ["Marco Leather Factory, Piazza di San Lorenzo 10", "Massimo Leather, Borgo la Noce 13R"], a: "Palazzo Medici Riccardi, Florence", x: "Walk ~25 min" }),
+    S("17:55", "Walk to Piazza dei Ciompi", "travel", {}),
+    S("18:20", "Mercato delle Pulci", "market", { h: "Daily 9am – 7:30pm.", w: "Arriving 20 minutes earlier than the last draft, so there's real slack if it winds down early.", a: "Mercato delle Pulci, Piazza dei Ciompi, Florence", x: "Walk 10 min" }),
+    S("19:20", "Aperitivo: Caffè Sant'Ambrogio", "meal", { w: "A genuine local spot on the market square, outdoor seating, good list.", r: "walkin", x: "Walk 3–5 min" }),
+    S("20:00", "Dinner: Osteria Zio Gigi", "meal", { r: "confirmed", b: ["4.4 ★", "The owner sings opera"], w: "Backup is Trattoria Marione again — open till 10:30pm.", a: "Osteria Zio Gigi, Florence" })
+  ]),
+
+  D("F", "2026-09-22", "TUE", "Tuesday 22 Sept · Florence Day 2", "Cascine Market, the dome, the Accademia",
+    "Depart 6:45am · dome 9:45am · Accademia 5:30pm till close · dinner 8:00pm", "19:20", "26° / 14°", "fact",
+    "Brunelleschi's dome is still the largest masonry dome ever built, and no drawings survive explaining how the inner shell carries itself.", [
+    S("06:45", "Depart Airbnb — coffee grabbed en route", "travel", { w: "Grab-and-go pastry at the tram stop rather than a sit-down stop.", x: "Tram T1 toward Cascine" }),
+    S("06:45", "Tram T1 to Parco delle Cascine", "travel", { h: "~25 min.", x: "Arrive for the 07:30 window" }),
+    S("07:30", "Cascine Market", "market", { h: "Tuesday only, in Parco delle Cascine.", b: ["Your 60-min window"], w: "The one morning all trip it runs — hence the 6:45 start.", a: "Parco delle Cascine, Florence", x: "Bus 17 to San Marco Piazza" }),
+    S("08:30", "Bus 17 (Verga Tozzi) → San Marco Piazza", "travel", { h: "~14 min, 11 stops, then 650 m on foot.", w: "Matches your screenshotted route and beats tramming back.", x: "Walk 8 min to the Duomo" }),
+    S("09:00", "Arrive Piazza del Duomo, join the queue", "free", { w: "Security and queue buffer ahead of the slot." }),
+    S("09:45", "Duomo dome climb — Brunelleschi Pass", "ticket", { h: "Confirmed 9:45am slot. Enter at the Porta della Mandorla on the north side — only 5 minutes' grace on the slot, so be there by 9:20. Since 1 Mar 2025 they check photo ID against the ticket name.", p: "Brunelleschi Pass for four.", r: "confirmed", rest: "Grandma and Sarah hold a pass without the dome climb — they take the Baptistery, the cathedral floor and the Opera del Duomo Museum while the other four climb, and everyone regroups after.", fl: "\"Before You Go\" says 9:00am; the confirmed slot is 9:45am.", w: "2.5 hrs covers the nave, Baptistery and Opera del Duomo Museum around the climb.", a: "Cattedrale di Santa Maria del Fiore, Florence", x: "Walk short" }),
+    S("11:50", "Gelato: Edoardo il Gelato Biologico", "meal", { w: "From your list, tagged \"after the duomo\" — right on cue.", tr: "gelato", a: "Edoardo il Gelato Biologico, Piazza del Duomo 45R, Florence", x: "Walk 10 min" }),
+    S("12:15", "Casa Del Vino Firenze — optional", "meal", { h: "Closes 3:30pm on Tuesdays.", w: "The only window today it's open; it won't work during the San Lorenzo browse later. Checked: Via dell'Ariento 16R, in the San Lorenzo market stalls — it is a counter-service enoteca, not one of the wine windows.", b: ["Standing room only"], a: "Casa Del Vino, Via dell'Ariento 16R, Florence", x: "Short walk" }),
+    S("12:35", "Lunch: Trattoria Zà Zà", "meal", { h: "Daily 11am – 11pm, San Lorenzo.", r: "confirmed", b: ["4.5 ★", "Confirmed ✓"], w: "Confirmed with the planner. Backups if anything changes: Regina Bistecca (4.5, steak) and I Fratellini (cheap panini nearer Palazzo Vecchio).", a: "Trattoria Zà Zà, Florence", x: "Walk 5 min" }),
+    S("14:00", "Palazzo Vecchio", "ticket", { h: "Tue 9am – 7pm.", w: "Widened to 90 minutes in case anyone wants the Arnolfo Tower.", sh: ["Leonardo Shoes, Via de' Cerchi 9R", "Marlù, Via dei Calzaiuoli 57"], a: "Palazzo Vecchio, Florence", x: "Walk 10 min" }),
+    S("15:45", "Browse San Lorenzo", "shop", { sh: ["TORO FIRENZE", "Rewind Vintage (4.7)", "Clochard (4.8)", "Melrose Vintage Ginori (4.4)"], w: "First two are the priorities; the others only if the pace allows.", x: "Walk 5 min" }),
+    S("16:45", "Walk to the Accademia, queue buffer", "travel", {}),
+    S("17:30", "Galleria dell'Accademia", "ticket", { h: "Confirmed 5:30pm slot — verified: Tue–Sun 8:15am – 6:50pm, last entry 6:20pm, closed Mondays. Halls start clearing at 6:35pm.", p: "€16 + €4 booking = €20. From 15 Mar 2026 a €26 48-hour Accademia + Bargello ticket also exists.", r: "confirmed", w: "Evening slot is what keeps the middle of the day free, and it lands inside the last-entry window with 50 minutes to spare.", a: "Galleria dell'Accademia, Florence", x: "Walk 5 min" }),
+    S("18:55", "Aperitivo: Giacosa 1815", "meal", { w: "The bar that claims the Negroni — it was Caffè Casoni when Count Camillo Negroni asked for his gin — and it sits between the Accademia and Ponte Vecchio.", r: "walkin", a: "Caffè Giacosa, Via della Spada, Florence", x: "Walk ~15 min" }),
+    S("20:00", "Dinner: Trattoria Nella", "meal", { r: "confirmed", b: ["4.5 ★", "Walnut ravioli"], a: "Trattoria Nella, Florence" })
+  ]),
+
+  D("F", "2026-09-23", "WED", "Wednesday 23 Sept · Florence Day 3", "Uffizi at opening, then all of the Oltrarno",
+    "Depart 6:30am · Uffizi 8:15 · Boboli, San Miniato, sunset at Piazzale Michelangelo", "19:18", "26° / 14°", "heads-up",
+    "Il Santino has no working reservation — decide tonight's dinner before you fly, or you'll be six people hoping at the door of a very small wine bar.", [
+    S("06:30", "Depart Airbnb", "travel", { x: "Walk toward Centro Storico" }),
+    S("06:35", "Coffee & pastry — unhurried", "meal", { w: "Not pinned to a specific café; happy to lock one in if you'd rather.", r: "walkin", x: "Walk 20–25 min" }),
+    S("07:15", "Walk toward the Uffizi, no rush", "free", { x: "Walk 5 min" }),
+    S("08:00", "Queue at the entrance", "free", {}),
+    S("08:15", "Uffizi Galleries — first slot", "ticket", { h: "Opens 8:15am, closed Mondays. Sources disagree on closing: 6:30pm with 5:30pm last entry, or 6:50pm with 6:20pm — irrelevant for a first slot, but check before any late plan.", p: "€25 standard in 2026; a €16 afternoon ticket applies from 4pm onward, which is not your slot.", r: "confirmed", a: "Galleria degli Uffizi, Florence", x: "Walk 5 min over the bridge" }),
+    S("11:00", "Ponte Vecchio into the Oltrarno", "shop", { h: "Ginori 1735 closed Sundays.", sh: ["Ginori 1735", "Il Bisonte", "Davide Cerasi", "Bjork Florence, Via dello Sprone 25R", "Bottega del Giglio, Lungarno degli Acciaiuoli 42R"], tr: "photo", w: "Moved here from Day 2 — this day already crosses the bridge, so it costs no extra travel.", x: "Walk 5 min" }),
+    S("12:00", "Santo Spirito Market", "market", { h: "Daily 8am – 12pm — you're catching the tail end.", sh: ["Stondo", "Momo Vintage", "Buchetta del Vino / Babae wine window"], tr: "wine", a: "Piazza Santo Spirito, Florence", x: "Walk 3 min" }),
+    S("13:00", "Giuliano Ricchi Jewelry — optional", "shop", { w: "Skip without loss if the morning ran long.", x: "Short walk" }),
+    S("13:30", "Lunch: Pizzium", "meal", { r: "confirmed", b: ["4.6 ★"], w: "Backups: Osteria Santo Spirito (4.4, on the piazza) and Fuor di Porta (4.8, light bites, closed Sundays).", a: "Pizzium, Florence", x: "Walk 5 min" }),
+    S("14:45", "Boboli Gardens + Pitti Palace", "ticket", { h: "Widened to two hours.", sh: ["Le Telerie Toscane, Sdrucciolo de' Pitti 15R", "Monica Miato, no. 27R", "Fotoautomatica (Via Santa Monaca)"], a: "Giardino di Boboli, Florence", x: "Walk 20 min uphill" }),
+    S("17:00", "Basilica di San Miniato al Monte", "church", { b: ["4.8 ★"], a: "Basilica di San Miniato al Monte, Florence", x: "Walk 10 min downhill" }),
+    S("18:00", "Piazzale Michelangelo for sunset", "sight", { h: "Sunset ~19:18 — you're there with an hour to spare.", tr: "photo", a: "Piazzale Michelangelo, Florence", x: "Walk back into the Oltrarno" }),
+    S("19:00", "Aperitivo: Loggia Roof Bar, Palazzo Guadagni", "meal", { r: "confirmed", b: ["4.5 ★", "ref #6N9DJU44KEKP"], a: "Hotel Palazzo Guadagni, Piazza Santo Spirito, Florence", x: "Short walk" }),
+    S("20:15", "Dinner: Il Santino", "meal", { r: "walkin", b: ["4.5 ★", "Walking in"], w: "No reservation possible — the plan is to walk in. If it's full: Osteria Antica Mescita San Niccolò (4.3, 5 min from Piazzale Michelangelo) or Il Santo Bevitore (4.4, same piazza, splurge).", a: "Il Santino, Florence" })
+  ]),
+
+  D("F", "2026-09-24", "THU", "Thursday 24 Sept · Florence Day 4", "Sant'Ambrogio, then the 10:03 to Rome",
+    "Market at 6:30 · checkout 8:00 · train 10:03 · Rome by 11:45", "19:16", "26° / 15°", "heads-up",
+    "The 10:00 train in the doc is actually 10:03 — and it leaves from SMN, so 8:20 with the bags is the real deadline, not the 10am checkout you'd normally get.", [
+    S("06:30", "Mercato di Sant'Ambrogio", "market", { h: "Mon–Sat 7am – 2pm.", w: "Right by the Airbnb — an early look, and breathing room before checkout.", a: "Mercato di Sant'Ambrogio, Florence", x: "Walk 5 min" }),
+    S("07:15", "Back to the Airbnb, finish packing", "free", {}),
+    S("08:50", "Check out", "stay", { h: "Planner's target: out the door by 08:50.", a: "Via Vincenzo Gioberti 91, Florence" }),
+    S("09:10", "Van pickup to Firenze S.M. Novella", "travel", { h: "Booked van, 09:10 from the apartment.", w: "One van for six plus luggage — replaces the two-taxi plan.", a: "Firenze Santa Maria Novella station", x: "~15–20 min with luggage" }),
+    S("09:35", "At the station — breakfast if there's time", "free", { w: "Roughly 25 minutes before the 10:03 departure." }),
+    S("10:03", "Italo 8953 · Firenze S.M. → Roma Termini", "travel", { h: "Arrives 11:45.", b: ["ticket O93W7L", "coach 7 · seats 3–8", "Seat fee €15"], w: "Planner: follow the ticket — the extra 10 minutes is buffer." })
+  ]),
+
+  D("R", "2026-09-24", "THU", "Thursday 24 Sept · Rome Day 1", "Monti, Esquilino, and the Capuchin crypt",
+    "Land Termini 11:45 · bag drop, check-in ~15:15 · dinner 8:00pm near the Quirinale", "19:08", "27° / 16°", "family",
+    "Nothing today needs a ticket, which is deliberate: you'll have been on a train with all the luggage, and tomorrow starts at 5:15am.", [
+    S("11:45", "Land Roma Termini", "travel", { h: "Ticket arrival.", x: "Walk 10 min" }),
+    S("12:15", "Bag drop at Via Rattazzi 2F", "stay", { h: "Check-in later, around 3pm.", w: "Host: Geneve.", a: "Via Rattazzi 2F, Rome", x: "Walk 8 min" }),
+    S("12:30", "Lunch: Mizio's Street Food", "meal", { r: "confirmed", b: ["4.7 ★", "€1–10", "No reservation needed"], a: "Mizio's Street Food, Rome", x: "Walk 8 min" }),
+    S("13:20", "Monti neighbourhood", "shop", { sh: ["La Nuova Piazzetta", "Humana Vintage Roma Monti", "Mr. 100 Tiramisù"], tr: "tiramisu", w: "Extended block — small plates at Mr. 100 if anyone's peckish.", x: "Walk 10 min" }),
+    S("14:45", "Rest block: café in Monti", "rest", { rest: "Grandma & Sarah sit this one out properly", x: "Walk 10 min" }),
+    S("15:15", "Check in at Via Rattazzi 2F", "stay", { w: "Monti ran a little long — worth it for the browsing.", a: "Via Rattazzi 2F, Rome", x: "Walk 10 min" }),
+    S("15:15", "Buffer / rest near the Airbnb", "free", {}),
+    S("15:45", "Chiesa di Sant'Ignazio di Loyola — optional", "church", { b: ["4.8 ★"], w: "The trompe-l'œil ceiling; a quick stop, not a sit-down.", a: "Chiesa di Sant'Ignazio di Loyola, Rome", x: "Walk 10 min" }),
+    S("16:15", "Museo e Cripta dei Cappuccini", "sight", { b: ["4.6 ★"], a: "Museo e Cripta dei Cappuccini, Via Veneto, Rome", x: "Walk 15 min" }),
+    S("17:15", "Wind down, walk back, freshen up", "free", { x: "Walk 5 min" }),
+    S("20:00", "Dinner: Taverna Romana", "meal", { r: "phone", b: ["4.4 ★", "€20–30"], w: "Italian phone number only — call once you land, otherwise walk in early to hold a table for six.", a: "Taverna Romana, Rome" }),
+    S("21:30", "Early night — Trevi at dawn tomorrow", "free", {})
+  ]),
+
+  D("R", "2026-09-25", "FRI", "Friday 25 Sept · Rome Day 2", "Trevi at dawn, Vatican at four",
+    "Out at 5:15am · Pantheon 9:30 · Galleria Colonna's only window · Vatican 16:00–19:00", "19:07", "27° / 16°", "heads-up",
+    "This is the longest day of the trip — 5:15am to past 10pm. Galleria Colonna only opens Friday and Saturday mornings, which is why it can't move.", [
+    S("05:15", "Depart Airbnb 1", "travel", { x: "Walk 15 min" }),
+    S("05:30", "Trevi Fountain", "sight", { w: "Empty streets, dawn light, no crowds — impossible at any other hour.", tr: "photo", a: "Fontana di Trevi, Rome", x: "Walk 15 min" }),
+    S("06:15", "Walk back via Esquilino", "travel", { x: "Short loop toward Regoli" }),
+    S("07:00", "Breakfast: Regoli Pasticceria", "meal", { h: "7am – 6:30pm, confirmed.", r: "walkin", a: "Pasticceria Regoli, Rome", x: "Walk 20 min" }),
+    S("07:45", "Fontana del Pantheon photo stop", "photo", { w: "Exterior only — the church isn't open yet.", tr: "photo", a: "Piazza della Rotonda, Rome", x: "Short walk" }),
+    S("08:00", "Coffee: Sant'Eustachio Caffè", "meal", { w: "Kills the wait for the Pantheon to open, in the right way.", r: "walkin", a: "Sant'Eustachio Il Caffè, Rome", x: "Walk 5 min" }),
+    S("09:30", "Pantheon", "ticket", { h: "Confirmed timed entry, 9:30am. Open 9am – 7pm, last entry 6:45pm. Every ticket carries a slot and you cannot enter early.", p: "€5 full, €2 for EU citizens aged 18–25, free under 18.", b: ["Shoulders covered", "Hats off inside"], w: "It is still an active church (Santa Maria ad Martyres) — shoulders covered and hats off. Standard-length shorts are fine here, unlike the Vatican.", r: "confirmed", a: "Pantheon, Rome", x: "Walk 15 min" }),
+    S("10:25", "Galleria Colonna", "ticket", { h: "Fri & Sat 9:30am – 1pm only.", b: ["4.9 ★", "One window all trip"], w: "The single slot this palace is open during your dates.", a: "Galleria Colonna, Rome", x: "Walk 8 min" }),
+    S("11:08", "Piazza Navona + Chiostro del Bramante", "sight", { w: "Trimmed to 60 minutes to absorb the later Pantheon slot and still land at the fixed 4pm Vatican entry.", a: "Piazza Navona, Rome", x: "Walk 8 min" }),
+    S("12:16", "Via dei Coronari antiques", "shop", { sh: ["Simoncini Giocattoli e Modellismo", "Modellismo 90", "Staticars"], b: ["4.8 ★"], x: "Walk 8 min" }),
+    S("12:49", "Palazzo Farnese, Campo de' Fiori, Sant'Andrea della Valle", "church", { b: ["4.8 ★"], w: "Farnese from the outside; the basilica is the one to step inside.", a: "Campo de' Fiori, Rome", x: "Walk 4 min" }),
+    S("13:18", "Lunch: Da Gino al Parlamento", "meal", { h: "Lunch 12:45 – 2:45pm daily except Sunday.", r: "phone", b: ["4.5 ★"], w: "Italian phone number only — call once you land, otherwise walk in. Trimmed to 75 minutes, still well inside service.", a: "Da Gino al Parlamento, Rome", x: "Walk 5 min" }),
+    S("14:38", "Gelato — pick one on the way", "meal", { sh: ["Giolitti (4.4)", "Gelateria del Teatro (4.6)", "Frigidarium"], tr: "gelato", x: "Walk 5 min" }),
+    S("15:03", "Via del Governo Vecchio vintage", "shop", { b: ["4.6 ★"], sh: ["Two Sizes Tiramisu, no. 88"], tr: "tiramisu", w: "Conveniently on the route toward the river and the Vatican.", x: "Walk 20 min" }),
+    S("15:23", "Cross Ponte Vittorio Emanuele II", "travel", { x: "Walk 25 min" }),
+    S("15:48", "Saint Peter's Square", "sight", { b: ["Shoulders & knees"], w: "Compressed, with a glimpse of Castel Sant'Angelo — the dress code starts here.", a: "St. Peter's Square, Vatican City", x: "Short walk" }),
+    S("16:00", "Vatican Museums", "ticket", { h: "Fixed 16:00 slot. Museums run Mon–Sat 8am – 8pm with last entry at 6pm, so a 4pm entry gives you the full three hours; halls clear from 7:30pm.", p: "€20 on site, €25 online with the booking fee. Jubilee crowds from 2025 are still feeding into 2026.", r: "confirmed", b: ["Sistine Chapel included", "Shoulders & knees", "No photos in the Sistine"], a: "Vatican Museums", x: "Walk 5 min" }),
+    S("19:00", "Saint Peter's Basilica", "church", { w: "Straight there after the museums for maximum time before closing — the reason Old Bridge Gelateria was dropped.", a: "St. Peter's Basilica, Vatican City", x: "Walk 5 min" }),
+    S("20:00", "Dinner: Rosso Vivo Musei Vaticani", "meal", { r: "tbc", b: ["4.9 ★", "Awaiting your guide"], w: "Held here until your tour guide's recommendation lands. Right by the museums exit and popular, so it needs booking once you commit.", a: "Rosso Vivo, Rome" }),
+    S("21:30", "Back to Airbnb 1 — pack for Palermo", "free", { w: "Farmacia Cipro is near this route if anyone needs it." })
+  ]),
+
+  D("P", "2026-09-26", "SAT", "Saturday 26 Sept · Palermo Day 1", "Normans, markets and a cathedral Mass",
+    "FCO at 6:30 · land 10:40 · Palatine Chapel today because Sunday won't allow it", "19:09", "28° / 21°", "fact",
+    "The Palatine Chapel is Norman, Byzantine and Arab at once — Christian mosaics under a muqarnas ceiling built by Muslim craftsmen for a Norman king.", [
+    S("06:30", "Depart Airbnb 1 for Fiumicino", "travel", { w: "Early, but it's an airport morning with six people.", a: "Rome Fiumicino Airport Terminal 1" }),
+    S("09:30", "Aeroitalia XZ2711 · FCO T1 → Palermo", "travel", { h: "1h 10m; lands 10:40.", b: ["booking ZCVCXA", "seats 18A/18B/19A/19C…", "Priority + 10kg cabin"], w: "Planner: follow the ticket." }),
+    S("10:40", "Arrive Palermo Punta Raisi", "travel", { x: "Bus to Via Vittorio Emanuele" }),
+    S("10:50", "Bus transfer into the centre", "travel", { h: "~50 min.", x: "Arrive around noon" }),
+    S("12:00", "Attico Sesto Canto", "stay", { a: "Via Vittorio Emanuele, Palermo", w: "Drop bags and go — you have one and a half days here." }),
+    S("12:30", "Lunch near the Cathedral — pick on arrival", "meal", { r: "suggested", w: "I had suggested Ferramenta here and it was wrong: checked, it is at Piazza Giovanni Meli 8 in the Vucciria — the opposite side of the centre from the Normanni. It has moved to tonight's late-night slot instead. For lunch, walk the Corso between the Cathedral and the Palazzo and pick a place with people in it; nothing here is worth a detour on a day this short.", b: ["My suggestion"], a: "Corso Vittorio Emanuele, Palermo", x: "Short walk or ride" }),
+    S("13:30", "Palazzo dei Normanni & the Palatine Chapel", "ticket", { h: "Saturday is the real window. Sources disagree on the exact hours — Mon–Sat 9:30am – 5pm (last entry 4:30pm) or 8:30am – 4:30pm (last entry 3:45pm) — but a 1:30pm arrival is comfortably inside both. On Sundays the chapel is closed or shut 9:30–11:30 for services, which is why it is today.", p: "Booked — Palatine Chapel and Royal Apartments, 1:30pm.", r: "confirmed", w: "The cannot-miss, per local advice, so it goes first — and Sunday's cut hours would have made tomorrow a gamble.", a: "Palazzo dei Normanni, Palermo", x: "Walk 20 min" }),
+    S("14:15", "Via Vittorio Emanuele toward Quattro Canti", "travel", { w: "Passing the Cathedral exterior — you're back at 6pm for Mass.", x: "Walk 20 min" }),
+    S("14:45", "Quattro Canti, Fontana Pretoria & the church cluster", "church", { sh: ["Martorana", "Santa Caterina", "San Cataldo"], w: "All within a minute or two of the fountain.", a: "Quattro Canti, Palermo", x: "Walk 15 min" }),
+    S("15:15", "Mercato Ballarò", "market", { w: "Trimmed to make room for the church cluster; Vucciria was cut so one market gets done properly.", a: "Mercato Ballarò, Palermo", x: "Walk 15 min" }),
+    S("15:45", "Via Maqueda up to Teatro Massimo", "sight", { w: "Exterior, or a quick look inside if it's open.", a: "Teatro Massimo, Palermo", x: "Walk 10 min" }),
+    S("16:15", "Cannolo — suggestion: I Segreti del Chiostro", "meal", { r: "suggested", w: "Convent pastries in Piazza Bellini, right by Quattro Canti. Pasticceria Cappello is the alternative.", tr: "tiramisu", b: ["My suggestion"], a: "I Segreti del Chiostro, Piazza Bellini, Palermo", x: "Walk 15 min" }),
+    S("18:00", "Mass at the Cattedrale di Palermo", "church", { h: "18:00 – 19:00.", a: "Cattedrale di Palermo", x: "Walk to dinner" }),
+    S("19:00", "Dinner: Antica Focacceria San Francesco", "meal", { w: "Panino con le panelle, or ca meusa for the braver. Backup: Hard Rock Cafe Palermo if the day has been long enough.", r: "walkin", a: "Antica Focacceria San Francesco, Palermo" }),
+    S("20:30", "Late night — suggestion: the Vucciria", "free", { r: "suggested", a: "Ferramenta, Piazza Giovanni Meli 8, Palermo", h: "Ferramenta: Sat & Sun 12:00 – 01:00, Tue–Fri 18:00 – 01:00, closed Mondays.", w: "Bars around Piazza Garraffello, with Taverna Azzurra the classic first stop. Ferramenta, at Piazza Giovanni Meli 8 behind Piazza San Domenico, is the sit-down version — a wine bar in a converted hardware shop, DJ most nights, open to 1am. One warning for Ceci: grilled squid is one of its signatures.", b: ["My suggestion", "Squid on the menu"] })
+  ]),
+
+  D("P", "2026-09-27", "SUN", "Sunday 27 Sept · Palermo Day 2", "The Kalsa, the sea wall, then back to Rome",
+    "Checkout 10:30 · train to the airport 16:12 · Rome by 20:20 · late dinner at 21:30", "19:07", "28° / 21°", "family",
+    "Ceci's actual birthday. The day is mostly travel, so the celebration is the late dinner at CasaMora — which still needs booking.", [
+    S("07:30", "Piazza Marina & the Mura delle Cattive", "sight", { w: "The old sea wall above Foro Italico, right beside Porta Felice.", tr: "photo", a: "Mura delle Cattive, Palermo", x: "Short walk" }),
+    S("09:00", "Kalsa district wander", "free", { sh: ["Palazzo Abatellis — Antonello da Messina's Annunziata"], w: "Discretionary given the time; lovely if anyone's keen.", x: "Short walk" }),
+    S("10:30", "Check out of Attico Sesto Canto", "stay", { a: "Via Vittorio Emanuele, Palermo" }),
+    S("11:00", "Lunch: Sicily Street Food", "meal", { w: "Second chance at cassata or cannolo if yesterday got away from you.", r: "walkin", tr: "tiramisu", a: "Sicily Street Food, Palermo" }),
+    S("12:30", "Free & easy — Centro Ricambi Moto (Ramesh)", "shop", { r: "suggested", sh: ["Centro Ricambi Moto - Ramesh", "Via Roma / Via Maqueda corridor", "Mercato Vucciria"], w: "The shopping suggestion for the block: the Via Roma–Maqueda stretch, with the Vucciria if you want the noise.", x: "Palermo Centrale" }),
+    S("16:12", "Trenitalia RE 21749 · Palermo Centrale → Airport", "travel", { h: "Arrives 17:14.", a: "Palermo Centrale station" }),
+    S("19:05", "ITA AZ1794 · Palermo → Rome Fiumicino", "travel", { h: "1h 15m; lands 20:20 at T1.", b: ["Sarah: ref ZZ385T", "the other five: ref ZYVPTF"], w: "Two bookings on the same flight — Economy Classic for Sarah, Economy Light for everyone else." }),
+    S("20:20", "Land FCO Terminal 1", "travel", { x: "Transfer 45–50 min" }),
+    S("21:15", "Transfer to Via Agostino Valiero 12", "stay", { w: "Monteverde, near Trastevere. Hosts: Lorenzo & Maria Pia.", a: "Via Agostino Valiero 12, Rome" }),
+    S("21:30", "Late dinner: CasaMora", "meal", { r: "none", b: ["4.7 ★", "€30–40", "Book by 16 Aug"], w: "A normal dinner, by your call — the celebration is the Venice dinner on the 19th. Booking opens next week and you're booking it on 16 Aug as planned. Backup: Mimì e Cocò Trastevere.", a: "CasaMora, Rome" }),
+    S("22:30", "Check in properly, rest", "free", {})
+  ], { label: "Ceci's birthday — the actual day", note: "The celebration dinner already happened in Venice on the 19th, so tonight's 21:30 CasaMora is just dinner. Booking opens next week; you're booking on 16 Aug as planned." }),
+
+  D("R", "2026-09-28", "MON", "Monday 28 Sept · Rome Day 3", "Testaccio, Trastevere, and thirteen vintage shops",
+    "Wake 7:00 · market at 7:45 · 90-minute vintage crawl · sunset from the Gianicolo", "19:03", "27° / 16°", "heads-up",
+    "The vintage crawl lists thirteen shops in ninety minutes. Pick as you go — nobody is finishing that list, and pretending otherwise is how the afternoon gets eaten.", [
+    S("07:00", "Wake up", "free", { w: "The one gentle start in Rome." }),
+    S("07:30", "Depart Airbnb 2", "travel", { x: "Walk 10–15 min" }),
+    S("07:45", "Testaccio Market", "market", { h: "A full hour, as you asked.", b: ["4.4 ★"], a: "Mercato di Testaccio, Rome", x: "Walk 15 min" }),
+    S("09:00", "Trastevere wander — Piazza Trilussa, Ponte Sisto", "photo", { tr: "photo", a: "Ponte Sisto, Rome", x: "Walk 5 min" }),
+    S("09:45", "Coffee: Bar San Calisto", "meal", { b: ["4.5 ★"], r: "walkin", a: "Bar San Calisto, Rome", x: "Short walk" }),
+    S("10:15", "Trastevere vintage crawl", "shop", { h: "90 minutes.", sh: ["Blue Goose", "Pulp Vintage", "Pifebo Vintage Shop", "Humana Vintage Roma Trastevere", "Babastyles", "VINTACHIC", "Second Hand Brandstore", "Vesti di Messalina", "Mercantile Vintage Selection", "Ciao Vintage", "REVOLUTION VINTAGE", "SeryMoon vintage", "Two Sizes"], tr: "tiramisu", x: "Short walks throughout" }),
+    S("11:45", "Rest block: café in Trastevere", "rest", { rest: "Grandma & Sarah sit while the others finish the crawl", x: "Walk 5 min" }),
+    S("12:00", "Lunch: Mimì e Cocò Roma", "meal", { r: "confirmed", b: ["Via Arenula"], a: "Mimì e Cocò, Via Arenula, Rome", x: "Walk 10–15 min" }),
+    S("13:15", "Villa Doria Pamphili", "sight", { w: "Rome's largest park, and an easy walk from Airbnb 2.", a: "Villa Doria Pamphili, Rome", x: "Walk 15–20 min" }),
+    S("14:45", "Rest block: café on the way back", "rest", {}),
+    S("15:45", "Free time — browse more, or feet up at the Airbnb", "free", { w: "Buffer before the evening block. Use it." }),
+    S("17:30", "Aperitivo: Big Hilda Public Bar", "meal", { h: "Opens 5pm, Testaccio.", r: "walkin", a: "Big Hilda Public Bar, Rome", x: "Walk or ride 10 min" }),
+    S("18:15", "Gianicolo — Piazzale Giuseppe Garibaldi", "sight", { h: "Sunset around 19:00. Open terrace, no ticket, no closing time.", fl: "Checked: Terrazza delle Quadrighe is the rooftop of the Vittoriano at Piazza Venezia — across the river, and you are already there on the 29th. The Gianicolo viewpoint is Piazzale Giuseppe Garibaldi, a walk up from Trastevere. Corrected here.", w: "Moved to sunset timing for the light; the Keyhole of the Order of Malta is omitted per your note.", tr: "photo", a: "Piazzale Giuseppe Garibaldi, Gianicolo, Rome", x: "Walk 15 min" }),
+    S("19:00", "Walk back into Trastevere, freshen up", "free", { x: "Walk 15 min" }),
+    S("20:00", "Dinner: Saltimbocca Ristorante", "meal", { r: "confirmed", b: ["4.6 ★", "€20–30"], a: "Saltimbocca Ristorante, Trastevere, Rome" })
+  ]),
+
+  D("R", "2026-09-29", "TUE", "Tuesday 29 Sept · Rome Day 4", "Vittoriano, rowboats, and the shopping corridor",
+    "Depart 6:30 · Colosseum photo stop · rose garden and the lake · shops 15:00–18:00", "19:02", "26° / 15°", "family",
+    "Sarah and Ramesh's anniversary. The rowboats on the Villa Borghese lake are €5 and paid on the spot — that's the afternoon's one indulgence and it's cheap.", [
+    S("06:30", "Depart Airbnb 2", "travel", { x: "Ride or walk ~35 min into the centre" }),
+    S("07:10", "Colosseum — photo stop only", "photo", { w: "Passing by, not entering, per your note.", tr: "photo", a: "Colosseum, Rome", x: "Walk or ride 10 min" }),
+    S("07:35", "Breakfast buffer near Piazza Venezia", "meal", { h: "The Vittoriano opens 9:30, not 9:00 — this block is longer for that reason.", r: "walkin", x: "Short walk" }),
+    S("09:30", "Altar of the Fatherland — Vittoriano", "ticket", { h: "Opens 9:30am; a full hour booked in.", a: "Altare della Patria, Rome", x: "Short walk" }),
+    S("10:30", "Extra time on the Vittoriano terraces", "sight", { tr: "photo", x: "Walk 15 min" }),
+    S("11:00", "Rest block: Caffetteria Italia al Vittoriano", "rest", { x: "Walk 15 min" }),
+    S("11:45", "Lunch: 200 Gradi", "meal", { r: "walkin", b: ["4.6 ★", "€10–20", "No reservation needed"], a: "200 Gradi, Rome", x: "Ride 15 min" }),
+    S("13:00", "Roseto di Roma + Villa Borghese lake", "sight", { h: "1.5 hrs combined.", p: "rowboats ~€5, pay on the spot", w: "Galleria Borghese came out of the plan for this — rowboats by the Temple of Aesculapius, and the garden walk works even if the roses are past.", a: "Villa Borghese lake, Rome", x: "Walk 20 min" }),
+    S("15:00", "Piazza del Popolo shopping", "shop", { h: "Two full hours, as asked.", sh: ["Via del Babuino", "Via del Corso", "Via di Ripetta", "Mercatino del libro (4.1)"], a: "Piazza del Popolo, Rome", x: "Walk down Via del Corso" }),
+    S("17:00", "Via del Corso / Via Condotti corridor", "shop", { h: "One hour — the whole block ends by 6pm as you wanted.", sh: ["RINASCENTE", "Longchamp", "ARKET", "Kiko Milano", "Furla", "Fausto Santini", "Benheart Roma", "Coccinelle", "Geox", "Velasca", "Elena Lera", "LeVigAto", "Schostal Originals", "Blu Studio", "Campomarzio70", "Essenzialmente Laura", "Emporio Centrale", "Gran Cafè Marcel", "Booktique", "BIFFI"], w: "Pick a handful, not all twenty.", x: "Walk 10 min" }),
+    S("18:00", "Rest block: café near Piazza di Spagna", "rest", { x: "Walk 5 min" }),
+    S("18:20", "Piazza di Spagna & the Spanish Steps", "sight", { tr: "photo", a: "Piazza di Spagna, Rome" }),
+    S("19:00", "laFeltrinelli or Altroquando - Libreria e Pub", "shop", {}),
+    S("20:00", "Dinner: Ristorante Pancrazio dal 1922", "meal", { r: "confirmed", b: ["4.7 ★", "Reservable"], occ: 1, w: "The anniversary dinner, swapped in by the planner: closer to the Spanish Steps stop than the Prosciutteria, and it takes a reservation — which the Prosciutteria never did.", a: "Ristorante Pancrazio dal 1922, Rome" }),
+    S("21:30", "Optional nightcap: Jerry Thomas Speakeasy", "meal", { r: "suggested", w: "Optional, and the address is worth checking before you set off." })
+  ], { label: "Sarah & Ramesh's anniversary", note: "Dinner is at Ristorante Pancrazio dal 1922 at 8:00pm, booked — closer to the Spanish Steps than the original plan. The Jerry Thomas nightcap is there if the evening wants extending." }),
+
+  D("R", "2026-09-30", "WED", "Wednesday 30 Sept · Rome Day 5", "Mercato Trionfale, then Fiumicino",
+    "Depart 6:30 · checkout 11:00 · lunch in Trastevere · airport at 17:00 · wheels up 20:00", "19:00", "26° / 15°", "heads-up",
+    "Meeting point at the airport is FCO T1 Arrivals, Door 3, inside — worth putting in the group chat now rather than at 17:30 in a taxi.", [
+    S("06:30", "Depart Airbnb 2", "travel", { h: "Trionfale is up near the Vatican — further than Testaccio.", x: "Ride or walk ~20 min" }),
+    S("07:00", "Mercato Trionfale", "market", { b: ["4.5 ★"], w: "Swapped in because Testaccio was already covered on Monday.", a: "Mercato Trionfale, Rome", x: "Walk or ride 20 min" }),
+    S("08:30", "Last errand or vintage stop near Airbnb 2", "shop", { w: "Only if energy allows — nothing here is load-bearing.", x: "Walk back" }),
+    S("09:45", "Return to Airbnb 2, finish packing", "free", {}),
+    S("11:00", "Checkout", "stay", { a: "Via Agostino Valiero 12, Rome" }),
+    S("12:00", "Lunch: L'Elementare - Trastevere", "meal", { r: "confirmed", b: ["4.4 ★", "€10–20"], w: "Cheapest well-placed option and close to the base. Backup: Big Hilda Public Bar.", a: "L'Elementare, Trastevere, Rome" }),
+    S("14:00", "Free time, last errands", "free", {}),
+    S("17:00", "Depart for Fiumicino", "travel", { h: "Allow 1.5–2 hrs before an international flight.", a: "Rome Fiumicino Airport Terminal 1" }),
+    S("20:00", "TK · Rome (FCO) → Istanbul", "travel", { h: "Lands Istanbul 23:35; 2h 20m layover.", b: ["PNR UKQNVL", "Meet at T1 Arrivals Door 3, inside"] }),
+    S("23:35", "Land Istanbul", "travel", { w: "Two hours and twenty minutes — enough to sit down, not enough to leave the terminal." })
+  ]),
+
+  D("T", "2026-10-01", "THU", "Thursday 1 Oct · Home", "Istanbul to Changi",
+    "Wheels up 01:55 · home at 17:55", "19:00", "31° Singapore", "family",
+    "Thirteen days, four cities, one birthday celebrated twice and an anniversary. Somebody is carrying more leather than they left with.", [
+    S("01:55", "TK · Istanbul → Singapore", "travel", { h: "Lands Changi 17:55.", b: ["PNR UKQNVL", "30kg checked"] }),
+    S("17:55", "Land Changi", "travel", { w: "Home. Bags off the belt, and someone has to water the plants." })
+  ])
+];
+/* ── per-day briefing ─────────────────────────────────────── */
+const BRIEF = {
+  "T2026-09-17": {
+    wear: "Something you can sleep in for 11 hours. Changi is aggressively air-conditioned and Istanbul at 5am is about 18°.",
+    rain: "Irrelevant tonight — but pack the rain shell in cabin baggage, not the hold, so day one in Venice isn't a gamble.",
+    access: "Ask for the wheelchair-assist lane at check-in if the walk to the gate looks long; Changi T1 gates can be a 15-minute march.",
+    open: "Duty free runs till the last flight. Nothing else matters today."
+  },
+  "V2026-09-18": {
+    wear: "Layers. 24° by mid-afternoon in Dorsoduro, but you land at 8am and the canals are cold. Shoulders covered for San Rocco.",
+    rain: "If it turns: the Accademia and Scuola Grande di San Rocco are both indoors and both already on the plan — stretch them and drop the Rio Marin stroll.",
+    access: "The walk from Piazzale Roma is 12–15 min over two bridges with bags. Lunula Caffetteria is the rest stop during San Rocco, 2 min away, open till 6pm.",
+    open: "Al Squero and Cantine già Schiavi are open today and shut on Sundays — this is the day for them. The Accademia is open (it shuts Mondays)."
+  },
+  "V2026-09-19": {
+    wear: "Shoulders and knees covered from 10:45 — St Mark's turns people away at the door. Something you can climb the Campanile in at 14:15.",
+    rain: "The Doge's Palace, the Basilica and Libreria Acqua Alta are all indoors. The gondola at 15:30 is the one to move — they run in light rain but it's miserable.",
+    access: "The Rialto Market and the Doge's Palace are step-free inside; the bridges between them are not. The Campanile has a lift, no stairs. Café rest at 14:45 on the piazza.",
+    open: "Rialto Market runs Sat 7:30–15:00 and is shut tomorrow. Bar All'Arco closes at 14:30 and is shut Sundays. The Doge's Palace runs a late opening to 11pm tonight — through 26 Sept it does Fri and Sat evenings."
+  },
+  "V2026-09-20": {
+    wear: "Comfortable shoes over three bacari and 4 km of Cannaregio. Nothing you mind spilling a spritz on.",
+    rain: "The bacaro crawl is the rain plan — three indoor stops in a row. Despar Teatro Italia and sullaluna cover the morning.",
+    access: "Longest walking day in Venice. The 10:15 crawl has a bench rest built in, and Al Merca at 17:33 is stand-up only — that's the one to sit out.",
+    trim: "Drop the third bacaro (Al Merca, 17:33) and go straight to SUSO. The crawl still works as two stops, and it gives back 45 minutes before an early night ahead of the 6:15am train.",
+    open: "I Gesuiti closes 13:00–15:00, which is why it's at 15:00. Maranteghe shuts Wednesdays, open today. Rialto Market is closed."
+  },
+  "F2026-09-21": {
+    wear: "Travel clothes till 15:00 check-in, then something for dinner. Florence runs warmer than Venice — 26° by afternoon.",
+    rain: "Santa Maria Novella, the Officina, Palazzo Medici Riccardi and Paperback Exchange are all indoors and all already scheduled.",
+    access: "Bags go to storage 370 m from the Airbnb, so nobody carries them after 10am. Badia Fiorentina is 25 minutes, deliberately short.",
+    open: "Monday closes the Uffizi and the Accademia — both are on later days. Badia Fiorentina opens Mondays only, 15:00–18:00. Todo Modo opens at 16:00."
+  },
+  "F2026-09-22": {
+    wear: "Cool at 6:45 in Parco delle Cascine, 26° by the afternoon. Proper shoes for 463 steps — the dome climb has no lift.",
+    rain: "The dome climb goes ahead in rain but the terrace is exposed; the Baptistery, the Opera del Duomo Museum, Palazzo Vecchio and the Accademia are all indoors.",
+    access: "The dome is the one stop that isn't for everyone: 463 steps, narrow, no lift — Grandma and Sarah hold the non-climb pass and take the Baptistery and Opera del Duomo Museum instead. Palazzo Vecchio and the Accademia are both step-free.",
+    trim: "The San Lorenzo browse (15:45) is the flexible hour — cut it to two shops if the Duomo complex overruns. The 17:30 Accademia slot is booked and the last entry is 18:20, so that one cannot slip.",
+    open: "Cascine Market is Tuesday-only. Casa Del Vino shuts at 15:30 today — 12:15 is its only window."
+  },
+  "F2026-09-23": {
+    wear: "Long day, 6:30 to past 20:15. Something warm for Piazzale Michelangelo at sunset; it drops fast once the sun goes.",
+    rain: "Uffizi, Pitti and Pizzium fill the day indoors. The San Miniato/Piazzale Michelangelo sunset is the loss — move it to tomorrow morning if the sky is hopeless.",
+    access: "Boboli is hilly and San Miniato is a climb; the gentler route is the Boboli exit toward Via Santa Monaca, then a taxi up. Piazzale Michelangelo can be reached by bus 12/13.",
+    open: "Ginori 1735 shuts Sundays, open today. Santo Spirito Market ends at noon — 12:00 catches the tail. Fuor di Porta (backup) shuts Sundays."
+  },
+  "F2026-09-24": {
+    wear: "Travel clothes. You're on a train by 10:03 and in Rome for lunch.",
+    rain: "Everything today is a market, a taxi or a train. No plan needed.",
+    access: "Two taxis for six people plus luggage, booked for 08:20 — SMN with bags on foot is not the move.",
+    open: "Mercato di Sant'Ambrogio runs Mon–Sat 7:00–14:00, so the 6:30 start works."
+  },
+  "R2026-09-24": {
+    wear: "Rome sits at 27° — lighter than Florence. Shoulders covered if you want Sant'Ignazio at 15:45.",
+    rain: "The Capuchin crypt and Sant'Ignazio are both indoors, and the Monti browse is arcaded in parts.",
+    access: "Bags are dropped at 12:15 and you're not back until 15:15 — take what you need. Café rest in Monti at 14:45.",
+    open: "Nothing today needs a ticket or a time slot, which is deliberate after a train morning."
+  },
+  "R2026-09-25": {
+    wear: "It's 5:15am and Rome is about 16° at dawn — take a layer you can shed by 9. Shoulders and knees covered from 15:48 onward for the Vatican; they enforce it.",
+    rain: "Trevi at dawn in the rain is still empty and still worth it. The Pantheon, Galleria Colonna, Chiostro del Bramante and three hours of Vatican Museums are all indoors.",
+    access: "The longest day of the trip, roughly 15 hours. The Vatican Museums alone are 3 km of galleries — the wheelchair route and free loan chairs are at the cloakroom, and the Pantheon and Colonna are both short.",
+    trim: "Cut in this order, and only these: the Via dei Coronari antiques (12:16), then Via del Governo Vecchio (15:03), then trim Piazza Navona to the square itself and skip the Chiostro del Bramante. That buys back about 90 minutes without touching a single booked slot. Do not cut the walk-back buffer at 15:23 — the Vatican's 16:00 entry does not wait, and arriving at 15:48 for St Peter's Square is what makes the dress-code check unhurried.",
+    open: "Galleria Colonna opens Fri & Sat 9:30–13:00 only — today or never. Da Gino serves 12:45–14:45 and shuts Sundays. St Peter's closes early evening, hence 19:00 straight from the museums."
+  },
+  "P2026-09-26": {
+    wear: "Palermo is the warmest stop, 28° and humid. Long sleeves or a scarf for the Palatine Chapel and 18:00 Mass at the Cathedral.",
+    rain: "Late September rain in Sicily is short and heavy. The Palatine Chapel, the Martorana cluster and Teatro Massimo cover it; Ballarò gets miserable fast.",
+    access: "Ballarò is uneven, crowded and hard going — it's the stop to sit out at a café on Via Maqueda. The Palatine Chapel has step-free access via the courtyard.",
+    mass: "Mass at the Cattedrale di Palermo, 18:00–19:00. Sunday services restrict the Palatine Chapel, which is why it's today.",
+    open: "Palazzo dei Normanni keeps full hours today and cuts them tomorrow — on Sundays the Palatine Chapel closes or shuts 9:30–11:30 for services. Saturday is also the full-access day: Tue–Thu the Royal Apartments are shut and the ticket drops to €15.50. Ballarò winds down by late afternoon."
+  },
+  "P2026-09-27": {
+    wear: "Warm and bright in the morning, then an airport and a 21:30 dinner — something that survives a flight.",
+    rain: "The Kalsa wander and the Mura delle Cattive are the exposed parts; Palazzo Abatellis is the indoor swap.",
+    access: "Checkout at 10:30 with all the bags, then a free afternoon — leave the luggage at the apartment or the station rather than dragging it round Via Roma.",
+    open: "Sunday: many Palermo shops shut or open late. The markets and street food stay open; Palazzo Abatellis keeps morning hours."
+  },
+  "R2026-09-28": {
+    wear: "Layers for a 7:30 start. Rome is 27° by midday. Nothing precious for the vintage crawl — you'll be in and out of thirteen shops.",
+    rain: "Testaccio Market is covered. The vintage crawl is thirteen indoor stops. Villa Doria Pamphili and the Gianicolo sunset are the two to sacrifice.",
+    access: "Two café rest blocks are built in, at 11:45 and 14:45, plus a free block from 15:45. Villa Doria Pamphili is flat and gravelled; the Gianicolo is a climb, so take the bus or a taxi up.",
+    trim: "Nobody finishes thirteen vintage shops in ninety minutes. Pick four from the crawl and let the rest go; if the morning still overruns, Villa Doria Pamphili is the block to shorten — the Gianicolo sunset is the one worth protecting.",
+    open: "Testaccio Market runs mornings only. Big Hilda doesn't open until 17:00, which is why aperitivo is at 17:30."
+  },
+  "R2026-09-29": {
+    wear: "A 6:30 start at about 15°, 26° by the shopping corridor. Comfortable shoes — three hours of Via del Corso is deceptively hard on the feet.",
+    rain: "The Vittoriano, RINASCENTE and the whole Corso corridor are indoors or arcaded. The rowboats are the one casualty — the rose garden walk still works.",
+    access: "The Vittoriano has lifts to the terraces. The rowboats need a step down into the boat, so it's an easy one to watch from the bank. Café rests at 11:00 and 18:00.",
+    open: "The Vittoriano opens 9:30, not 9:00 — the breakfast buffer covers the difference. Prosciutteria takes no reservations, so arrive before 20:00."
+  },
+  "R2026-09-30": {
+    wear: "Travel clothes, and whatever won't set off a scanner. It's 26° in Rome and 31° when you land.",
+    rain: "A market, a lunch and an airport. Nothing exposed.",
+    access: "Checkout at 11:00, then five hours before the airport — leave bags at the Airbnb if the hosts allow, or a station locker.",
+    open: "Mercato Trionfale runs mornings, Mon–Sat. Meeting point at the airport is FCO T1 Arrivals, Door 3, inside."
+  },
+  "T2026-10-01": {
+    wear: "Something you can sleep in, and a layer for the 16 hours of aircraft air.",
+    rain: "Singapore in October: expect an afternoon storm on landing.",
+    access: "Long-haul, then a 17:55 arrival — arrange the airport transfer before you fly rather than at the taxi rank.",
+    open: "Home."
+  }
+};
+const BRIEF_ROWS = [
+  ["wear", "What to wear"], ["open", "What's open today"], ["rain", "If it rains"],
+  ["access", "Taking it easy"], ["mass", "Mass times"], ["trim", "If it's running long"]
+];
+/* Detail for the places you have to choose between — tapped from a stop card.
+   Anything the itinerary didn't describe says so rather than inventing a review. */
+const SHOPINFO = {
+  "Gelateria il Doge": "Dorsoduro gelateria, open 10am – 9pm. The Doge is the one with the queue of locals rather than the neon photo wall.",
+  "Vintageria Venezia Le Chic": "Small owner-run vintage shop. Hours aren't posted anywhere online — treat it as a bonus stop, not an appointment.",
+  "Living in the Past": "Second-hand vinyl. Opens at noon, which is exactly why this browse block sits at 13:40.",
+  "La Casa Di Loto": "Open 10am – 7:30pm. The calmer of the four stops on this block.",
+  "QUORAMI (belts)": "Belts and small leather goods, made up while you wait. Open from 11am.",
+  "Sangueblu Vintage": "Vintage clothing, 11am – 6:30pm. Two minutes from QUORAMI, which is why they're paired.",
+  "Maranteghe Vintage & Second Hand": "Cannaregio original. Sun 10am – 7pm, closed Wednesdays. The sister branch in Castello is on the 19th.",
+  "Adil Vintage Shop": "Owner-run, no posted hours. Open through the day more often than not.",
+  "Charity Shop T.I.B.E.R.I.A.D.E.": "Parish charity shop — cheapest of the three and the most unpredictable. No posted hours.",
+  "Tartan Vintage (4.9)": "The highest-rated vintage shop on the Via del Moro corridor at 4.9. Start here if time is short.",
+  "HunterVintage (4.3)": "4.3. Denim and workwear, same corridor.",
+  "Humana Vintage (4.2)": "4.2. Charity-chain vintage — high volume, low prices, needs patience.",
+  "Todo Modo": "Bookshop and café on Via dei Fossi 15R. Opens Mondays at 4pm only, so it works on the 21st and not before.",
+  "Calzoleria Toscana": "Via della Vigna Nuova 24r. Shoes and repairs, if there's time after the vintage three.",
+  "Biscottificio Antonio Mattei (cantucci)": "Via Porta Rossa 76r, near Piazza Santa Trinita. Cantucci from the Prato original — a 10-minute detour off the walk to Sant'Ambrogio.",
+  "Paperback Exchange (4.7)": "4.7. English-language bookshop, strong on art history and Florence itself.",
+  "Pegna dal 1860, Via dello Studio 26R": "Historic deli trading since 1860. Good for edible presents that survive the flight home.",
+  "Vintage55 (4.2)": "4.2. Denim-led vintage.",
+  "Dolce Vita Vintage (4.1)": "4.1. The weakest-rated of the day's shops — skip first if you're running late.",
+  "Marco Leather Factory, Piazza di San Lorenzo 10": "On the same piazza as Palazzo Medici Riccardi, so it costs no extra walking.",
+  "Massimo Leather, Borgo la Noce 13R": "Two minutes from Marco Leather — worth comparing the two before buying.",
+  "TORO FIRENZE": "San Lorenzo. One of the two priorities in this block.",
+  "Rewind Vintage (4.7)": "4.7 and the other priority here. Curated rather than rummage.",
+  "Clochard (4.8)": "4.8 — the best-rated of the four, but only if the pace allows.",
+  "Melrose Vintage Ginori (4.4)": "4.4. Last on the list for this block.",
+  "Leonardo Shoes, Via de' Cerchi 9R": "Between the Duomo and Palazzo Vecchio — a passing browse, not a detour.",
+  "Marlù, Via dei Calzaiuoli 57": "Charm jewellery, same stretch.",
+  "Ginori 1735": "Porcelain house founded in 1735. Closed Sundays; open on the 23rd.",
+  "Il Bisonte": "Florentine leather, vegetable-tanned. The bags age rather than wear out.",
+  "Davide Cerasi": "Leather workshop, moved here from Day 2 so it shares the Ponte Vecchio crossing.",
+  "Bjork Florence, Via dello Sprone 25R": "Concept store — clothing, books and objects, Oltrarno.",
+  "Bottega del Giglio, Lungarno degli Acciaiuoli 42R": "Leather goods right at the bridge, so it's the first or last stop of the crossing.",
+  "Stondo": "Santo Spirito. Small, cheap, hit and miss.",
+  "Momo Vintage": "Santo Spirito vintage, same square as the market.",
+  "Buchetta del Vino / Babae": "Via Santo Spirito 21R. A working wine window — they pass a glass through the hatch. On the trail.",
+  "Le Telerie Toscane, Sdrucciolo de' Pitti 15R": "Tuscan linens, right by the Pitti entrance.",
+  "Monica Miato, no. 27R": "Handmade bags, same short street as Le Telerie.",
+  "Simoncini Giocattoli e Modellismo": "Via dei Coronari. Models and toys — the most interesting of the three for a browse.",
+  "Modellismo 90": "Scale models, same street.",
+  "Staticars": "Model cars, same street. Ten minutes covers all three.",
+  "Two Sizes Tiramisu, no. 88": "Via del Governo Vecchio 88. The tiramisu shop the trip has been chasing — Rome only, no Venice branch exists.",
+  "La Nuova Piazzetta": "Monti. Neighbourhood spot for a wander rather than a destination.",
+  "Humana Vintage Roma Monti": "Charity-chain vintage in Monti — same brand as the Florence and Trastevere branches.",
+  "Mr. 100 Tiramisù": "Monti. A hundred tiramisu variations; small plates if anyone's peckish before lunch.",
+  "Blue Goose": "Trastevere. Curated vintage, higher prices than the charity shops.",
+  "Pulp Vintage": "Trastevere staple — dense racks, good denim.",
+  "Pifebo Vintage Shop": "The best-known of the Trastevere thirteen. Two floors, sorted by decade.",
+  "Humana Vintage Roma Trastevere": "Charity-chain branch. Cheapest of the crawl.",
+  "Babastyles": "Small, streetwear-led.",
+  "VINTACHIC": "Womenswear-led vintage.",
+  "Second Hand Brandstore": "Designer resale rather than vintage.",
+  "Vesti di Messalina": "Costume and occasion pieces.",
+  "Mercantile Vintage Selection": "Selected vintage, slower browse.",
+  "Ciao Vintage": "General second-hand.",
+  "REVOLUTION VINTAGE": "Larger floor, mixed quality.",
+  "SeryMoon vintage": "Small, curated.",
+  "Two Sizes": "The Trastevere branch of the tiramisu shop — second chance if you missed Governo Vecchio.",
+  "Via del Babuino": "The dearest of the three alleys — designer and antiques.",
+  "Via del Corso": "The long one. High street brands, busiest, best for volume.",
+  "Via di Ripetta": "The quietest of the three, art supplies and smaller shops.",
+  "Mercatino del libro (4.1)": "Used-book market just off Piazza del Popolo, 4.1.",
+  "RINASCENTE": "Department store with a rooftop view over the Trevi quarter — the one stop that covers several people's lists at once.",
+  "Centro Ricambi Moto - Ramesh": "Motorbike parts — the shop Ramesh asked for. Sunday hours in Palermo are unreliable; call ahead if it matters.",
+  "Via Roma / Via Maqueda corridor": "My suggestion for the Sunday afternoon: the main shopping spine, and the part of Palermo most likely to be open on a Sunday.",
+  "Mercato Vucciria": "The market that lost out to Ballarò yesterday — worth it now if you want the noise rather than the shopping.",
+  "Palazzo Abatellis — Antonello da Messina's Annunziata": "Regional gallery in the Kalsa. The Annunziata is the reason to go; morning hours only on Sundays."
+};
+/* ── reference sheets ─────────────────────────────────────── */
+const VAULT = [
+  { title: "Flights", items: [
+    { label: "TK · SIN 23:05 (17 Sep) → IST 05:15", value: "Then IST 06:50 → Venice 08:20 on the 18th. PNR UKQNVL · Traveloka 1339639830 · 30 kg checked + 8 kg cabin each · 1h 35m layover." },
+    { label: "Aeroitalia XZ2711 · FCO T1 09:30 → Palermo 10:40 (26 Sep)", value: "Booking ZCVCXA · seats 18A, 18B, 19A, 19C + 2 · priority, 10 kg cabin bag + backpack, free airport check-in.", flag: "Doc says 09:20" },
+    { label: "ITA AZ1794 · Palermo 19:05 → FCO 20:20 (27 Sep)", value: "Sarah on ref ZZ385T (Economy Classic): 8 kg cabin + 23 kg checked. Ramesh, Grandma, Ceci, Faith and Ryan on ref ZYVPTF (Economy Light): 8 kg cabin only, no hold bag. Same flight, A320, Terminal 1 — anything bought in Palermo has to fit in Sarah's checked bag or be carried on." },
+    { label: "TK · FCO 20:00 (30 Sep) → IST 23:35 → SIN 17:55 (1 Oct)", value: "PNR UKQNVL · non-refundable · meeting point FCO T1 Arrivals, Door 3, inside." },
+    { label: "Booking contact", value: "Ramesh Naraindas Bachani · ramsafra@gmail.com · +65 9049 6207. Frequent flyer: Ramesh 8871375383, Ceci 8751729213." }
+  ]},
+  { title: "Trains", items: [
+    { label: "Italo 8903 · Venezia S.L. 07:05 → Firenze S.M. 09:20 (21 Sep)", value: "Ticket SJGU4K · Prima Business · coach 2, seats 24, 25, 26, 27, 28, 29 · €239.40 total, paid by MasterCard.", flag: "Doc says 09:30" },
+    { label: "Italo 8953 · Firenze S.M. 10:03 → Roma Termini 11:45 (24 Sep)", value: "Ticket O93W7L · Smart · coach 7, seats 3, 4, 5, 6, 7, 8 · seat fee €15. Bags must be under 75 × 53 × 30 cm on Smart.", flag: "Doc says 10:00" },
+    { label: "Trenitalia RE 21749 · Palermo Centrale 16:12 → Airport 17:14 (27 Sep)", value: "Regional service to Punta Raisi for the 19:05 flight." }
+  ]},
+  { title: "Where you sleep", items: [
+    { label: "Venice · Corte Pisani 1178, Santa Croce", value: "18 – 21 Sept · host Giacomo · bag drop from 11:00 on arrival day, check-in 17:30. Depart 06:15 on the 21st." },
+    { label: "Florence · Via Vincenzo Gioberti 91, Sant'Ambrogio", value: "21 – 24 Sept · hosts Simone & Nico · check-in ~15:00, checkout 08:00 on the 24th for the 10:03 train. Luggage Storage Florence, Borgo la Croce 19, €5/bag/day." },
+    { label: "Rome 1 · Via Rattazzi 2F, Esquilino/Monti", value: "24 – 26 Sept · host Geneve · bag drop 12:15, check-in ~15:15." },
+    { label: "Palermo · Attico Sesto Canto, Via Vittorio Emanuele", value: "26 – 27 Sept · arrival 12:00, checkout 10:30." },
+    { label: "Rome 2 · Via Agostino Valiero 12, Monteverde", value: "27 – 30 Sept · hosts Lorenzo & Maria Pia · late arrival ~21:15, checkout 11:00 on the 30th." }
+  ]},
+  { title: "Timed entry", items: [
+    { label: "Doge's Palace · 19 Sept, 9:15am", value: "Booked. Covers Museo Correr, the Archaeological Museum and the Marciana Library. Your doc says €35/€15; the official adult rate is nearer €30. Through 26 Sept 2026 it stays open to 11pm on Fri and Sat.", flag: "Price differs" },
+    { label: "Duomo dome climb · 22 Sept, 9:45am", value: "Brunelleschi Pass €30 (€12 for 7–14), valid 3 days across the complex. 463 steps, no lift. Photo ID checked at the Porta della Mandorla since March 2025, and no backpacks or medium/large bags — free cloakroom at Piazza Duomo 38/r. Only 5 minutes' grace on the slot.", flag: "9:00 elsewhere in the doc" },
+    { label: "Galleria dell'Accademia · 22 Sept, 5:30pm", value: "Verified Tue–Sun 8:15am – 6:50pm, last entry 6:20pm, closed Mondays. €16 + €4 booking fee." },
+    { label: "Uffizi · 23 Sept, 8:15am", value: "First slot of the day; runs to about 11:00. €25 in 2026. Closed Mondays — which is exactly why it sits on the Wednesday." },
+    { label: "Pantheon · 25 Sept, 9:30am", value: "Confirmed timed entry. €5 full, €2 for EU 18–25. Open 9am – 7pm, last entry 6:45pm. Shoulders covered, hats off." },
+    { label: "Vatican Museums · 25 Sept, 4:00pm", value: "Sistine Chapel included — no separate booking needed. Mon–Sat 8am – 8pm, last entry 6pm, closed Sundays. €20 on site / €25 online. Knees and shoulders covered, no photography in the Sistine Chapel." },
+    { label: "St Mark's Basilica · 19 Sept", value: "Not booked, and this needs doing: tickets are online-only now, roughly €10–12 each, and the nave is no longer free entry as the doc assumes. Mon–Sat 9:30am – 5:15pm, last entry 4:45pm. Large bags must go to the cloakroom.", flag: "Book this" },
+    { label: "Galleria Colonna · 25 Sept, 10:25am", value: "Open Fri & Sat 9:30am – 1pm only. No booking, but no second chance either." }
+  ]},
+  { title: "Reservations", items: [
+    { label: "Confirmed", value: "Osteria Ae Saracche (18th) · Hostaria Osottoosopra (19th) · Trattoria Marione (21st lunch) · Osteria Zio Gigi (21st dinner) · Trattoria Zà Zà (22nd lunch) · Trattoria Nella (22nd) · Pizzium (23rd lunch) · Loggia Roof Bar (23rd, ref #6N9DJU44KEKP) · Mimì e Cocò Roma (28th) · Saltimbocca (28th) · Ristorante Pancrazio dal 1922 (29th) · L'Elementare (30th)." },
+    { label: "Still open", value: "CasaMora — slots open next week, booking on 16 Aug as planned. Il Santino — could not reserve; walking in, with Antica Mescita San Niccolò or Il Santo Bevitore as fallbacks. Taverna Romana and Da Gino — Italian phone numbers only, calling once you land, otherwise walk in. Rosso Vivo — held pending your guide's recommendation. La Corte 1642 — phone or in person.", flag: "5 open" },
+    { label: "No reservation possible", value: "Panini e Vini da Babbo, L'Bacaro de' Bischeri, Prosciutteria Cantina dei Papi (walk-in only), 200 Gradi, Mizio's Street Food." }
+  ]},
+  { title: "If something goes wrong", items: [
+    { label: "112", value: "Single European emergency number — police, ambulance and fire, in English." },
+    { label: "118 · ambulance · 113 · police · 115 · fire", value: "Italian direct lines if 112 is slow." },
+    { label: "Pharmacies", value: "Every farmacia posts the nearest farmacia di turno (out of hours) on its door. Farmacia Cipro sits near the Vatican route on the 25th." },
+    { label: "Singapore has no embassy in Rome — only an Honorary Consulate-General", value: "Checked on the official MFA site (rome.mfa.gov.sg). The office was closed 3 Aug – 4 Sept 2026, so it is open again before you fly. Independent directories give its address as either Via Frattina 89 or Via Parma 22 — they disagree, so check rome.mfa.gov.sg for the current address and number rather than trusting either.", flag: "Check on the day" },
+    { label: "MFA Duty Office — the number that actually matters", value: "+65 6379 8800 or +65 6379 8855, or mfa_duty_officer@mfa.gov.sg. Staffed around the clock for urgent consular help — lost passports, arrests, hospital. This is the line MFA itself points to when the Rome office is shut. Save it to all six phones.", flag: "Save this" },
+    { label: "eRegister the trip before you fly", value: "Free MFA service at eregister.mfa.gov.sg — log the itinerary and MFA can reach you if something happens in Italy. Ten minutes, worth doing for a party of six.", flag: "Before you fly" },
+    { label: "Dietary", value: "Ceci cannot eat squid — worth knowing in Venice and Palermo, where it turns up in fritto misto and cicchetti without being named." }
+  ]},
+  { title: "Getting around", items: [
+    { label: "Venice · 3-day ACTV vaporetto pass", value: "Buy on arrival for the whole group. Flat fare, lets Grandma and Sarah sit, and doubles as a rest break on the long days." },
+    { label: "Florence · tram T1 and bus 17", value: "T1 out to Parco delle Cascine (~25 min). Bus 17, Verga Tozzi direction, from Cascine Piazzale Kennedy to San Marco Piazza — 14 min, 11 stops, then 650 m on foot to the Duomo." },
+    { label: "Rome", value: "Two bases: Esquilino (walkable to Monti, Termini and the centre) then Monteverde (walk into Trastevere, ride into the centre)." },
+    { label: "Palermo", value: "Airport bus into Via Vittorio Emanuele, ~50 min. Regional train back out for the evening flight." }
+  ]},
+  { title: "Dress & manners", items: [
+    { label: "Churches", value: "Shoulders and knees covered — St Mark's, St Peter's, the Vatican Museums and Palermo Cathedral all enforce it. A light scarf in every bag solves it." },
+    { label: "Coperto and tipping", value: "A coperto of €1.50–3 per person is normal and is not a tip. Service is rarely added; rounding up is plenty. No tipping at bars — pay at the till, drink standing, it's cheaper." },
+    { label: "Bars vs tables", value: "Coffee standing at the counter costs a fraction of the same coffee at a table. Aperitivo hour usually comes with something to eat." }
+  ]},
+  { title: "Step-free & rest notes", items: [
+    { label: "Venice bridges", value: "Nearly every bridge is stepped, including the Rialto. The vaporetto pass is the workaround for the long crossings — verify step-free routes on the day.", flag: "Verify on the day" },
+    { label: "Built-in rest blocks", value: "18th: Lunula Caffetteria during San Rocco. 19th: Piazza San Marco café at 14:45. 20th: canal-side bench during the vintage crawl. 24th: café in Monti. 28th: two café blocks. 29th: Caffetteria Italia al Vittoriano and a café at Piazza di Spagna." },
+    { label: "Optional climbs", value: "St Mark's Campanile has a lift, no stairs. The Duomo dome is 463 steps with no lift — not one to decide at the door. San Miniato and Piazzale Michelangelo are uphill; the Boboli exit route is the gentler approach.", flag: "Verify on the day" },
+    { label: "Cobbles", value: "Rome's sampietrini are uneven almost everywhere in the centre, and Palermo's markets are worse. Flat, cushioned soles beat pretty shoes on the 12-hour days.", flag: "Verify on the day" }
+  ]},
+  { title: "The rules you set", items: [
+    { label: "Dinners after 7:30pm", value: "The single exception is the 19th, fixed at 7:00pm for Ceci's birthday dinner." },
+    { label: "Groceries before 7pm", value: "The Conad run on the 18th is scheduled at 18:00 for exactly this." },
+    { label: "Early departures", value: "06:15 on the 21st (Florence train) · 06:45 on the 22nd · 06:30 on the 23rd, 26th, 29th and 30th · 05:15 on the 25th · 07:00 wake-up on the 28th." },
+    { label: "Group of six", value: "Every table booking is for six, and the two Palermo–Rome flight references split the party — Sarah is on ZZ385T." }
+  ]}
+];
+const TRAILS = [
+  { title: "Venice", items: [
+    { label: "Gelateria il Doge", value: "18 Sept · Dorsoduro browse", trail: 1 },
+    { label: "SUSO Gelatoteca — tiramisu gelato", value: "20 Sept · after the bacaro crawl", trail: 1 },
+    { label: "Ponte di Rialto", value: "19 Sept · folded into the morning walk", trail: 1 },
+    { label: "Ponte delle Guglie & Ponte dei Tre Archi", value: "20 Sept · early Cannaregio photo stops", trail: 1 },
+    { label: "Church of San Rocco", value: "18 Sept · free entry", trail: 1 },
+    { label: "St Mark's Basilica", value: "19 Sept · ticketed now, ~€10–12; terrace and museum are an add-on", trail: 1 },
+    { label: "Santa Maria Assunta (I Gesuiti)", value: "20 Sept · marble and a Titian, €1–2", trail: 1 }
+  ]},
+  { title: "Florence", items: [
+    { label: "Edoardo il Gelato Biologico", value: "22 Sept · straight after the dome", trail: 1 },
+    { label: "Casa Del Vino — enoteca, not a buchetta", value: "22 Sept · Via dell'Ariento 16R · Tue closes 15:30", trail: 1 },
+    { label: "Buchetta del Vino / Babae", value: "23 Sept · Via Santo Spirito 21R", trail: 1 },
+    { label: "Fotoautomatica — Bargello booth", value: "21 Sept · the most central of the six", trail: 1 },
+    { label: "Fotoautomatica — Oltrarno booth", value: "23 Sept · Via Santa Monaca, off the Boboli exit", trail: 1 },
+    { label: "Santa Maria Novella", value: "21 Sept · Mon 9am – 5:30pm", trail: 1 },
+    { label: "Badia Fiorentina", value: "21 Sept · Mondays only, 3 – 6pm", trail: 1 },
+    { label: "San Miniato al Monte", value: "23 Sept · then downhill to the sunset", trail: 1 },
+    { label: "Piazzale Michelangelo", value: "23 Sept · sunset 19:18", trail: 1 }
+  ]},
+  { title: "Rome", items: [
+    { label: "Mr. 100 Tiramisù", value: "24 Sept · Monti", trail: 1 },
+    { label: "Two Sizes Tiramisu", value: "25 Sept, Via del Governo Vecchio 88 · again on the 28th in Trastevere", trail: 1 },
+    { label: "Giolitti / Gelateria del Teatro / Frigidarium", value: "25 Sept · pick one on the way to the Vatican", trail: 1 },
+    { label: "Trevi Fountain at dawn", value: "25 Sept, 5:30am · the whole reason for the early start", trail: 1 },
+    { label: "Piazzale Giuseppe Garibaldi", value: "28 Sept · the Gianicolo panorama at sunset", trail: 1 },
+    { label: "Sant'Ignazio di Loyola", value: "24 Sept · trompe-l'œil ceiling", trail: 1 },
+    { label: "Sant'Andrea della Valle", value: "25 Sept · by Campo de' Fiori", trail: 1 },
+    { label: "St Peter's Basilica", value: "25 Sept, 7pm · straight from the museums", trail: 1 }
+  ]},
+  { title: "Palermo", items: [
+    { label: "I Segreti del Chiostro", value: "26 Sept · convent pastries, Piazza Bellini", trail: 1 },
+    { label: "Cassata or cannolo at Sicily Street Food", value: "27 Sept · second chance", trail: 1 },
+    { label: "Mura delle Cattive", value: "27 Sept · the sea wall above Foro Italico", trail: 1 },
+    { label: "Palatine Chapel", value: "26 Sept · the cannot-miss", trail: 1 },
+    { label: "Martorana, Santa Caterina, San Cataldo", value: "26 Sept · all within a minute of Fontana Pretoria", trail: 1 },
+    { label: "Mass at the Cattedrale di Palermo", value: "26 Sept, 6pm", trail: 1 }
+  ]}
+];
+const DECIDE = [
+  { title: "Overdue", items: [
+    { label: "CasaMora — book on 16 August", value: "Slots open next week; the plan is to book on the 16th. 21:30 on the 27th after the Palermo flight, for six. Backup: Mimì e Cocò Trastevere.", flag: "16 Aug", tick: 1 }
+  ]},
+  { title: "Before you fly", items: [
+    { label: "Rosso Vivo — waiting on your guide", value: "25 Sept dinner. Held as-is until the tour guide's recommendation comes back, then book or swap.", flag: "by 25 Sep", tick: 1 },
+    { label: "La Corte 1642 — phone or in person", value: "20 Sept lunch. Not bookable online.", flag: "by 20 Sep", tick: 1 },
+    { label: "Il Santino — walking in", value: "23 Sept dinner. No reservation possible; arrive early. Fallbacks: Osteria Antica Mescita San Niccolò (4.3) or Il Santo Bevitore (4.4).", flag: "23 Sep", tick: 1 }
+  ]},
+  { title: "On arrival or on the day", items: [
+    { label: "Call Taverna Romana and Da Gino", value: "Italian phone numbers only. Call both once you land in Italy; if you can't get through, walk in early — Taverna Romana on the 24th, Da Gino on the 25th (service 12:45–2:45pm, closed Sundays).", flag: "On landing", tick: 1 },
+    { label: "Venice Day 3 dinner — open on purpose", value: "20 Sept, 8pm. Most likely you're full from the bacaro crawl: takeaway if anyone's peckish, otherwise laundry and packing. No booking needed.", flag: "20 Sep", tick: 1 },
+    { label: "St Mark's Campanile — who climbs?", value: "19 Sept, 14:15. €12 each, lift to the top. Grandma and Sarah decide on the day; everyone else explores the piazza regardless.", flag: "19 Sep", tick: 1 },
+    { label: "3-day ACTV vaporetto pass", value: "Buy for the whole group when you land on the 18th.", flag: "18 Sep", tick: 1 },
+    { label: "Palermo suggestions — play by ear", value: "Cannoli at I Segreti del Chiostro, Ferramenta or Taverna Azzurra for the late night, and the Via Roma / Maqueda stretch for Sunday shopping. Kept in as suggestions by the planner's call — decide on the day.", flag: "26–27 Sep", tick: 1 },
+    { label: "Small shops with unposted hours", value: "Vintageria Venezia Le Chic, Adil Vintage Shop, Charity Shop T.I.B.E.R.I.A.D.E. Owner-run, generally open daytime. Bonus stops only, if the day somehow runs ahead.", flag: "Bonus only", tick: 1 }
+  ]}
+];
+const NOTES = [
+  { title: "Venice", items: [
+    { label: "Why Dorsoduro is on Friday", value: "Osteria Al Squero and Cantine del Vino già Schiavi both close on Sundays, and the Accademia closes on Mondays. Friday is the only day that works." },
+    { label: "Why the Doge's Palace moved to 9:15", value: "It opens at 9:00 and that is its emptiest window all day — worth more to a group of six than St Mark's opening slot, which is why the Basilica shifted to 10:45 and gained a skip-the-line recommendation." },
+    { label: "Dropped", value: "Basilica di Santa Maria Gloriosa dei Frari (that hour went to San Rocco) · Jewish Ghetto and the home-cooked dinner · Murano & Burano (replaced by the bacaro crawl) · Malibran's Pagliacci · Mercatino Solidale (Wednesdays only, outside your dates)." },
+    { label: "Crowd check", value: "Days 1 and 2 were reviewed for anything worth moving to Sunday. Nothing moved — Dorsoduro and San Marco aren't near Cannaregio, so a swap would only add backtracking." }
+  ]},
+  { title: "Florence", items: [
+    { label: "Bags at Sant'Ambrogio, not the station", value: "Storing near the Airbnb costs one taxi leg on arrival but saves a 40–50 minute backtrack to SMN before check-in. Same €5/bag price either way." },
+    { label: "What moved off Day 2", value: "Ponte Vecchio, Ginori 1735, Il Bisonte and Davide Cerasi went to Day 3, which already crosses the bridge. Marco Leather and Massimo Leather went to Day 1's San Lorenzo stop." },
+    { label: "Couldn't be placed", value: "Antonella Ferrante is a Sorrento/Positano brand, not Florence. No verifiable Florence address for Loompa Friulane, Signum, John Rocket or Recollection by Albrici. La Sorbetteria Castiglione is in Bologna. Don Nino rates 3.1★ and was left out." },
+    { label: "Dropped", value: "Museo HZERO · laFeltrinelli (Florence) · Street Doing Vintage Couture · Giratempo Vintage, which no longer fits the 10:03 train." }
+  ]},
+  { title: "Rome & Palermo", items: [
+    { label: "Galleria Borghese is out", value: "Replaced by the Roseto di Roma plus the Villa Borghese lake — rowboats at ~€5, paid on the spot. Works even if the roses are past season." },
+    { label: "Dropped in Rome", value: "Porta Portese · Roman Forum · Santa Maria ai Monti · Palazzo Altemps · Old Bridge Gelateria (so the Basilica gets more time) · Keyhole of the Order of Malta." },
+    { label: "Not placed", value: "Mercatino Car Boot (dates outside your window) · Suppli Roma (temporarily closed) · Via Manfredo Camperio 25 geocodes to Milan · Il Gianfornaio, Eden Caffè Garbatella, Borghetto Flaminio, Mercatino Franchising Porta Maggiore — all too far off route." },
+    { label: "Palermo, deliberately skipped", value: "Palazzo Gangi needs an advance-booked visit. Vucciria lost out to Ballarò. The catacombs need their own block. Mondello and Monreale each need half a day, which a day and a half can't give." },
+    { label: "Every day runs long", value: "All the bonus stops were folded into fixed blocks rather than left as \"if passing\". If the group flags by mid-afternoon, drop the lowest-priority stop of the day rather than rushing the rest." }
+  ]}
+];
+const PACKING = [
+  { title: "Clothes", items: [
+    { label: "Layers for 12–25°C", value: "September Italy swings from cool mornings to warm afternoons — a light jacket plus short sleeves beats one heavy coat.", tick: 1 },
+    { label: "Shoulders and knees covered", value: "For St Mark's, St Peter's, the Vatican Museums and Palermo Cathedral. A packable scarf covers it for everyone.", tick: 1 },
+    { label: "Walking shoes, properly broken in", value: "Several days run 10–12 hours on foot over cobbles. This is the single most important item on the list.", tick: 1 },
+    { label: "Umbrella or light rain shell", value: "Late September can turn; a shell packs smaller than an umbrella for six.", tick: 1 }
+  ]},
+  { title: "Baggage plan", items: [
+    { label: "The Palermo constraint", value: "On the 27th, only Sarah has a hold bag (8 kg cabin + 23 kg checked, ref ZZ385T). The other five are on Economy Light with 8 kg cabin each and no checked bag. Anything bought in Sicily either fits in Sarah's checked bag or gets carried on.", tick: 1 },
+    { label: "Buy in Rome, not Palermo", value: "Rome's shopping days are the 28th, 29th and 30th — all after the flight constraint, and Turkish gives everyone 30 kg checked on the way home. Palermo is a day and a half; keep purchases there small.", tick: 1 },
+    { label: "Liquids on the Palermo leg", value: "Cabin-only means the 100 ml rule applies to five of you. Olive oil, limoncello, preserves and the convent pastries do not fly in a cabin bag — either post them, put them in Sarah's checked bag, or buy them in Rome instead.", tick: 1 },
+    { label: "Pack a collapsible bag per person", value: "Empty on the way out, checked on the way home. Turkish allows 30 kg checked each on the SIN–FCO return, which is where the Florence leather and the vintage hauls travel.", tick: 1 },
+    { label: "Consolidate before the 27th", value: "Before leaving Rome 1 on the 26th, move anything bought in Venice and Florence into the bags staying in Rome. You do not need to fly your whole trip's shopping to Sicily and back.", tick: 1 }
+  ]},
+  { title: "Kit", items: [
+    { label: "Chargers and EU adapters", value: "Type C/F sockets. Bring more adapters than people — six phones and one socket is a bad evening.", tick: 1 },
+    { label: "Foldable bag for the hauls", value: "There are ~60 shops on this itinerary and a 30 kg allowance home. Plan for it.", tick: 1 },
+    { label: "Medication and prescriptions", value: "In hand luggage, in original packaging, with a note of the generic names.", tick: 1 },
+    { label: "Grandma's comfort kit", value: "Folding stool, refillable water bottle, and a scarf that doubles as church cover.", tick: 1 }
+  ]}
+];
+const PHRASES = [
+  { title: "At the table", items: [
+    { label: "Un tavolo per sei, per favore", value: "A table for six, please. · oon TAH-vo-lo per SAY" },
+    { label: "Abbiamo una prenotazione a nome Bachani", value: "We have a reservation under the name Bachani. · ab-BYAH-mo OO-na pre-no-ta-TSYO-neh" },
+    { label: "Il conto, per favore", value: "The bill, please. · eel KON-toh" },
+    { label: "Cosa consiglia?", value: "What do you recommend? · KO-za kon-SEE-lya" },
+    { label: "Solo acqua del rubinetto, grazie", value: "Just tap water, thanks. · SO-lo AH-kwa del roo-bee-NET-toh" }
+  ]},
+  { title: "Dietary", items: [
+    { label: "Lei non può mangiare calamari", value: "She cannot eat squid. · lay non pwo man-JAH-reh ka-la-MAH-ree" },
+    { label: "C'è pesce o frutti di mare in questo piatto?", value: "Is there fish or seafood in this dish? · cheh PESH-eh o FROO-tee dee MAH-reh" },
+    { label: "Ho un'allergia", value: "I have an allergy. · o oon-al-ler-JEE-a" }
+  ]},
+  { title: "Shops", items: [
+    { label: "Posso provarlo?", value: "Can I try it on? · POS-so pro-VAR-lo" },
+    { label: "Avete una taglia più grande / piccola?", value: "Do you have a bigger / smaller size? · a-VEH-teh OO-na TAH-lya" },
+    { label: "Quanto costa?", value: "How much is it? · KWAN-toh KOS-ta" },
+    { label: "Posso pagare con la carta?", value: "Can I pay by card? · POS-so pa-GAH-reh kon la KAR-ta" }
+  ]},
+  { title: "Churches", items: [
+    { label: "Si può entrare?", value: "May we go in? · see pwo en-TRAH-reh" },
+    { label: "A che ora è la messa?", value: "What time is Mass? · a keh O-ra eh la MES-sa" },
+    { label: "Posso fare una foto?", value: "May I take a photo? · POS-so FAH-reh OO-na FO-toh" }
+  ]},
+  { title: "If something's wrong", items: [
+    { label: "Serve un medico", value: "We need a doctor. · SER-veh oon MEH-dee-ko" },
+    { label: "Dov'è la farmacia più vicina?", value: "Where is the nearest pharmacy? · do-VEH la far-ma-CHEE-a pyoo vee-CHEE-na" },
+    { label: "Ho perso il passaporto", value: "I have lost my passport. · o PER-so eel pas-sa-POR-toh" },
+    { label: "Chiamate il 112", value: "Call 112. · kya-MAH-teh eel oo-no OO-no DOO-eh" }
+  ]}
+];
+const SOURCES = [
+  { title: "Locations checked against maps · 11 Aug", items: [
+    { label: "Every stop now carries a place, not a phrase", value: "120 addresses in the app. 102 are name + city, which Google Maps resolves exactly; the rest carry a street number. Stops that are not places — clearing immigration, a buffer, a walk home — deliberately have no Maps button rather than a guessed pin." },
+    { label: "Wrong and fixed · the Gianicolo", value: "Terrazza delle Quadrighe is the rooftop terrace of the Vittoriano at Piazza Venezia, not a Gianicolo viewpoint. The 28th now goes to Piazzale Giuseppe Garibaldi, which is the Janiculum panorama and an uphill walk from Trastevere. The 29th still visits the Vittoriano terraces properly.", flag: "Corrected" },
+    { label: "Wrong and fixed · Ferramenta", value: "Piazza Giovanni Meli 8, in the Vucciria behind Piazza San Domenico — not Piazza Sett'Angeli behind the Cathedral, where I had placed it. Too far off the route for the 12:30 lunch, so it has become the 20:30 option, where its Saturday hours (12:00 – 01:00) and DJ actually suit.", flag: "Corrected" },
+    { label: "Wrong and fixed · Casa Del Vino", value: "Via dell'Ariento 16R is right, but it is a historic counter-service enoteca in the San Lorenzo stalls, not one of Florence's buchette. It has come off the wine-window trail; Babae on Via Santo Spirito 21R is the real thing.", flag: "Corrected" },
+    { label: "Softened rather than guessed", value: "Caffè Giacosa now reads Via della Spada without a street number, and the Negroni line says the bar claims the drink rather than stating it as fact. Where a number could not be verified, the name and street are enough for Maps and safer than a wrong pin." },
+    { label: "Sunset times", value: "Astronomical sunset for each city on each date, corrected on 11 Aug — the Rome and Palermo figures had been extrapolated from Florence and ran four to seven minutes late. Piazzale Michelangelo on the 23rd (19:18) and the Gianicolo on the 28th (19:03) are the two that actually matter." },
+    { label: "Still unverified by me", value: "I Segreti del Chiostro at Piazza Bellini, Sicily Street Food, Rosso Vivo, and the small vintage shops with unposted hours. All are marked in-app as suggestions or bonus stops — treat the pin as approximate until you are standing there." }
+  ]},
+  { title: "What changed after checking", items: [
+    { label: "St Mark's Basilica is no longer free — now booked", value: "The doc had the nave free with a €3–5 skip-the-line; tickets are in fact online-only and there is no desk on site. Resolved: the planner has booked an 11:00 slot, visit 11:00–11:30.", flag: "Resolved" },
+    { label: "Venice Accademia costs more than the doc says", value: "€9/€6 in your doc; €15 standard in 2026, and €20 while a temporary exhibition runs. The Marina Abramović show runs to 19 Oct 2026, so expect €20 plus €1.50 booking." },
+    { label: "The Doge's Palace runs late on your night", value: "Through Saturday 26 Sept 2026 it opens until 11pm on Fridays and Saturdays. The 19th is a Saturday, so the 9:15 slot has no closing pressure behind it." },
+    { label: "The dome climb checks photo ID", value: "Since 1 March 2025, ID matching the ticket name is checked at the Porta della Mandorla, and backpacks or medium/large bags are refused — there is a free cloakroom at Piazza Duomo 38/r. Five minutes' grace on the slot, no more." },
+    { label: "Palermo's Sunday reasoning holds up", value: "The Palatine Chapel is closed or shut 9:30–11:30 on Sundays, and Tue–Thu the Royal Apartments close (ticket drops to €15.50). Saturday at 1:30pm is both open and full-access — the doc's instinct was right." }
+  ]},
+  { title: "Where sources disagreed — all resolved by the planner", items: [
+    { label: "Venice Accademia opening hour", value: "Sources split between 9am – 7pm and 8:15am – 7:15pm. Moot — the visit is booked and the 11:26 arrival sits inside both.", flag: "Settled" },
+    { label: "Uffizi closing time", value: "6:30pm or 6:50pm depending on the source. Doesn't affect the 8:15 first slot.", flag: "Settled" },
+    { label: "Palatine Chapel hours", value: "Sources split, but the 1:30pm entry is booked — chapel and Royal Apartments both.", flag: "Settled" },
+    { label: "Doge's Palace price", value: "Already booked, so the €35-vs-€30 question is closed. Note you're using the palace only, not the Correr, Archaeological Museum or Marciana the ticket also covers.", flag: "Settled" }
+  ]},
+  { title: "Checked against", items: [
+    { label: "palazzoducale.visitmuve.it", value: "Doge's Palace official visitor information — the Fri/Sat late openings through 26 Sept 2026." },
+    { label: "gallerieaccademia.it", value: "Venice Accademia official hours and ticketing." },
+    { label: "duomo.firenze.it", value: "Brunelleschi Pass rules — €30/€12, 463 steps, the March 2025 ID and bag rules, the free cloakroom." },
+    { label: "galleriaaccademiafirenze.it · uffizi.it", value: "Florence Accademia and Uffizi hours, 2026 pricing and the new combined passes." },
+    { label: "Vatican Museums & Pantheon guides", value: "Vatican Mon–Sat 8am–8pm, last entry 6pm, €20/€25, Sistine photography ban. Pantheon €5/€2, timed entry, 9am–7pm." },
+    { label: "Palazzo dei Normanni / Cappella Palatina guides", value: "Sunday service closures, the Tue–Thu Royal Apartments closure and the €19 vs €15.50 split." },
+    { label: "Checked", value: "11 August 2026, and reviewed with the planner the same week. Hours and prices drift — reconfirm the ticketed stops in the week before you fly, and treat everything here as of that date." }
+  ]}
+];
+const PEOPLE = [
+  { title: "Everyone", items: [
+    { label: "Out and back with Turkish", value: "SIN 23:05 on 17 Sep → Istanbul → Venice 08:20 on the 18th. Home: FCO 20:00 on 30 Sep → Istanbul → Changi 17:55 on 1 Oct. One PNR for all six: UKQNVL. 30 kg checked + 8 kg cabin each on these legs." },
+    { label: "The Palermo squeeze", value: "On 27 Sep only Sarah has a hold bag. The other five fly cabin-only, 8 kg. Buy in Rome, not Sicily — and no liquids in the five cabin bags." },
+    { label: "Booking contact for everything", value: "Ramesh · ramsafra@gmail.com · +65 9049 6207." }
+  ]},
+  { title: "Grandma", items: [
+    { label: "Duomo, 22 Sep", value: "Holds the pass without the dome climb. The 463 steps have no lift, so she and Sarah take the Baptistery, the cathedral floor and the Opera del Duomo Museum while the other four climb." },
+    { label: "Rest blocks held for her", value: "18th: Lunula Caffetteria during San Rocco. 19th: Piazza San Marco café at 14:45. 20th: a bench during the Cannaregio crawl. 24th: Monti at 14:45. 28th: two café blocks. 29th: the Vittoriano caffetteria and a café at Piazza di Spagna." },
+    { label: "The hard ground", value: "Venice's bridges are nearly all stepped, Rome's sampietrini are uneven, and Ballarò in Palermo is the worst of the three. The 3-day vaporetto pass is the Venice workaround. Folding stool in the day bag." },
+    { label: "Palermo flight", value: "Ref ZYVPTF, Economy Light — 8 kg cabin, no hold bag." }
+  ]},
+  { title: "Sarah", items: [
+    { label: "The only hold bag out of Palermo", value: "Ref ZZ385T, Economy Classic: 8 kg cabin + 23 kg checked. Everyone else's Sicily purchases have to fit in here or be carried on." },
+    { label: "Anniversary, 29 Sep", value: "With Ramesh. Dinner at Ristorante Pancrazio dal 1922, 8:00pm, booked." },
+    { label: "Duomo, 22 Sep", value: "Non-climb pass with Grandma — Baptistery and museum instead of the 463 steps." },
+    { label: "St Mark's Campanile, 19 Sep", value: "She and Grandma decide on the day. It has a lift, no stairs, about €12." }
+  ]},
+  { title: "Ramesh", items: [
+    { label: "Holds the bookings", value: "All flights and trains are under his name and email. Frequent flyer 8871375383." },
+    { label: "Palermo, 27 Sep", value: "Centro Ricambi Moto is the stop he asked for, in the free block from 12:30. Sunday hours in Palermo are unreliable — worth a call first." },
+    { label: "Anniversary, 29 Sep", value: "With Sarah. Pancrazio dal 1922 at 8:00pm." },
+    { label: "Palermo flight", value: "Ref ZYVPTF, Economy Light — 8 kg cabin, no hold bag." }
+  ]},
+  { title: "Ceci", items: [
+    { label: "Cannot eat squid", value: "Worth saying out loud in Venice and Palermo, where it turns up in fritto misto and cicchetti without being named. The phrase card has it: \"Lei non può mangiare calamari.\"" },
+    { label: "Birthday — celebrated 19 Sep", value: "Dinner at Hostaria Osottoosopra, 7:00pm, confirmed. The one dinner all trip before 7:30pm." },
+    { label: "Actual birthday, 27 Sep", value: "Mostly a travel day. CasaMora at 21:30 in Rome is an ordinary dinner by her own call — booking on 16 Aug." },
+    { label: "Frequent flyer", value: "8751729213. Palermo flight ref ZYVPTF, cabin-only." }
+  ]},
+  { title: "Faith", items: [
+    { label: "Palermo flight", value: "Ref ZYVPTF, Economy Light — 8 kg cabin, no hold bag." },
+    { label: "Turkish legs", value: "PNR UKQNVL, 30 kg checked + 8 kg cabin." }
+  ]},
+  { title: "Ryan", items: [
+    { label: "Palermo flight", value: "Ref ZYVPTF, Economy Light — 8 kg cabin, no hold bag." },
+    { label: "Turkish legs", value: "PNR UKQNVL, 30 kg checked + 8 kg cabin." }
+  ]}
+];
+const ANCHORS = [
+  { when: "17 Sep 23:05", what: "TK · Singapore → Istanbul" },
+  { when: "18 Sep 08:20", what: "Land Venice (doc says 08:05)" },
+  { when: "21 Sep 07:05", what: "Italo 8903 · Venice → Florence" },
+  { when: "22 Sep 09:45", what: "Duomo dome climb, confirmed" },
+  { when: "22 Sep 17:30", what: "Accademia, confirmed" },
+  { when: "23 Sep 08:15", what: "Uffizi, first slot" },
+  { when: "24 Sep 10:03", what: "Italo 8953 · Florence → Rome" },
+  { when: "25 Sep 09:30", what: "Pantheon, timed entry" },
+  { when: "25 Sep 16:00", what: "Vatican Museums, fixed" },
+  { when: "26 Sep 09:30", what: "Aeroitalia · Rome → Palermo" },
+  { when: "27 Sep 19:05", what: "ITA · Palermo → Rome" },
+  { when: "30 Sep 11:00", what: "Checkout, Airbnb 2" },
+  { when: "30 Sep 20:00", what: "TK · Rome → Istanbul → home" }
+];
+const SHEETS = {
+  vault:   { title: "Bookings & numbers", sections: VAULT },
+  trails:  { title: "Trails", sections: TRAILS },
+  decide:  { title: "Decide before you fly", sections: DECIDE },
+  notes:   { title: "City notes", sections: NOTES },
+  packing: { title: "Packing & baggage", sections: PACKING },
+  phrases: { title: "Italian, just enough", sections: PHRASES },
+  sources: { title: "Checked against the web", sections: SOURCES },
+  people: { title: "Who carries what", sections: PEOPLE }
+};
+const GEO = {
+  V: { name: "Venice", lat: 45.4408, lon: 12.3155, dates: "18 – 21 Sep", nights: "3 nights" },
+  F: { name: "Florence", lat: 43.7696, lon: 11.2558, dates: "21 – 24 Sep", nights: "3 nights" },
+  R: { name: "Rome", lat: 41.9028, lon: 12.4964, dates: "24 – 30 Sep", nights: "4 nights, two flats" },
+  P: { name: "Palermo", lat: 38.1157, lon: 13.3615, dates: "26 – 27 Sep", nights: "1 night" }
+};
+const HOPS = [
+  { a: "V", b: "F", mode: "Train", label: "Italo 8903", when: "21 Sep · 07:05 → 09:20" },
+  { a: "F", b: "R", mode: "Train", label: "Italo 8953", when: "24 Sep · 10:03 → 11:45" },
+  { a: "R", b: "P", mode: "Flight", label: "Aeroitalia XZ2711", when: "26 Sep · 09:30 → 10:40" },
+  { a: "P", b: "R", mode: "Flight", label: "ITA AZ1794 — back again", when: "27 Sep · 19:05 → 20:20" }
+];
+const RIB = { travel: "var(--faint)", meal: "var(--brass)", rest: "var(--line2)", free: "var(--line2)", market: "var(--olive)", shop: "var(--olive)", stay: "var(--muted)", errand: "var(--muted)", note: "var(--muted)" };
+const CITY = { V: "Venice", F: "Florence", R: "Rome", P: "Palermo", T: "Singapore" };
+const AVG = { V: "24° / 15°", F: "26° / 14°", R: "27° / 16°", P: "28° / 21°", T: "31° / 26°" };
+const STORE = "italy2026.v1";
+const mins = t => { const m = /^(\d{1,2}):(\d{2})$/.exec(t); return m ? (+m[1]) * 60 + (+m[2]) : null; };
+const hhmm = n => String(Math.floor(n / 60)).padStart(2, "0") + ":" + String(n % 60).padStart(2, "0");
+const tone = (name, accent) => ({ accent, olive: "var(--olive)", brass: "var(--brass)", terra: "var(--terra)", muted: "var(--faint)" }[name] || "var(--faint)");
+const RES = {
+  confirmed: { t: "Confirmed ✓", k: "good" }, pending: { t: "Pending ⏳", k: "warn" },
+  none: { t: "Not booked", k: "bad" }, failed: { t: "Booking failed", k: "bad" },
+  phone: { t: "Phone or in person", k: "warn" }, walkin: { t: "Walk-in", k: "flat" },
+  tbc: { t: "To be confirmed", k: "warn" }, suggested: { t: "My suggestion", k: "flat" }
+};
+const BADGE = {
+  good: { bg: "color-mix(in oklab,var(--olive) 10%,transparent)", fg: "var(--olive)", br: "color-mix(in oklab,var(--olive) 30%,transparent)" },
+  warn: { bg: "color-mix(in oklab,var(--brass) 12%,transparent)", fg: "var(--brass)", br: "color-mix(in oklab,var(--brass) 32%,transparent)" },
+  bad:  { bg: "color-mix(in oklab,var(--terra) 10%,transparent)", fg: "var(--terra)", br: "color-mix(in oklab,var(--terra) 30%,transparent)" },
+  flat: { bg: "transparent", fg: "var(--muted)", br: "var(--line2)" }
+};
+const TRAILNAME = { gelato: "Gelato trail", tiramisu: "Tiramisu trail", photo: "Photo spot", wine: "Wine window" };
+
+class Component extends DCLogic {
+  constructor(p) {
+    super(p);
+    let saved = {};
+    try { saved = JSON.parse(localStorage.getItem(STORE) || "{}"); } catch (e) { saved = {}; }
+    const today = new Date().toISOString().slice(0, 10);
+    let idx = DAYS.findIndex(d => d.date === today);
+    if (idx < 0) idx = 0;
+    this.state = {
+      di: idx, open: -1, panel: null, sheet: null, query: "", overviewOpen: false,
+      done: saved.done || {}, ticks: saved.ticks || {}, theme: saved.v4 ? (saved.theme || "light") : "light",
+      tick: 0, amount: 100, dir: "sgd", rate: saved.rate || null, rateAt: saved.rateAt || null,
+      wx: saved.wx || {}, toast: "", now: Date.now()
+    };
+    this.sx = 0;
+  }
+  componentDidMount() {
+    this.save({});
+    this._lastTheme = this.state.theme;
+    this._lastDi = this.state.di;
+    this.applyTheme();
+    this._onInstall = e => { e.preventDefault(); this._prompt = e; this.setState({ installable: true }); };
+    window.addEventListener("beforeinstallprompt", this._onInstall);
+    window.addEventListener("appinstalled", () => this.setState({ installable: false }));
+    this.timer = setInterval(() => this.setState({ now: Date.now() }), 60000);
+    const t0 = performance.now();
+    const run = () => {
+      const p = Math.min(1, (performance.now() - t0) / 1100);
+      this.setState({ tick: 1 - Math.pow(1 - p, 3) });
+      if (p < 1) this._raf = requestAnimationFrame(run);
+    };
+    this._raf = requestAnimationFrame(run);
+    this.loadRate();
+    this.loadWeather();
+  }
+  componentDidUpdate() {
+    if (this._lastTheme !== this.state.theme) { this._lastTheme = this.state.theme; this.applyTheme(); }
+    if (this._lastDi !== this.state.di) { this._lastDi = this.state.di; this.loadWeather(); }
+  }
+  componentWillUnmount() {
+    clearInterval(this.timer);
+    if (this._raf) cancelAnimationFrame(this._raf);
+    if (this._onInstall) window.removeEventListener("beforeinstallprompt", this._onInstall);
+  }
+  applyTheme() {
+    const m = this.state.theme;
+    const h = new Date().getHours();
+    const dark = m === "dark" || (m === "auto" && (h >= 19 || h < 7));
+    document.body.setAttribute("data-theme", dark ? "dark" : "light");
+  }
+  save(patch) {
+    const s = Object.assign({}, this.state, patch);
+    try {
+      localStorage.setItem(STORE, JSON.stringify({
+        done: s.done, ticks: s.ticks, theme: s.theme, rate: s.rate, rateAt: s.rateAt, wx: s.wx, v4: 1
+      }));
+    } catch (e) {}
+  }
+  async loadRate() {
+    try {
+      const r = await fetch("https://open.er-api.com/v6/latest/SGD");
+      const j = await r.json();
+      const eur = j && j.rates && j.rates.EUR;
+      if (eur) { this.setState({ rate: eur, rateAt: Date.now() }); this.save({ rate: eur, rateAt: Date.now() }); }
+    } catch (e) {}
+  }
+  async loadWeather() {
+    const d = DAYS[this.state.di];
+    const co = { V: [45.44, 12.33], F: [43.77, 11.26], R: [41.9, 12.5], P: [38.12, 13.36], T: [1.35, 103.82] }[d.leg];
+    const key = d.leg + d.date;
+    if (this.state.wx[key]) return;
+    const daysOut = (new Date(d.date + "T12:00:00Z").getTime() - Date.now()) / 86400000;
+    if (daysOut > 15 || daysOut < -1) return; // forecast endpoint only covers ~16 days
+    try {
+      const u = "https://api.open-meteo.com/v1/forecast?latitude=" + co[0] + "&longitude=" + co[1] +
+        "&daily=temperature_2m_max,temperature_2m_min&timezone=auto&start_date=" + d.date + "&end_date=" + d.date;
+      const r = await fetch(u);
+      if (!r.ok) return;
+      const j = await r.json();
+      const hi = j && j.daily && j.daily.temperature_2m_max && j.daily.temperature_2m_max[0];
+      const lo = j && j.daily && j.daily.temperature_2m_min && j.daily.temperature_2m_min[0];
+      if (hi != null) {
+        const wx = Object.assign({}, this.state.wx);
+        wx[key] = Math.round(hi) + "° / " + Math.round(lo) + "°";
+        this.setState({ wx }); this.save({ wx });
+      }
+    } catch (e) {}
+  }
+  key(di, i) { return di + ":" + i; }
+  toggleDone(di, i) {
+    const done = Object.assign({}, this.state.done);
+    const k = this.key(di, i);
+    if (done[k]) delete done[k]; else done[k] = 1;
+    this.setState({ done }); this.save({ done });
+  }
+  flash(t) { this.setState({ toast: t }); setTimeout(() => this.setState({ toast: "" }), 2600); }
+  shareDay() {
+    const d = DAYS[this.state.di];
+    const lines = [d.kicker, d.title].concat(d.stops.filter(s => s.t !== "—").map(s => s.t + "  " + s.n));
+    const text = lines.join("\n");
+    try {
+      if (navigator.share) navigator.share({ text }).catch(() => {});
+      else if (navigator.clipboard) navigator.clipboard.writeText(text);
+      this.flash("Day copied — paste it into the group chat");
+    } catch (e) { this.flash("Couldn't copy on this device"); }
+  }
+  renderVals() {
+    const st = this.state;
+    const d = DAYS[st.di];
+    const leg = LEGS.find(l => l.id === d.leg) || LEGS[0];
+    const accent = leg.accent;
+    const stopCount = d.stops.filter(s => s.t !== "—").length;
+    const doneN = d.stops.filter((s, i) => st.done[this.key(st.di, i)]).length;
+    const tripTotal = DAYS.reduce((n, dd) => n + dd.stops.length, 0);
+    const tripDone = Object.keys(st.done).length;
+    const tripPct = Math.round((tripDone / tripTotal) * 100);
+    const journeyKm = HOPS.reduce((tot, hp) => {
+      const R2 = 6371, r = Math.PI / 180, A = GEO[hp.a], B = GEO[hp.b];
+      const dLa = (B.lat - A.lat) * r, dLo = (B.lon - A.lon) * r;
+      const h = Math.sin(dLa / 2) ** 2 + Math.cos(A.lat * r) * Math.cos(B.lat * r) * Math.sin(dLo / 2) ** 2;
+      return tot + 2 * R2 * Math.asin(Math.sqrt(h));
+    }, 0).toFixed(0);
+    const decideOpen = DECIDE.reduce((n, sec) => n + sec.items.filter((it, i) => !st.ticks["decide" + sec.title + i]).length, 0);
+    const ease = st.tick;
+    const dep = new Date("2026-09-17T23:05:00+08:00").getTime();
+    const daysTo = Math.ceil((dep - st.now) / 86400000);
+    const nowD = new Date(st.now);
+    const todayISO = nowD.toISOString().slice(0, 10);
+    const nowMin = nowD.getHours() * 60 + nowD.getMinutes();
+    const isToday = d.date === todayISO;
+    let nowChipText = "";
+    if (isToday) {
+      const timed = d.stops.map((s, i) => ({ i, m: mins(s.t), n: s.n })).filter(x => x.m != null);
+      const next = timed.find(x => x.m > nowMin);
+      const cur = timed.filter(x => x.m <= nowMin).pop();
+      if (next) {
+        const gap = next.m - nowMin;
+        nowChipText = (cur && gap > 45 ? "Free until " + hhmm(next.m) + " · " : "") +
+          "Next up in " + (gap >= 60 ? Math.floor(gap / 60) + "h " + (gap % 60) + "m" : gap + " min") + " · " + next.n;
+      } else if (cur) nowChipText = "Last stop of the day · " + cur.n;
+    }
+    const curIdx = isToday ? (() => {
+      const timed = d.stops.map((s, i) => ({ i, m: mins(s.t) })).filter(x => x.m != null);
+      const past = timed.filter(x => x.m <= nowMin).pop();
+      return past ? past.i : -1;
+    })() : -1;
+    const first = d.stops.map(s => mins(s.t)).filter(x => x != null)[0];
+    const lastArr = d.stops.map(s => mins(s.t)).filter(x => x != null);
+    const last = lastArr[lastArr.length - 1];
+    const span = first != null && last != null && last > first ? Math.round((last - first) / 60) : null;
+    const rate = st.rate || 0.66;
+    const amt = parseFloat(st.amount) || 0;
+    const conv = st.dir === "sgd" ? amt * rate : amt / rate;
+    const iKind = { fact: ["Fun fact", "var(--brass)", "✦"], "heads-up": ["Heads-up", "var(--terra)", "!"], family: ["A note for the six", "var(--olive)", "❋"] }[d.insightKind] || ["Note", "var(--brass)", "✦"];
+    const sheetKey = st.sheet;
+    const sheet = sheetKey === "__opts" ? st.dynSheet : sheetKey ? SHEETS[sheetKey] : null;
+    const mapFor = n => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(String(n).replace(/\s*\(.*?\)\s*/g, " ").trim() + ", " + (CITY[d.leg] || "Italy"));
+    const optSheet = (title, list) => this.setState({
+      panel: "sheet", sheet: "__opts",
+      dynSheet: { title, sections: [{ title: list.length > 1 ? "Pick as you go" : "The detail", items: list.map(n => ({
+        label: n,
+        value: SHOPINFO[n] || "No verified detail for this one — the itinerary lists it by name only, so treat it as a bonus stop.",
+        map: mapFor(n)
+      })) }] }
+    });
+    const q = st.query.trim().toLowerCase();
+    let results = [];
+    if (q.length > 1) {
+      DAYS.forEach((dd, di) => dd.stops.forEach((s, i) => {
+        const hay = [s.n, s.h, s.w, s.a, s.x, (s.b || []).join(" "), (s.sh || []).join(" "), s.r ? RES[s.r].t : ""].join(" ").toLowerCase();
+        if (hay.indexOf(q) >= 0) results.push({
+          where: dd.kicker.split("·")[1] ? dd.kicker.split("·")[1].trim() + " · " + s.t : s.t,
+          name: s.n, note: (s.sh || []).length ? (s.sh || []).slice(0, 3).join(" · ") : (s.h || s.w || ""),
+          go: () => this.setState({ di, open: i, panel: null, query: "" })
+        });
+      }));
+      results = results.slice(0, 40);
+    }
+    return {
+      accent, legName: leg.name,
+      band: "linear-gradient(158deg," + leg.deep + " 0%,color-mix(in oklab," + leg.deep + " 68%,#000) 100%)",
+      pageBg: "linear-gradient(180deg,color-mix(in oklab," + accent + " 11%,var(--bg)) 0px,var(--bg) 460px)",
+      tabBarBg: "color-mix(in oklab," + accent + " 7%,color-mix(in oklab,var(--bg) 86%,transparent))",
+      ringBand: "conic-gradient(#FAF6EE " + tripPct + "%, rgba(250,246,238,.25) 0)",
+      glow: "color-mix(in oklab," + accent + " 38%,transparent)",
+      themeMark: st.theme === "dark" ? "◗" : st.theme === "light" ? "◉" : "◐",
+      tickDays: Math.max(0, Math.round(daysTo * ease)),
+      tickPct: Math.round(tripPct * ease),
+      headBg: "radial-gradient(120% 90% at 85% 0%,rgba(246,241,231,.16),transparent 60%),linear-gradient(150deg," + accent + "," + leg.deep + ")",
+      motif: leg.motif,
+      themeLabel: st.theme.charAt(0).toUpperCase() + st.theme.slice(1), cycleTheme: () => { const nx = st.theme === "auto" ? "light" : st.theme === "light" ? "dark" : "auto"; this.setState({ theme: nx }); this.save({ theme: nx }); },
+      overviewOpen: st.overviewOpen, overviewChev: st.overviewOpen ? "▴" : "▾",
+      toggleOverview: () => this.setState({ overviewOpen: !st.overviewOpen }),
+      overviewKicker: daysTo > 0 ? "The whole trip" : "Tour d'Italia",
+      countdownLine: daysTo > 0 ? "days to Changi" : daysTo === 0 ? "You fly tonight" : "Buon viaggio",
+      showCount: daysTo > 0,
+      tripPct, tripPctLabel: tripPct + "%", tripBar: tripPct + "%",
+      ring: "conic-gradient(" + accent + " " + tripPct + "%, var(--line) 0)",
+      ringHole: "var(--surf)",
+      decideLabel: decideOpen + (decideOpen === 1 ? " decision left" : " decisions left"),
+      resLabel: (() => {
+        let c = 0, open = 0;
+        DAYS.forEach(dd => dd.stops.forEach(s2 => {
+          if (s2.r === "confirmed") c++;
+          else if (s2.r === "none" || s2.r === "pending" || s2.r === "tbc" || s2.r === "phone" || s2.r === "failed") open++;
+        }));
+        return c + " booked · " + open + " still open";
+      })(),
+      legCards: LEGS.filter(l => l.id !== "T").map(l => ({ name: l.name, dates: l.dates, base: l.base })),
+      anchors: ANCHORS,
+      dayLines: DAYS.map((dd, i) => ({
+        when: dd.kicker.split("·")[0].trim(), title: dd.title,
+        go: () => this.setState({ di: i, overviewOpen: false, open: -1 })
+      })),
+      legPills: LEGS.map(l => {
+        const on = l.id === d.leg;
+        return {
+          name: l.name, bg: on ? "#FAF6EE" : "transparent", fg: on ? l.deep : "rgba(250,246,238,.88)",
+          sh: on ? "0 2px 10px rgba(0,0,0,.22)" : "none",
+          dot: on ? l.accent : "rgba(250,246,238,.4)",
+          dotGlow: on ? "0 0 10px " + l.accent : "none",
+          go: () => { const t = DAYS.findIndex(dd => dd.leg === l.id); if (t >= 0) this.setState({ di: t, open: -1 }); }
+        };
+      }),
+      dayTabs: DAYS.map((dd, i) => {
+        const on = i === st.di;
+        return {
+          dow: dd.dow, date: dd.date.slice(8), mark: dd.occ ? "❧" : dd.date === todayISO ? "●" : "",
+          br: on ? accent : "transparent",
+          sh: on ? "0 6px 18px -10px " + accent : "none",
+          dowC: on ? "var(--muted)" : "var(--faint)", numC: on ? "var(--ink)" : "var(--muted)",
+          markC: dd.occ ? "var(--brass)" : accent,
+          go: () => this.setState({ di: i, open: -1 })
+        };
+      }),
+      day: {
+        kicker: d.kicker, title: d.title, sub: d.sub, sunset: d.sunset, insight: d.insight,
+        occ: !!d.occ, occLabel: d.occ ? d.occ.label : "", occNote: d.occ ? d.occ.note : ""
+      },
+      wxLabel: st.wx[d.leg + d.date] ? CITY[d.leg] : CITY[d.leg] + " avg",
+      wxValue: st.wx[d.leg + d.date] || AVG[d.leg] || d.wx,
+      pace: span ? span + "h" : "—",
+      paceLabel: d.leg === "T" ? "In transit" : span && span >= 12 ? "On foot · long" : "On foot",
+      paceColor: span && span >= 12 ? "var(--terra)" : accent,
+      insightKind: iKind[0], insightColor: iKind[1], insightMark: iKind[2],
+
+
+      /* journey diagram — true relative positions, equirectangular at 42°N */
+      journey: (() => {
+        const W = 250, H = 430, PAD = 26, k = Math.cos(42 * Math.PI / 180);
+        const ids = ["V", "F", "R", "P"];
+        const raw = ids.map(id => ({ id, x: GEO[id].lon * k, y: -GEO[id].lat }));
+        const xs = raw.map(p => p.x), ys = raw.map(p => p.y);
+        const x0 = Math.min.apply(null, xs), x1 = Math.max.apply(null, xs);
+        const y0 = Math.min.apply(null, ys), y1 = Math.max.apply(null, ys);
+        const sc = Math.min((W - PAD * 2) / Math.max(x1 - x0, 0.001), (H - PAD * 2) / Math.max(y1 - y0, 0.001));
+        const cx = (W - (x1 - x0) * sc) / 2, cy = (H - (y1 - y0) * sc) / 2;
+        const P = {};
+        raw.forEach(p => { P[p.id] = { x: cx + (p.x - x0) * sc, y: cy + (p.y - y0) * sc }; });
+        const km = (a, b) => {
+          const R2 = 6371, r = Math.PI / 180;
+          const dLa = (GEO[b].lat - GEO[a].lat) * r, dLo = (GEO[b].lon - GEO[a].lon) * r;
+          const h = Math.sin(dLa / 2) ** 2 + Math.cos(GEO[a].lat * r) * Math.cos(GEO[b].lat * r) * Math.sin(dLo / 2) ** 2;
+          return Math.round(2 * R2 * Math.asin(Math.sqrt(h)));
+        };
+        return {
+          w: W + "px", h: H + "px",
+          hops: HOPS.map((hp, i) => {
+            const A = P[hp.a], B = P[hp.b];
+            const dx = B.x - A.x, dy = B.y - A.y;
+            const len = Math.sqrt(dx * dx + dy * dy);
+            const back = hp.a === "P";
+            return {
+              left: (back ? A.x + 9 : A.x) + "px", top: A.y + "px",
+              width: (len - 9) + "px",
+              rotate: "rotate(" + (Math.atan2(dy, dx) * 180 / Math.PI) + "deg)",
+              style: hp.mode === "Flight" ? "repeating-linear-gradient(90deg," + accent + " 0 5px,transparent 5px 10px)" : accent,
+              opacity: back ? ".34" : ".85",
+              delay: (i * 0.45 + 0.2) + "s",
+              km: km(hp.a, hp.b) + " km",
+              mode: hp.mode, label: hp.label, when: hp.when
+            };
+          }),
+          nodes: ids.map((id, i) => ({
+            id, left: P[id].x + "px", top: P[id].y + "px",
+            name: GEO[id].name, dates: GEO[id].dates, nights: GEO[id].nights,
+            on: id === d.leg,
+            dot: id === d.leg ? accent : "var(--line2)",
+            ring: id === d.leg ? "0 0 0 4px color-mix(in oklab," + accent + " 26%,transparent)" : "none",
+            labelSide: P[id].x > W / 2 ? "right:calc(100% + 12px);text-align:right" : "left:calc(100% + 12px)",
+            delay: (i * 0.12 + 0.1) + "s",
+            go: () => { const t = DAYS.findIndex(dd => dd.leg === id); if (t >= 0) this.setState({ di: t, panel: null, open: -1 }); }
+          }))
+        };
+      })(),
+
+      /* day shape ribbon */
+      ribbon: (() => {
+        const timed = d.stops.map((s2, i) => ({ i, m: mins(s2.t), k: s2.k, n: s2.n, t: s2.t })).filter(x => x.m != null);
+        if (timed.length < 2) return [];
+        const a = timed[0].m, z = timed[timed.length - 1].m + 40;
+        const span = Math.max(z - a, 1);
+        return timed.map((x, j) => {
+          const next = j + 1 < timed.length ? timed[j + 1].m : z;
+          return {
+            flex: "0 0 " + Math.max(((next - x.m) / span) * 100, 1.2) + "%",
+            bg: RIB[x.k] || accent,
+            title: x.t + " · " + x.n,
+            go: () => this.setState({ open: x.i })
+          };
+        });
+      })(),
+      ribbonFrom: (() => { const t = d.stops.map(s2 => mins(s2.t)).filter(x => x != null); return t.length ? hhmm(t[0]) : ""; })(),
+      ribbonTo: (() => { const t = d.stops.map(s2 => mins(s2.t)).filter(x => x != null); return t.length ? hhmm(t[t.length - 1]) : ""; })(),
+      ribbonNow: isToday && first != null && last != null && nowMin > first && nowMin < last + 40
+        ? ((nowMin - first) / Math.max(last + 40 - first, 1)) * 100 + "%" : "-100%",
+
+      /* golden hour — the app keeps the city's own time */
+      ambientLabel: (() => {
+        const tz = d.leg === "T" ? "Asia/Singapore" : "Europe/Rome";
+        let hr;
+        try { hr = +new Intl.DateTimeFormat("en-GB", { timeZone: tz, hour: "2-digit", hour12: false }).format(new Date(st.now)); }
+        catch (e) { hr = new Date(st.now).getHours(); }
+        const set = mins(d.sunset) || 1150;
+        const cityName = CITY[d.leg];
+        if (hr * 60 >= set - 70 && hr * 60 <= set + 30) return "Golden hour in " + cityName;
+        if (hr < 6) return "Small hours in " + cityName;
+        if (hr < 9) return "Morning in " + cityName;
+        if (hr * 60 > set + 30) return "Dark in " + cityName;
+        return cityName + " time · " + String(hr).padStart(2, "0") + ":00";
+      })(),
+
+      /* passport */
+      stamps: DAYS.map((dd, i) => {
+        const n = dd.stops.length;
+        const got = dd.stops.filter((s2, j) => st.done[i + ":" + j]).length;
+        const full = got >= n && n > 0;
+        const lg = LEGS.find(l => l.id === dd.leg) || LEGS[0];
+        return {
+          city: (CITY[dd.leg] || "").toUpperCase(), date: dd.date.slice(8) + "." + dd.date.slice(5, 7),
+          dow: dd.dow, full, part: !full && got > 0,
+          tilt: "rotate(" + (((i * 37) % 13) - 6) + "deg)",
+          color: full ? lg.accent : "var(--faint)",
+          border: full ? "2px solid " + lg.accent : "1px dashed var(--line2)",
+          op: full ? "1" : got > 0 ? ".5" : ".22",
+          count: got + "/" + n,
+          go: () => this.setState({ di: i, panel: null, open: -1 })
+        };
+      }),
+      stampCount: DAYS.filter((dd, i) => dd.stops.length && dd.stops.every((s2, j) => st.done[i + ":" + j])).length + " of " + DAYS.length + " days stamped",
+
+      /* arrival mode */
+      arrival: (() => {
+        const timed = d.stops.map((s2, i) => ({ i, m: mins(s2.t), s: s2 })).filter(x => x.m != null);
+        const cur = timed.filter(x => x.m <= nowMin).pop() || timed[0];
+        const nx = timed.find(x => x.m > nowMin);
+        const gap = nx ? nx.m - nowMin : null;
+        const A = cur ? cur.s : null;
+        return {
+          clock: isToday ? hhmm(nowMin) : "—",
+          nowLabel: isToday ? "Right now" : "First up on this day",
+          name: A ? A.n : "—", time: A ? A.t : "",
+          where: A && A.a ? A.a : "",
+          hasWhere: !!(A && A.a),
+          walk: A && A.a ? "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(A.a) + "&travelmode=walking" : "#",
+          nextLine: nx ? nx.s.t + " · " + nx.s.n : "Nothing after this — the day is yours",
+          gapLine: gap != null ? (gap >= 60 ? Math.floor(gap / 60) + "h " + (gap % 60) + "m" : gap + " min") : "",
+          hasGap: gap != null,
+          done: !!(cur && st.done[this.key(st.di, cur.i)]),
+          doneMark: cur && st.done[this.key(st.di, cur.i)] ? "✓ Done" : "Mark done",
+          mark: () => { if (cur) this.toggleDone(st.di, cur.i); }
+        };
+      })(),
+      briefOpen: st.briefOpen, briefChev: st.briefOpen ? "▴" : "▾",
+      toggleBrief: () => this.setState({ briefOpen: !st.briefOpen }),
+      briefRows: (() => {
+        const b = BRIEF[d.leg + d.date] || {};
+        return BRIEF_ROWS.filter(r => b[r[0]]).map(r => ({ k: r[1], v: b[r[0]] }));
+      })(),
+      doneLabel: doneN + "/" + stopCount, dayBar: Math.round((doneN / Math.max(stopCount, 1)) * 100) + "%",
+      dayComplete: doneN >= stopCount && stopCount > 0,
+      resetDay: () => { const done = Object.assign({}, st.done); d.stops.forEach((s, i) => delete done[this.key(st.di, i)]); this.setState({ done }); this.save({ done }); },
+      nowChip: !!nowChipText, nowChipText,
+      stops: d.stops.map((s, i) => {
+        const k = KIND[s.k] || KIND.sight;
+        const isDone = !!st.done[this.key(st.di, i)];
+        const partOf = t => { const m0 = mins(t); return m0 == null ? "" : m0 < 720 ? "Morning" : m0 < 1020 ? "Afternoon" : "Evening"; };
+        const part = partOf(s.t);
+        const prevPart = i > 0 ? partOf(d.stops[i - 1].t) : "";
+        const badges = [];
+        const bdg = (t, k) => badges.push({ t, bg: BADGE[k].bg, fg: BADGE[k].fg, br: BADGE[k].br });
+        if (s.r && RES[s.r]) bdg(RES[s.r].t, RES[s.r].k);
+        if (s.p) bdg(s.p, "flat");
+        (s.b || []).forEach(b => bdg(b, "flat"));
+        if (s.tr) bdg(TRAILNAME[s.tr], "warn");
+        if (s.rest) bdg("Rest option", "warn");
+        if (s.fl) bdg("Ticket differs", "bad");
+        const rows = [];
+        if (s.h) rows.push({ k: "Hours", v: s.h, c: "var(--body)" });
+        if (s.fl) rows.push({ k: "Flag", v: s.fl, c: "var(--terra)" });
+        if (s.w) rows.push({ k: "Why", v: s.w, c: "var(--body)" });
+        if (s.rest) rows.push({ k: "Rest", v: s.rest, c: "var(--body)" });
+        if (s.a) rows.push({ k: "Where", v: s.a, c: "var(--muted)" });
+        if (s.x) rows.push({ k: "Next", v: s.x, c: "var(--olive)" });
+        // Named places without a stored address still deserve a map link: strip the
+        // meal prefix and search the name in the right city. Vague blocks get nothing.
+        const vague = /undecided|unhurried|buffer|free time|last errand|extra time|drop bags|wander|stroll|browse|walk|depart|return|rest block|packing|optional nightcap/i;
+        const bare = String(s.n)
+          .replace(/^(Coffee|Lunch|Dinner|Breakfast|Aperitivo|Dessert|Bacaro \d+|Gelato)\s*[:—-]\s*/i, "")
+          .replace(/\s+—.*$/, "")
+          .trim();
+        const target = s.a || (!vague.test(s.n) && bare.length > 3 ? bare + ", " + (CITY[d.leg] || "Italy") : "");
+        const dest = target ? encodeURIComponent(target) : "";
+        return {
+          t: s.t, n: s.n, tag: s.occ ? "Occasion" : k.tag, badges, rows,
+          showPart: !!part && part !== prevPart, partLabel: part,
+          hasRows: rows.length > 0,
+          hasShops: !!(s.sh && s.sh.length),
+          shopCount: (s.sh || []).length + (s.sh && s.sh.length === 1 ? " stop" : " stops") + " · pick as you go",
+          shops: (s.sh || []).map((n, j) => ({ n, i: String(j + 1).padStart(2, "0"), map: mapFor(n), go: () => optSheet(n, [n]) })),
+          hasOptions: !!(s.sh && s.sh.length),
+          optionHint: (s.sh && s.sh.length) ? "Tap for detail on each" : "",
+          openOptions: () => { if (s.sh && s.sh.length) optSheet(s.n, s.sh); },
+          partGhost: part === "Morning" ? "01" : part === "Afternoon" ? "02" : "03",
+          gutterW: k.compact ? "62px" : "78px",
+          gutterBg: s.occ ? "rgba(192,138,62,.16)" : k.compact ? "transparent" : "rgba(122,110,96,.06)",
+          timeSerif: k.compact ? "19px" : "25px",
+          panelBg: s.occ ? "rgba(192,138,62,.08)" : "rgba(122,110,96,.06)",
+          edge: s.occ ? "var(--brass)" : tone(k.tone, accent),
+          edgeW: k.compact ? "2px" : "4px",
+          bg: s.occ ? "color-mix(in oklab,var(--brass) 9%,var(--surf))" : k.warm ? "color-mix(in oklab,var(--brass) 5%,var(--surf))" : k.compact ? "transparent" : "var(--surf)",
+          shadow: k.compact || k.dashed ? "none" : "var(--sh)",
+          timeColor: isDone ? "var(--faint)" : curIdx === i ? accent : "var(--ink)",
+          dotBg: isDone ? "var(--olive)" : curIdx === i ? accent : "var(--surf)",
+          dotGlow: curIdx === i ? "0 0 0 4px color-mix(in oklab," + accent + " 16%,transparent)" : "none",
+          border: s.occ ? "1px solid var(--brass)" : k.dashed ? "1px dashed var(--line2)" : k.compact ? "1px solid transparent" : "1px solid var(--line)",
+          topBorder: s.occ ? "3px solid var(--brass)" : k.dashed ? "1px dashed var(--line)" : k.compact ? "1px solid transparent" : "1px solid var(--line)",
+          radius: "var(--r)",
+          pad: k.compact ? "11px 0" : "14px 15px",
+          timeFs: k.compact ? "12px" : "13px",
+          nameFs: k.compact ? "13.5px" : "15px",
+          nameWeight: k.compact ? "400" : "500",
+          opacity: isDone ? "0.5" : curIdx === i ? "1" : isToday && curIdx > i ? "0.62" : "1",
+          strike: isDone ? "line-through" : "none",
+          tick: isDone ? "✓" : curIdx === i ? "◉" : "▾",
+          tickColor: isDone ? "var(--olive)" : curIdx === i ? accent : "var(--faint)",
+          boxColor: isDone ? "var(--olive)" : "var(--line2)", boxBg: isDone ? "var(--olive)" : "transparent",
+          boxMark: isDone ? "✓" : "", markLabel: isDone ? "Done" : "Mark done",
+          open: st.open === i,
+          hasPlace: !!target,
+          mapUrl: "https://www.google.com/maps/search/?api=1&query=" + dest,
+          walkUrl: "https://www.google.com/maps/dir/?api=1&destination=" + dest + "&travelmode=walking",
+          toggle: () => { if (s.sheet) { this.setState({ panel: "sheet", sheet: s.sheet }); return; } this.setState({ open: st.open === i ? -1 : i }); },
+          mark: () => this.toggleDone(st.di, i),
+          ts: e => { this.sx = e.touches && e.touches[0] ? e.touches[0].clientX : 0; },
+          te: e => {
+            const x = e.changedTouches && e.changedTouches[0] ? e.changedTouches[0].clientX : 0;
+            if (x - this.sx > 60) this.toggleDone(st.di, i);
+          }
+        };
+      }),
+      shareToday: () => this.shareDay(),
+      tabBg: {
+        cur: st.panel === "currency" ? "oklch(1 0 0/.07)" : "transparent",
+        today: isToday ? "oklch(1 0 0/.07)" : "transparent",
+        search: st.panel === "search" ? "oklch(1 0 0/.07)" : "transparent",
+        more: st.panel === "more" ? "oklch(1 0 0/.07)" : "transparent"
+      },
+      tabColors: {
+        cur: st.panel === "currency" ? accent : "var(--muted)", today: isToday ? accent : "var(--muted)",
+        search: st.panel === "search" ? accent : "var(--muted)", more: st.panel === "more" ? accent : "var(--muted)"
+      },
+      openCurrency: () => this.setState({ panel: "currency" }),
+      openSearch: () => this.setState({ panel: "search" }),
+      openMore: () => this.setState({ panel: "more" }),
+      goToday: () => { const i = DAYS.findIndex(dd => dd.date === todayISO); this.setState({ di: i >= 0 ? i : 0, open: -1, panel: null, overviewOpen: i < 0 }); },
+      closePanel: () => this.setState({ panel: null, sheet: null }),
+      panelOpen: !!st.panel,
+      panelTitle: st.panel === "currency" ? "Singapore dollars to euros" : st.panel === "search" ? "Search the whole trip" : st.panel === "more" ? "More" : st.panel === "journey" ? "One journey, four cities" : st.panel === "stamps" ? "Passport" : sheet ? sheet.title : "",
+      isJourney: st.panel === "journey", isStamps: st.panel === "stamps",
+      isArrival: st.panel === "arrival",
+      openArrival: () => this.setState({ panel: "arrival" }),
+      isCurrency: st.panel === "currency", isSearch: st.panel === "search",
+      isMore: st.panel === "more", isSheet: st.panel === "sheet" && !!sheet,
+      rateLine: "S$1 = €" + rate.toFixed(3),
+      rateNote: st.rateAt ? "Live rate, cached " + new Date(st.rateAt).toLocaleDateString() : "Offline fallback rate — connect once to refresh",
+      fromLabel: st.dir === "sgd" ? "Singapore dollars" : "Euros",
+      toLabel: st.dir === "sgd" ? "Euros" : "Singapore dollars",
+      amount: st.amount, converted: (st.dir === "sgd" ? "€" : "S$") + conv.toFixed(2),
+      setAmount: e => this.setState({ amount: e.target.value }),
+      swap: () => this.setState({ dir: st.dir === "sgd" ? "eur" : "sgd" }),
+      quickAmounts: (st.dir === "sgd" ? [50, 100, 200, 500] : [10, 20, 50, 100]).map(v => ({
+        label: (st.dir === "sgd" ? "S$" : "€") + v, go: () => this.setState({ amount: v })
+      })),
+      query: st.query, setQuery: e => this.setState({ query: e.target.value }),
+      searchCount: q.length > 1 ? results.length + " matches" : "Try a shop, a dish, or a booking reference",
+      results,
+      moreItems: [
+        { label: "Bookings & numbers", mark: "❑", meta: "Flights, stays, tickets", go: () => this.setState({ panel: "sheet", sheet: "vault" }) },
+        { label: "Trails", mark: "❋", meta: TRAILS.reduce((n, x) => n + x.items.length, 0) + " stops, four cities", go: () => this.setState({ panel: "sheet", sheet: "trails" }) },
+        { label: "Decide before you fly", mark: "!", meta: decideOpen + " open", go: () => this.setState({ panel: "sheet", sheet: "decide" }) },
+        { label: "City notes", mark: "✎", meta: "What moved and why", go: () => this.setState({ panel: "sheet", sheet: "notes" }) },
+        { label: "Packing & baggage", mark: "✓", meta: PACKING.reduce((n, x) => n + x.items.length, 0) + " items", go: () => this.setState({ panel: "sheet", sheet: "packing" }) },
+        { label: "Who carries what", mark: "◔", meta: "Six of us", go: () => this.setState({ panel: "sheet", sheet: "people" }) },
+        { label: "The journey", mark: "◈", meta: journeyKm + " km of Italy", go: () => this.setState({ panel: "journey" }) },
+        { label: "Passport", mark: "◉", meta: tripDone ? "Stamps earned" : "Nothing stamped yet", go: () => this.setState({ panel: "stamps" }) },
+        { label: "Arrival mode", mark: "➔", meta: "One stop, nothing else", go: () => this.setState({ panel: "arrival" }) },
+        { label: "Italian, just enough", mark: "¶", meta: PHRASES.length + " groups, " + PHRASES.reduce((n, x) => n + x.items.length, 0) + " phrases", go: () => this.setState({ panel: "sheet", sheet: "phrases" }) },
+        { label: "Checked against the web", mark: "✽", meta: "11 Aug 2026", go: () => this.setState({ panel: "sheet", sheet: "sources" }) },
+        { label: "Share today to the group chat", mark: "↗", meta: "Times & names", go: () => { this.setState({ panel: null }); this.shareDay(); } },
+        { label: "Navigate to tonight's base", mark: "⌂", meta: leg.name, go: () => { const stay = [].concat(d.stops).reverse().find(s => s.k === "stay" && s.a) || d.stops.find(s => s.a); if (stay) window.open("https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(stay.a) + "&travelmode=walking", "_blank"); } },
+        { label: "Print the master plan", mark: "⎙", meta: DAYS.length + " days", go: () => { this.setState({ panel: null }); setTimeout(() => window.print(), 350); } }
+      ],
+      sheetSections: sheet ? sheet.sections.map(sec => ({
+        title: sec.title,
+        items: sec.items.map((it, i) => {
+          const tk = sheetKey + sec.title + i;
+          const on = !!st.ticks[tk];
+          return {
+            label: it.label, value: it.value,
+            tickable: !!(it.tick || it.trail), strike: on ? "line-through" : "none",
+            boxColor: on ? "var(--olive)" : "var(--faint)", boxBg: on ? "var(--olive)" : "transparent", boxMark: on ? "✓" : "",
+            hasMap: !!it.map, mapUrl: it.map || "",
+            hasFlag: !!it.flag, flag: it.flag || "",
+            flagBg: it.flag === "Overdue" ? BADGE.bad.bg : /^(Verify|Book this)/.test(it.flag) ? BADGE.warn.bg : BADGE.flat.bg,
+            flagFg: it.flag === "Overdue" ? BADGE.bad.fg : /^(Verify|Book this)/.test(it.flag) ? BADGE.warn.fg : BADGE.flat.fg,
+            br: it.flag === "Overdue" ? "var(--terra)" : "var(--line)",
+            go: () => { if (!(it.tick || it.trail)) return; const ticks = Object.assign({}, st.ticks); if (ticks[tk]) delete ticks[tk]; else ticks[tk] = 1; this.setState({ ticks }); this.save({ ticks }); }
+          };
+        })
+      })) : [],
+      canInstall: !!st.installable && !st.installDismissed,
+      install: () => {
+        const p = this._prompt;
+        this.setState({ installable: false });
+        if (p) { p.prompt(); this._prompt = null; }
+        this.flash("Look for Tour d'Italia on your home screen");
+      },
+      dismissInstall: () => this.setState({ installDismissed: true }),
+      toast: !!st.toast, toastText: st.toast
+    };
+  }
+}
+</script>
+</body>
+</html>

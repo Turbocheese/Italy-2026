@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#A8482F"></rect>
+  <g fill="none" stroke="rgba(246,241,231,0.14)" stroke-width="1">
+    <path d="M0 128h512M0 256h512M0 384h512M128 0v512M256 0v512M384 0v512"></path>
+  </g>
+  <text x="256" y="330" text-anchor="middle" font-family="Instrument Serif, Georgia, &#39;Times New Roman&#39;, serif" font-size="248" fill="#F6F1E7">TI</text>
+</svg>
