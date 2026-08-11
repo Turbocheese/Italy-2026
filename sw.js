@@ -2,14 +2,12 @@
    Navigations and app code are network-first so a corrected itinerary always wins;
    the cached copy is the fallback when there's no signal. Only immutable assets
    (icon, fonts) are cache-first. Live data is network-first with a cached fallback. */
-const VERSION = "tour-ditalia-pages-v1";
+const VERSION = "tour-ditalia-v2";
 const SHELL = [
   "./",
-  "./index.html",
+  "./Italy%202026.dc.html",
   "./support.js",
   "./manifest.json",
-  "./decisions.html",
-  "./doc-page.js",
   "./icon.svg"
 ];
 
@@ -42,7 +40,7 @@ const networkFirst = req =>
       }
       return res;
     })
-    .catch(() => caches.match(req).then(hit => hit || caches.match("./index.html")));
+    .catch(() => caches.match(req).then(hit => hit || caches.match("./Italy%202026.dc.html")));
 
 /* cache-first: only for things that never change */
 const cacheFirst = req =>

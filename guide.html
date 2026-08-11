@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics=""><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><link rel="icon" type="image/svg+xml" href="icon.svg"><meta name="theme-color" content="#A8482F"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@300;400;500;600;700&amp;family=Geist+Mono:wght@400;500&amp;display=swap" rel="stylesheet"><style>
+:root{
+  --bg:oklch(0.938 0.016 82);--surf:oklch(0.995 0.004 86);--elev:oklch(0.902 0.018 80);
+  --ink:oklch(0.235 0.018 56);--body:oklch(0.375 0.016 58);--muted:oklch(0.515 0.016 62);--faint:oklch(0.635 0.015 68);
+  --line:oklch(0.862 0.016 78);--line2:oklch(0.790 0.018 76);
+  --terra:oklch(0.50 0.148 38);--brass:oklch(0.60 0.120 76);--olive:oklch(0.48 0.088 128);
+  --hair:linear-gradient(180deg,oklch(1 0 0/.9),oklch(0.24 0.016 58/.05));
+  --inset:inset 0 1px 0 oklch(1 0 0/.85);
+  --sh:0 1px 2px oklch(0.30 0.030 56/.10),0 8px 22px oklch(0.30 0.030 56/.09);
+  --r:10px;--r-lg:16px;--e:cubic-bezier(0.16,1,0.3,1);
+  --grain:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNDAnIGhlaWdodD0nMTQwJz48ZmlsdGVyIGlkPSduJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nLjg1JyBudW1PY3RhdmVzPSczJy8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9JzE0MCcgaGVpZ2h0PScxNDAnIGZpbHRlcj0ndXJsKCNuKScgb3BhY2l0eT0nLjQyJy8+PC9zdmc+");
+}
+body{margin:0;background:var(--bg);-webkit-text-size-adjust:100%}
+*{-webkit-tap-highlight-color:transparent}
+.mono{font-family:'Geist Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.grain::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:var(--grain);background-size:140px;opacity:.16;mix-blend-mode:overlay}
+a{color:var(--terra)}a:hover{color:var(--brass)}
+@keyframes drift{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(0,-14px,0) scale(1.06)}}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important}}
+@media print{body{background:#fff}}
+</style></helmet>
+<template id="__bundler_thumbnail" data-bg-color="#6E2A19">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#6E2A19"></rect>
+    <g stroke="rgba(250,246,238,.16)" stroke-width="2" fill="none"><path d="M0 200h1200M0 400h1200M0 600h1200M300 0v800M600 0v800M900 0v800"></path></g>
+    <text x="600" y="420" text-anchor="middle" font-family="Georgia, serif" font-size="150" fill="#FAF6EE">How it</text>
+    <text x="600" y="560" text-anchor="middle" font-family="Georgia, serif" font-size="150" font-style="italic" fill="rgba(250,246,238,.85)">works</text>
+  </svg>
+</template>
+<div style="position:relative;min-height:100vh;background:linear-gradient(180deg,color-mix(in oklab,var(--terra) 15%,var(--bg)) 0px,color-mix(in oklab,var(--terra) 4%,var(--bg)) 520px,var(--bg) 1100px);font-family:Geist,system-ui,sans-serif;color:var(--ink);overflow-x:hidden">
+  <div style="position:absolute;left:-30%;right:-30%;top:0;height:820px;pointer-events:none;background:radial-gradient(46% 40% at 26% 0%,color-mix(in oklab,var(--terra) 26%,transparent) 0%,transparent 68%),radial-gradient(38% 34% at 88% 12%,color-mix(in oklab,var(--brass) 20%,transparent) 0%,transparent 70%);opacity:.85;animation:drift 15s var(--e) infinite"></div>
+  <div style="position:absolute;inset:0;pointer-events:none;opacity:.05;background:repeating-linear-gradient(0deg,var(--ink) 0 1px,transparent 1px 26px),repeating-linear-gradient(90deg,var(--ink) 0 1px,transparent 1px 26px)"></div>
+
+  <div class="grain" style="position:relative;overflow:hidden;color:#FAF6EE;background:linear-gradient(158deg,#6E2A19 0%,#3A1409 100%);padding:calc(34px + env(safe-area-inset-top,0px)) 22px 34px">
+    <div style="position:absolute;inset:-40% -20% auto -20%;height:150%;pointer-events:none;background:radial-gradient(58% 52% at 24% 2%,rgba(255,255,255,.3) 0%,transparent 60%)"></div>
+    <div style="position:absolute;inset:0;pointer-events:none;opacity:.85;background:repeating-linear-gradient(0deg,rgba(250,246,238,.07) 0 1px,transparent 1px 26px),repeating-linear-gradient(90deg,rgba(250,246,238,.07) 0 1px,transparent 1px 26px)"></div>
+    <div style="position:relative;max-width:720px;margin:0 auto">
+      <div style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px 6px 9px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(250,246,238,.2)">
+        <span style="width:5px;height:5px;border-radius:50%;background:#FAF6EE"></span>
+        <span class="mono" style="font-size:9.5px;color:rgba(250,246,238,.88);white-space:nowrap">A guide for the six of us</span>
+      </div>
+      <h1 style="margin:18px 0 0;font:400 42px/1.02 'Instrument Serif',Georgia,serif;letter-spacing:-.015em">How the itinerary<br><em style="font-style:italic">app works</em></h1>
+      <p style="margin:16px 0 0;font:400 16.5px/1.7 Geist,sans-serif;color:rgba(250,246,238,.94);max-width:30em;text-wrap:pretty">Everything about our trip lives in one app — where we're going, when, what's booked and what still isn't. Nothing you tap can break it. Have a poke around.</p>
+      <div class="mono" style="margin-top:20px;display:flex;flex-wrap:wrap;gap:16px;font-size:10px;color:rgba(250,246,238,.72)">
+        <span>17 SEP – 1 OCT 2026</span><span>VENICE · FLORENCE · ROME · PALERMO</span><span>SIX OF US</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:relative;max-width:720px;margin:0 auto;padding:42px 22px 110px;display:flex;flex-direction:column;gap:52px">
+
+    <section style="position:relative">
+      <span style="position:absolute;right:-4px;top:-38px;font:italic 400 150px/1 'Instrument Serif',Georgia,serif;color:var(--terra);opacity:.07;pointer-events:none;user-select:none">01</span>
+      <div style="position:relative">
+        <div class="mono" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra)">Start here</div>
+        <h2 style="margin:12px 0 0;font:400 29px/1.12 'Instrument Serif',Georgia,serif;letter-spacing:-.01em">Getting it onto your phone</h2>
+        <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;gap:15px;padding:16px 17px;background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 6%,var(--surf)),var(--surf) 60%);border:1px solid color-mix(in oklab,var(--terra) 14%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)">
+            <span class="mono" style="flex:none;font-size:13px;color:var(--terra)">1</span>
+            <div style="font:400 15.5px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">Open the link I sent in the group chat.</div>
+          </div>
+          <div style="display:flex;gap:15px;padding:16px 17px;background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 6%,var(--surf)),var(--surf) 60%);border:1px solid color-mix(in oklab,var(--terra) 14%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)">
+            <span class="mono" style="flex:none;font-size:13px;color:var(--terra)">2</span>
+            <div style="font:400 15.5px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty"><strong style="color:var(--ink);font-weight:600">Add it to your home screen.</strong> On an iPhone, tap the share button — the square with the arrow pointing up — and choose <em>Add to Home Screen</em>. On Android, tap the three dots and choose <em>Install</em>.</div>
+          </div>
+          <div style="display:flex;gap:15px;padding:16px 17px;background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 6%,var(--surf)),var(--surf) 60%);border:1px solid color-mix(in oklab,var(--terra) 14%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)">
+            <span class="mono" style="flex:none;font-size:13px;color:var(--terra)">3</span>
+            <div style="font:400 15.5px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">That's it. It now opens like any other app, and it <strong style="color:var(--ink);font-weight:600">works without internet</strong> — which matters, because roaming is expensive and the Vatican has no signal.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="position:relative">
+      <span style="position:absolute;right:-4px;top:-38px;font:italic 400 150px/1 'Instrument Serif',Georgia,serif;color:var(--terra);opacity:.07;pointer-events:none;user-select:none">02</span>
+      <div style="position:relative">
+        <div class="mono" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra)">The main screen</div>
+        <h2 style="margin:12px 0 0;font:400 29px/1.12 'Instrument Serif',Georgia,serif;letter-spacing:-.01em">One day at a time</h2>
+        <div style="margin-top:22px;display:flex;flex-direction:column;gap:20px">
+          <div style="position:relative;overflow:hidden;padding:17px 18px;background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 5%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--terra) 13%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--terra),transparent)"></span>
+            <div style="font:600 16.5px/1.4 Geist,sans-serif;color:var(--ink)">The row of dates at the top</div>
+            <p style="margin:9px 0 0;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">Tap any date to jump to that day. Slide the row sideways for the rest of the trip. Above it are the four cities — tap <em>Rome</em> and you land on our first day there.</p>
+          </div>
+          <div style="position:relative;overflow:hidden;padding:17px 18px;background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 5%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--terra) 13%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--brass),transparent)"></span>
+            <div style="font:600 16.5px/1.4 Geist,sans-serif;color:var(--ink)">The cards down the page</div>
+            <p style="margin:9px 0 0;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">Each stop shows its time, what it is, and everything we know about it — opening hours, why we put it there, how long the walk to the next one takes. Two buttons on each: <em>Maps</em> to see where it is, <em>Walk route</em> for directions on foot.</p>
+          </div>
+          <div style="position:relative;overflow:hidden;padding:17px 18px;background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 5%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--terra) 13%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--olive),transparent)"></span>
+            <div style="font:600 16.5px/1.4 Geist,sans-serif;color:var(--ink)">Ticking things off</div>
+            <p style="margin:9px 0 0;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty"><strong style="color:var(--ink);font-weight:600">Swipe a card to the right</strong> and it's done — it fades and gets a line through it. Swipe again to undo. There's a <em>Mark done</em> button inside each card if swiping is fiddly.</p>
+          </div>
+        </div>
+        <p style="margin:18px 0 0;padding:17px 18px;background:var(--elev);border:1px solid var(--line);border-radius:var(--r-lg);font:400 14.5px/1.72 Geist,sans-serif;color:var(--muted);text-wrap:pretty">Your ticks stay on your own phone and don't show up on anyone else's. Nobody can mess up your copy, and you can't mess up theirs.</p>
+      </div>
+    </section>
+
+    <section style="position:relative">
+      <span style="position:absolute;right:-4px;top:-38px;font:italic 400 150px/1 'Instrument Serif',Georgia,serif;color:var(--terra);opacity:.07;pointer-events:none;user-select:none">03</span>
+      <div style="position:relative">
+        <div class="mono" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra)">At a glance</div>
+        <h2 style="margin:12px 0 0;font:400 29px/1.12 'Instrument Serif',Georgia,serif;letter-spacing:-.01em">The bits near the top</h2>
+        <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;flex-wrap:wrap;gap:6px 18px;padding:17px 18px;background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 5%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--terra) 13%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="flex:1 1 130px;min-width:130px;margin-bottom:2px;font:600 15px/1.5 Geist,sans-serif;color:var(--brass)">Three tiles</span><span style="flex:4 1 260px;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">The weather, what time the sun sets, and how many hours we're out. If the hours show in red, it's a twelve-hour day — wear the good shoes.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 18px;padding:17px 18px;background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 5%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--terra) 13%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="flex:1 1 130px;min-width:130px;margin-bottom:2px;font:600 15px/1.5 Geist,sans-serif;color:var(--brass)">Day brief</span><span style="flex:4 1 260px;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">Tap it open. What to wear, what's closed that day of the week, what we do if it rains, and a note about stairs and rest stops for Grandma. <strong style="color:var(--ink);font-weight:600">Worth reading at breakfast.</strong></span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 18px;padding:17px 18px;background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 5%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--terra) 13%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="flex:1 1 130px;min-width:130px;margin-bottom:2px;font:600 15px/1.5 Geist,sans-serif;color:var(--brass)">The shape of the day</span><span style="flex:4 1 260px;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">The little striped bar. Each colour is a kind of stop — sights, tables, markets, rest, moving about. One glance tells you whether the day is packed or gentle. Tap a stripe to jump there.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 18px;padding:17px 18px;background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 5%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--terra) 13%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="flex:1 1 130px;min-width:130px;margin-bottom:2px;font:600 15px/1.5 Geist,sans-serif;color:var(--brass)">The quote</span><span style="flex:4 1 260px;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">A fact about where we are, a heads-up about something tricky, or a note for the family. One per day.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section style="position:relative">
+      <span style="position:absolute;right:-4px;top:-38px;font:italic 400 150px/1 'Instrument Serif',Georgia,serif;color:var(--terra);opacity:.07;pointer-events:none;user-select:none">04</span>
+      <div style="position:relative">
+        <div class="mono" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra)">Along the bottom</div>
+        <h2 style="margin:12px 0 0;font:400 29px/1.12 'Instrument Serif',Georgia,serif;letter-spacing:-.01em">The five buttons</h2>
+        <div style="margin-top:20px;display:grid;gap:10px">
+          <div style="display:flex;gap:15px;align-items:flex-start;padding:16px 17px;background:var(--surf);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="flex:none;width:30px;text-align:center;font-size:18px;color:var(--terra)">€</span><div><div style="font:600 15.5px/1.4 Geist,sans-serif;color:var(--ink)">Convert</div><div style="margin-top:6px;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">Singapore dollars to euros and back. Type an amount or tap a quick button. It remembers the last rate, so it works with no signal.</div></div></div>
+          <div style="display: flex; gap: 15px; align-items: flex-start; padding: 16px 17px; background: linear-gradient(150deg, #FFFFFF, oklch(0.995 0.004 86) 62%); border: 1px solid color-mix(in oklab,var(--olive) 20%,var(--line)); border-radius: var(--r-lg); box-shadow: var(--sh),var(--inset)"><span style="flex: none; width: 30px; text-align: center; font-size: 18px; color: #9C1A1A">◱</span><div><div style="font:600 15.5px/1.4 Geist,sans-serif;color:var(--ink)">Spent</div><div style="margin-top:6px;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">A running total of the trip, already counting what's prepaid. Add something with a name, an amount and who it was for — mark it <em>Everyone</em> and it splits six ways by itself. It totals by category, by city and by person, so nobody does sums at an airport.</div></div></div>
+          <div style="display:flex;gap:15px;align-items:flex-start;padding:16px 17px;background:var(--surf);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="flex:none;width:30px;text-align:center;font-size:18px;color:var(--terra)">◉</span><div><div style="font:600 15.5px/1.4 Geist,sans-serif;color:var(--ink)">Today</div><div style="margin-top:6px;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">Lost in the app? This brings you back to today. Once we're in Italy it highlights the stop we're at and says what's next and how long you've got.</div></div></div>
+          <div style="display:flex;gap:15px;align-items:flex-start;padding:16px 17px;background:var(--surf);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="flex:none;width:30px;text-align:center;font-size:18px;color:var(--terra)">⌕</span><div><div style="font:600 15.5px/1.4 Geist,sans-serif;color:var(--ink)">Search</div><div style="margin-top:6px;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">Type anything — a restaurant, a shop, "gelato", "leather", a booking reference. It searches all sixteen days, including the sixty-odd shops tucked inside the browsing stops.</div></div></div>
+          <div style="display:flex;gap:15px;align-items:flex-start;padding:16px 17px;background:var(--surf);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="flex:none;width:30px;text-align:center;font-size:18px;color:var(--terra)">···</span><div><div style="font:600 15.5px/1.4 Geist,sans-serif;color:var(--ink)">More</div><div style="margin-top:6px;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">Everything else lives here — the next section.</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section style="position:relative">
+      <span style="position:absolute;right:-4px;top:-38px;font:italic 400 150px/1 'Instrument Serif',Georgia,serif;color:var(--terra);opacity:.07;pointer-events:none;user-select:none">05</span>
+      <div style="position:relative">
+        <div class="mono" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra)">Behind More</div>
+        <h2 style="margin:12px 0 0;font:400 29px/1.12 'Instrument Serif',Georgia,serif;letter-spacing:-.01em">The useful drawers</h2>
+        <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;flex-wrap:wrap;gap:6px 18px;padding:17px 18px;background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 5%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--terra) 13%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="flex:1 1 130px;min-width:130px;margin-bottom:2px;font:600 15px/1.5 Geist,sans-serif;color:var(--ink)">Bookings &amp; numbers</span><span style="flex:4 1 260px;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">Every flight, train, seat number, booking reference and apartment address, plus emergency numbers. <strong style="color:var(--ink);font-weight:600">If you only learn one screen, learn this one.</strong></span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 18px;padding:17px 18px;background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 5%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--terra) 13%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="flex:1 1 130px;min-width:130px;margin-bottom:2px;font:600 15px/1.5 Geist,sans-serif;color:var(--ink)">Who carries what</span><span style="flex:4 1 260px;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">Each of us, our references and our baggage. Important: flying back from Palermo, only Sarah has a suitcase — everyone else is hand luggage. Buy things in Rome, not Sicily.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 18px;padding:17px 18px;background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 5%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--terra) 13%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="flex:1 1 130px;min-width:130px;margin-bottom:2px;font:600 15px/1.5 Geist,sans-serif;color:var(--ink)">If you're running early</span><span style="flex:4 1 260px;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">Sixteen good things we cut to make the plan fit, kept per city with hours and map links. For when a day finishes ahead of itself.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 18px;padding:17px 18px;background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 5%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--terra) 13%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="flex:1 1 130px;min-width:130px;margin-bottom:2px;font:600 15px/1.5 Geist,sans-serif;color:var(--ink)">Decide before you fly</span><span style="flex:4 1 260px;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">The handful of things still unbooked, sorted by when they're needed. Tick them as they're sorted.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 18px;padding:17px 18px;background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 5%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--terra) 13%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="flex:1 1 130px;min-width:130px;margin-bottom:2px;font:600 15px/1.5 Geist,sans-serif;color:var(--ink)">Italian, just enough</span><span style="flex:4 1 260px;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">The phrases we'll actually use, spelled out so you can say them. A table for six, asking for the bill, telling a waiter Ceci can't eat squid, finding a pharmacy.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 18px;padding:17px 18px;background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 5%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--terra) 13%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="flex:1 1 130px;min-width:130px;margin-bottom:2px;font:600 15px/1.5 Geist,sans-serif;color:var(--ink)">Packing &amp; baggage</span><span style="flex:4 1 260px;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">A tickable list. Do this before you fly, not the night before.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 18px;padding:17px 18px;background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 5%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--terra) 13%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="flex:1 1 130px;min-width:130px;margin-bottom:2px;font:600 15px/1.5 Geist,sans-serif;color:var(--ink)">Trails</span><span style="flex:4 1 260px;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">The running themes — every gelato and tiramisu stop, the photo booths, the churches, the wine windows. Tick them off like a collection.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 18px;padding:17px 18px;background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 5%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--terra) 13%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="flex:1 1 130px;min-width:130px;margin-bottom:2px;font:600 15px/1.5 Geist,sans-serif;color:var(--ink)">The journey</span><span style="flex:4 1 260px;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">A map of the four cities drawn to real distances. It's how you explain to people how far Palermo actually is.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 18px;padding:17px 18px;background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 5%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--terra) 13%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="flex:1 1 130px;min-width:130px;margin-bottom:2px;font:600 15px/1.5 Geist,sans-serif;color:var(--ink)">Passport</span><span style="flex:4 1 260px;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">A stamp for each day, which inks itself once you've ticked everything on that day. Purely for fun.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 18px;padding:17px 18px;background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 5%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--terra) 13%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="flex:1 1 130px;min-width:130px;margin-bottom:2px;font:600 15px/1.5 Geist,sans-serif;color:var(--ink)">Looking back</span><span style="flex:4 1 260px;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">The trip in numbers — stops done, kilometres covered, tables sat at, gelato count. It fills in as we go.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 18px;padding:17px 18px;background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 5%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--terra) 13%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="flex:1 1 130px;min-width:130px;margin-bottom:2px;font:600 15px/1.5 Geist,sans-serif;color:var(--ink)">Arrival mode</span><span style="flex:4 1 260px;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">A big, simple screen with just where we are and where we're going next. Use it while walking.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 18px;padding:17px 18px;background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 5%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--terra) 13%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="flex:1 1 130px;min-width:130px;margin-bottom:2px;font:600 15px/1.5 Geist,sans-serif;color:var(--ink)">Share today</span><span style="flex:4 1 260px;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">Copies the day's plan as plain text, ready to paste into the family chat.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section style="position:relative">
+      <span style="position:absolute;right:-4px;top:-38px;font:italic 400 150px/1 'Instrument Serif',Georgia,serif;color:var(--brass);opacity:.08;pointer-events:none;user-select:none">06</span>
+      <div style="position:relative">
+        <div class="mono" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass)">Tips</div>
+        <h2 style="margin:12px 0 0;font:400 29px/1.12 'Instrument Serif',Georgia,serif;letter-spacing:-.01em">Small things worth knowing</h2>
+        <div style="margin-top:20px;display:grid;gap:10px">
+          <div style="padding:16px 17px;background:linear-gradient(150deg,color-mix(in oklab,var(--brass) 8%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--brass) 18%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset);font:400 15px/1.75 Geist,sans-serif;color:var(--body);text-wrap:pretty"><strong style="color:var(--ink);font-weight:600">Read tomorrow's day brief tonight.</strong> It tells you what to wear and what's shut — exactly the argument nobody wants at 7am.</div>
+          <div style="padding:16px 17px;background:linear-gradient(150deg,color-mix(in oklab,var(--brass) 8%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--brass) 18%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset);font:400 15px/1.75 Geist,sans-serif;color:var(--body);text-wrap:pretty"><strong style="color:var(--ink);font-weight:600">Orange writing means pay attention.</strong> It marks anything unbooked, anything closing soon, and anywhere our plan and the actual ticket disagree.</div>
+          <div style="padding:16px 17px;background:linear-gradient(150deg,color-mix(in oklab,var(--brass) 8%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--brass) 18%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset);font:400 15px/1.75 Geist,sans-serif;color:var(--body);text-wrap:pretty"><strong style="color:var(--ink);font-weight:600">The circle at the top right changes the brightness.</strong> Tap between dark, light and automatic. Dark is easier at dinner; light is easier in the sun.</div>
+          <div style="padding:16px 17px;background:linear-gradient(150deg,color-mix(in oklab,var(--brass) 8%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--brass) 18%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset);font:400 15px/1.75 Geist,sans-serif;color:var(--body);text-wrap:pretty"><strong style="color:var(--ink);font-weight:600">The card at the top opens up.</strong> Tap the countdown for the whole trip on one screen — all four cities, every fixed time we can't move, and a tappable line for each day.</div>
+          <div style="padding:16px 17px;background:linear-gradient(150deg,color-mix(in oklab,var(--brass) 8%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--brass) 18%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset);font:400 15px/1.75 Geist,sans-serif;color:var(--body);text-wrap:pretty"><strong style="color:var(--ink);font-weight:600">Reset the day if you tick things by mistake.</strong> A small <em>Reset</em> button sits next to the progress bar. It only clears that one day.</div>
+          <div style="padding:16px 17px;background:linear-gradient(150deg,color-mix(in oklab,var(--brass) 8%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--brass) 18%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset);font:400 15px/1.75 Geist,sans-serif;color:var(--body);text-wrap:pretty"><strong style="color:var(--ink);font-weight:600">Times are the tickets, not our wishes.</strong> Where the plan said one thing and the ticket said another, the app shows the ticket and explains the difference on the card.</div>
+        </div>
+      </div>
+    </section>
+
+    <section style="position:relative">
+      <span style="position:absolute;right:-4px;top:-38px;font:italic 400 150px/1 'Instrument Serif',Georgia,serif;color:var(--terra);opacity:.07;pointer-events:none;user-select:none">07</span>
+      <div style="position:relative">
+        <div class="mono" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra)">If it looks wrong</div>
+        <h2 style="margin:12px 0 0;font:400 29px/1.12 'Instrument Serif',Georgia,serif;letter-spacing:-.01em">Don't worry about it</h2>
+        <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;flex-wrap:wrap;gap:6px 18px;padding:17px 18px;background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 5%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--terra) 13%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="flex:1 1 150px;min-width:150px;margin-bottom:2px;font:600 15px/1.5 Geist,sans-serif;color:var(--muted)">Weather says "avg"</span><span style="flex:4 1 260px;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">The real forecast only exists about two weeks ahead. Until then it shows the usual September temperatures.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 18px;padding:17px 18px;background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 5%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--terra) 13%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="flex:1 1 150px;min-width:150px;margin-bottom:2px;font:600 15px/1.5 Geist,sans-serif;color:var(--muted)">A stop has no Maps button</span><span style="flex:4 1 260px;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">On purpose. Things like "clear immigration" or "walk back" aren't places, so there's nothing to point at.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 18px;padding:17px 18px;background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 5%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--terra) 13%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="flex:1 1 150px;min-width:150px;margin-bottom:2px;font:600 15px/1.5 Geist,sans-serif;color:var(--muted)">Something says "my suggestion"</span><span style="flex:4 1 260px;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">It's an idea, not a booking. Mostly in Palermo, where we deliberately left the evening loose.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 18px;padding:17px 18px;background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 5%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,var(--terra) 13%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset)"><span style="flex:1 1 150px;min-width:150px;margin-bottom:2px;font:600 15px/1.5 Geist,sans-serif;color:var(--muted)">You tapped something odd</span><span style="flex:4 1 260px;font:400 15px/1.72 Geist,sans-serif;color:var(--body);text-wrap:pretty">Close the panel with the ✕, or close and reopen the app. Nothing you do can lose the plan.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="grain" style="position:relative;overflow:hidden;padding:26px 24px;border-radius:var(--r-lg);background:linear-gradient(158deg,#6E2A19 0%,#3A1409 100%);color:#FAF6EE">
+      <div style="position:absolute;inset:-40% -20% auto -20%;height:150%;pointer-events:none;background:radial-gradient(58% 52% at 24% 2%,rgba(255,255,255,.24) 0%,transparent 60%)"></div>
+      <div style="position:relative">
+        <div style="font:italic 400 26px/1.2 'Instrument Serif',Georgia,serif">One last thing</div>
+        <p style="margin:12px 0 0;font:400 16px/1.75 Geist,sans-serif;color:rgba(250,246,238,.94);max-width:32em;text-wrap:pretty">The plan is a suggestion, not a rulebook. If everyone's tired at four in the afternoon, drop a stop and sit in a piazza instead — every day has something in it that can go without hurting the rest. The app will still be there tomorrow.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+</body>
+</html>
