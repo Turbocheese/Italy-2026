@@ -87,7 +87,10 @@ a{color:var(--terra)}a:hover{color:var(--brass)}
         </div>
         <div class="mono" style="margin-top:9px;display:flex;align-items:center;gap:7px;font-size:10px;color:var(--faint)"><span style="width:4px;height:4px;border-radius:50%;background:var(--faint)"></span>{{ ambientLabel }}</div>
       </div>
-      <div onClick="{{ cycleTheme }}" class="press" style="flex:none;display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:999px;border:1px solid var(--line2);background:oklch(1 0 0/.04);color:var(--muted);font-size:14px;cursor:pointer">{{ themeMark }}</div>
+      <div style="flex:none;display:flex;gap:7px">
+        <div onClick="{{ openSos }}" class="press" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:999px;border:1px solid rgba(250,246,238,.32);background:rgba(250,246,238,.08);color:#FAF6EE;cursor:pointer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:17px;height:17px"><path d="M12 3 4 6.5v5c0 4.6 3.2 8.4 8 9.5 4.8-1.1 8-4.9 8-9.5v-5z"/><path d="M12 9v4M12 16.2v.1"/></svg></div>
+        <div onClick="{{ cycleTheme }}" class="press" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:999px;border:1px solid var(--line2);background:oklch(1 0 0/.04);color:var(--muted);font-size:14px;cursor:pointer">{{ themeMark }}</div>
+      </div>
     </div>
 
     <div onClick="{{ toggleOverview }}" class="edge press" style="position:relative;margin:18px 0 0;padding:15px 16px;border-radius:var(--r-lg);background-image:linear-gradient(var(--surf),var(--surf)),var(--hair);box-shadow:var(--sh),var(--inset);cursor:pointer">
@@ -189,9 +192,19 @@ a{color:var(--terra)}a:hover{color:var(--brass)}
 
     <div class="edge" style="display:grid;grid-template-columns:repeat(3,1fr);border-radius:var(--r-lg);overflow:hidden;background-image:linear-gradient(color-mix(in oklab,{{ accent }} 5%,var(--surf)),var(--surf)),var(--hair);box-shadow:var(--sh),var(--inset)">
       <div style="padding:14px 12px 14px 15px"><div class="mono" style="font-size:9.5px;color:var(--faint)">{{ wxLabel }}</div><div class="mono" style="margin-top:7px;font-size:15px;font-weight:500;color:var(--ink)">{{ wxValue }}</div></div>
-      <div style="padding:14px 12px;border-left:1px solid var(--line)"><div class="mono" style="font-size:9.5px;color:var(--faint)">Sunset</div><div class="mono" style="margin-top:7px;font-size:15px;font-weight:500;color:var(--ink)">{{ day.sunset }}</div></div>
-      <div style="padding:14px 12px;border-left:1px solid var(--line)"><div class="mono" style="font-size:9.5px;color:var(--faint)">{{ paceLabel }}</div><div class="mono" style="margin-top:7px;font-size:15px;font-weight:500;color:{{ paceColor }}">{{ pace }}</div></div>
+      <div style="padding:14px 12px;border-left:1px solid var(--line)"><div class="mono" style="font-size:9.5px;color:var(--faint)">Rain</div><div class="mono" style="margin-top:7px;font-size:15px;font-weight:500;color:{{ rainColor }}">{{ rainValue }}</div></div>
+      <div style="padding:14px 12px;border-left:1px solid var(--line)"><div class="mono" style="font-size:9.5px;color:var(--faint)">Humidity</div><div class="mono" style="margin-top:7px;font-size:15px;font-weight:500;color:{{ humColor }}">{{ humValue }}</div></div>
+      <div style="padding:14px 12px 14px 15px;border-top:1px solid var(--line)"><div class="mono" style="font-size:9.5px;color:var(--faint)">Sunset</div><div class="mono" style="margin-top:7px;font-size:15px;font-weight:500;color:var(--ink)">{{ day.sunset }}</div></div>
+      <div style="padding:14px 12px;border-top:1px solid var(--line);border-left:1px solid var(--line)"><div class="mono" style="font-size:9.5px;color:var(--faint)">{{ paceLabel }}</div><div class="mono" style="margin-top:7px;font-size:15px;font-weight:500;color:{{ paceColor }}">{{ pace }}</div></div>
+      <div style="padding:14px 12px;border-top:1px solid var(--line);border-left:1px solid var(--line)"><div class="mono" style="font-size:9.5px;color:var(--faint)">Stops</div><div class="mono" style="margin-top:7px;font-size:15px;font-weight:500;color:var(--ink)">{{ doneLabel }}</div></div>
     </div>
+
+    <sc-if value="{{ wetPlan }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:15px 16px;border-radius:var(--r-lg);background:linear-gradient(150deg,color-mix(in oklab,var(--terra) 12%,var(--surf)),var(--surf) 64%);border:1px solid color-mix(in oklab,var(--terra) 28%,var(--line));box-shadow:var(--sh),var(--inset)">
+        <div class="mono" style="font-size:10px;letter-spacing:.06em;color:var(--terra)">{{ wetPlanHead }}</div>
+        <div style="margin-top:9px;font:400 14px/1.6 Geist,sans-serif;color:var(--body);text-wrap:pretty">{{ wetPlanText }}</div>
+      </div>
+    </sc-if>
 
     <div onClick="{{ toggleBrief }}" class="press" style="padding:14px 15px;background:linear-gradient(150deg,color-mix(in oklab,{{ accent }} 6%,var(--surf)),var(--surf) 60%);border:1px solid color-mix(in oklab,{{ accent }} 14%,var(--line));border-radius:var(--r-lg);box-shadow:var(--sh),var(--inset);cursor:pointer">
       <div style="display:flex;align-items:center;gap:10px">
@@ -217,6 +230,44 @@ a{color:var(--terra)}a:hover{color:var(--brass)}
       <div class="mono" style="font-size:10px;color:{{ insightColor }}">{{ insightKind }}</div>
       <div style="margin-top:9px;font:italic 400 16px/1.5 'Instrument Serif',Georgia,serif;color:var(--ink);text-wrap:pretty;max-width:32em">{{ day.insight }}</div>
     </div>
+
+    <sc-if value="{{ tonight }}" hint-placeholder-val="{{ false }}">
+      <div class="grain" style="position:relative;overflow:hidden;padding:18px;border-radius:var(--r-lg);background:{{ band }};color:#FAF6EE;box-shadow:var(--sh-lift)">
+        <div style="position:absolute;inset:-40% -20% auto -20%;height:150%;pointer-events:none;background:radial-gradient(58% 52% at 24% 2%,rgba(255,255,255,.24) 0%,transparent 60%)"></div>
+        <div style="position:relative">
+          <div class="mono" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.78">{{ tonight.kicker }}</div>
+          <div style="margin-top:11px;font:400 22px/1.2 'Instrument Serif',Georgia,serif;text-wrap:pretty">{{ tonight.title }}</div>
+          <sc-if value="{{ tonight.hasNext }}" hint-placeholder-val="{{ true }}">
+            <div class="mono" style="margin-top:9px;display:flex;flex-wrap:wrap;gap:14px;font-size:10.5px;opacity:.85"><span>{{ tonight.when }}</span><span>{{ tonight.wake }}</span></div>
+          </sc-if>
+          <div style="margin-top:15px;display:flex;flex-direction:column;gap:10px">
+            <sc-for list="{{ tonight.lines }}" as="tl" hint-placeholder-count="3">
+              <div style="display:flex;flex-wrap:wrap;gap:4px 12px;padding-top:10px;border-top:1px solid rgba(250,246,238,.2)">
+                <span class="mono" style="flex:none;width:54px;font-size:9.5px;letter-spacing:.06em;opacity:.7">{{ tl.k }}</span>
+                <span style="flex:1 1 200px;min-width:0;font:400 12.5px/1.6 Geist,sans-serif;opacity:.94;text-wrap:pretty">{{ tl.v }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <sc-if value="{{ tonight.hasNext }}" hint-placeholder-val="{{ true }}">
+            <div onClick="{{ tonight.go }}" class="press" style="margin-top:16px;display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:var(--r);background:#FAF6EE;color:{{ accent }};font:600 12px/1 Geist,sans-serif;cursor:pointer">{{ tonight.goLabel }}</div>
+          </sc-if>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ dayProgress }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:15px 16px;border-radius:var(--r-lg);background:var(--surf);border:1px solid var(--line);box-shadow:var(--sh),var(--inset)">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px">
+          <span style="font:600 13px/1.3 Geist,sans-serif;color:{{ dayProgress.color }}">{{ dayProgress.state }}</span>
+          <span class="mono" style="font-size:11px;color:var(--faint)">{{ dayProgress.detail }}</span>
+        </div>
+        <div style="position:relative;margin-top:12px;height:3px;border-radius:2px;background:var(--elev)">
+          <span style="position:absolute;left:0;top:0;bottom:0;border-radius:2px;background:{{ dayProgress.color }};width:{{ dayProgress.pct }}"></span>
+          <span style="position:absolute;top:-4px;width:11px;height:11px;margin-left:-5px;border-radius:50%;background:{{ dayProgress.color }};border:2px solid var(--surf);box-shadow:0 0 0 3px color-mix(in oklab,{{ accent }} 18%,transparent);left:{{ dayProgress.pct }}"></span>
+        </div>
+        <div class="mono" style="margin-top:10px;font-size:10px;color:var(--muted)">The day is at {{ dayProgress.clock }}</div>
+      </div>
+    </sc-if>
 
     <div>
       <div class="mono" style="display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:10px;color:var(--faint)">
@@ -269,24 +320,45 @@ a{color:var(--terra)}a:hover{color:var(--brass)}
     <sc-for list="{{ stops }}" as="s" hint-placeholder-count="8">
       <div style="display:flex;flex-direction:column;gap:12px">
         <sc-if value="{{ s.showPart }}" hint-placeholder-val="{{ false }}">
-          <div style="display:flex;align-items:center;gap:12px;margin:26px 0 2px">
+          <div style="position:sticky;top:69px;z-index:15;display:flex;align-items:center;gap:11px;margin:26px -16px 2px;padding:9px 16px;background:color-mix(in oklab,var(--bg) 88%,transparent);backdrop-filter:blur(14px) saturate(1.3)">
             <span class="mono" style="flex:none;font-size:10.5px;color:{{ accent }}">{{ s.partGhost }}</span>
-            <span style="flex:none;font:italic 400 23px/1 'Instrument Serif',Georgia,serif;color:var(--ink);letter-spacing:-.01em">{{ s.partLabel }}</span>
+            <span style="flex:none;font:italic 400 22px/1 'Instrument Serif',Georgia,serif;color:var(--ink);letter-spacing:-.01em">{{ s.partLabel }}</span>
             <span style="flex:1;height:1px;background:linear-gradient(90deg,color-mix(in oklab,{{ accent }} 55%,transparent),transparent)"></span>
+            <span class="mono" style="flex:none;font-size:9.5px;color:var(--faint)">{{ s.partCount }}</span>
           </div>
         </sc-if>
+        <sc-if value="{{ s.isConnector }}" hint-placeholder-val="{{ false }}">
+          <div onClick="{{ s.mark }}" style="display:flex;align-items:center;gap:12px;padding:2px 0;cursor:pointer;opacity:{{ s.opacity }}">
+            <span class="mono" style="flex:none;width:52px;text-align:right;font-size:11px;color:{{ s.timeColor }}">{{ s.t }}</span>
+            <span style="flex:none;width:9px;display:flex;justify-content:center"><span style="width:5px;height:5px;border-radius:50%;background:var(--line2)"></span></span>
+            <span style="flex:1;min-width:0;display:flex;align-items:center;gap:9px;padding:9px 0;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:13px;height:13px;color:var(--faint)"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <span style="flex:1;min-width:0;font:400 12.5px/1.4 Geist,sans-serif;color:var(--muted);text-decoration:{{ s.strike }};text-wrap:pretty">{{ s.n }}</span>
+              <span class="mono" style="flex:none;font-size:10px;color:var(--faint);white-space:nowrap">{{ s.connMeta }}</span>
+            </span>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ s.isCard }}" hint-placeholder-val="{{ true }}">
         <div style="display:flex;gap:12px;opacity:{{ s.opacity }}">
           <div style="flex:none;width:52px;display:flex;flex-direction:column;align-items:flex-end;padding-top:14px">
             <span class="mono" style="font-size:12.5px;font-weight:500;color:{{ s.timeColor }}">{{ s.t }}</span>
             <span class="mono" style="margin-top:5px;font-size:9px;color:var(--faint);text-align:right;line-height:1.3">{{ s.tag }}</span>
+            <span class="mono" style="margin-top:4px;font-size:9px;font-weight:500;color:{{ s.countdownColor }};text-align:right;line-height:1.3">{{ s.countdown }}</span>
           </div>
           <div style="flex:none;width:9px;display:flex;flex-direction:column;align-items:center;padding-top:17px">
             <span style="flex:none;width:7px;height:7px;border-radius:50%;background:{{ s.dotBg }};border:1.5px solid {{ s.edge }};box-shadow:{{ s.dotGlow }}"></span>
             <span style="flex:1;width:1px;margin-top:5px;background:linear-gradient(180deg,color-mix(in oklab,{{ accent }} 40%,var(--line)),var(--line))"></span>
           </div>
           <div onTouchStart="{{ s.ts }}" onTouchEnd="{{ s.te }}" class="press" style="flex:1;min-width:0;background:{{ s.bg }};border:{{ s.border }};border-radius:{{ s.radius }};box-shadow:{{ s.shadow }};padding:{{ s.pad }};display:flex;flex-direction:column;gap:10px;animation:{{ s.anim }};animation-delay:{{ s.animDelay }}">
+            <sc-if value="{{ s.isAnchor }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:2px">
+                <span style="flex:none;width:14px;height:1.5px;background:{{ accent }}"></span>
+                <span class="mono" style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:{{ accent }}">{{ s.anchorLabel }}</span>
+              </div>
+            </sc-if>
             <div style="display:flex;align-items:flex-start;gap:10px">
-              <span onClick="{{ s.openOptions }}" style="flex:1;min-width:0;font:{{ s.nameWeight }} 15.5px/1.35 Geist,sans-serif;color:var(--ink);text-decoration:{{ s.strike }};text-wrap:pretty;cursor:pointer">{{ s.n }}<sc-if value="{{ s.hasOptions }}" hint-placeholder-val="{{ false }}"><span class="mono" style="margin-left:8px;font-size:10px;color:{{ accent }};white-space:nowrap">{{ s.optionHint }}</span></sc-if></span>
+              <span onClick="{{ s.openOptions }}" style="flex:1;min-width:0;font:{{ s.nameWeight }} {{ s.nameFs }}/1.3 {{ s.nameFam }};letter-spacing:{{ s.nameTrack }};color:var(--ink);text-decoration:{{ s.strike }};text-wrap:pretty;cursor:pointer">{{ s.n }}<sc-if value="{{ s.hasOptions }}" hint-placeholder-val="{{ false }}"><span class="mono" style="margin-left:8px;font-size:10px;color:{{ accent }};white-space:nowrap">{{ s.optionHint }}</span></sc-if></span>
               <span onClick="{{ s.mark }}" style="flex:none;width:26px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:var(--r-sm);border:1px solid {{ s.boxColor }};background:{{ s.boxBg }};font-size:12px;color:var(--surf);cursor:pointer;transition:background .18s var(--e)">{{ s.boxMark }}</span>
             </div>
             <div style="display:flex;flex-wrap:wrap;gap:5px">
@@ -328,6 +400,7 @@ a{color:var(--terra)}a:hover{color:var(--brass)}
             </div>
           </div>
         </div>
+        </sc-if>
       </div>
     </sc-for>
 
@@ -442,6 +515,78 @@ a{color:var(--terra)}a:hover{color:var(--brass)}
               </sc-for>
             </div>
             <div style="font:400 12px/1.55 Geist,sans-serif;color:var(--muted);text-wrap:pretty">A day inks itself once every stop on it is ticked off.</div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isSos }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <a href="tel:112" style="display:block;text-decoration:none;padding:20px;border-radius:var(--r-lg);background:var(--terra);color:#FAF6EE;box-shadow:var(--sh-lift)">
+              <div class="mono" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.85">Emergency, anywhere in Europe</div>
+              <div class="mono" style="margin-top:10px;font-size:40px;font-weight:500;letter-spacing:-.02em">112</div>
+              <div style="margin-top:8px;font:400 12.5px/1.55 Geist,sans-serif;opacity:.92">Police, ambulance and fire, answered in English. Tap to call.</div>
+            </a>
+
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:9px">
+              <a href="{{ sosPharmacy }}" target="_blank" rel="noopener" class="press" style="display:flex;flex-direction:column;justify-content:center;gap:6px;min-height:74px;padding:14px;border-radius:var(--r-lg);background:var(--surf);border:1px solid var(--line);box-shadow:var(--sh),var(--inset);text-decoration:none">
+                <span class="mono" style="font-size:9.5px;color:var(--faint)">Nearest</span>
+                <span style="font:500 13.5px/1.3 Geist,sans-serif;color:var(--ink)">Pharmacy</span>
+              </a>
+              <a href="{{ sosHospital }}" target="_blank" rel="noopener" class="press" style="display:flex;flex-direction:column;justify-content:center;gap:6px;min-height:74px;padding:14px;border-radius:var(--r-lg);background:var(--surf);border:1px solid var(--line);box-shadow:var(--sh),var(--inset);text-decoration:none">
+                <span class="mono" style="font-size:9.5px;color:var(--faint)">Nearest</span>
+                <span style="font:500 13.5px/1.3 Geist,sans-serif;color:var(--ink)">A&amp;E</span>
+              </a>
+            </div>
+
+            <sc-if value="{{ sosBase.has }}" hint-placeholder-val="{{ true }}">
+              <a href="{{ sosBase.map }}" target="_blank" rel="noopener" class="press" style="display:block;text-decoration:none;padding:16px 17px;border-radius:var(--r-lg);background:linear-gradient(150deg,color-mix(in oklab,{{ accent }} 9%,var(--surf)),var(--surf) 62%);border:1px solid color-mix(in oklab,{{ accent }} 20%,var(--line));box-shadow:var(--sh),var(--inset)">
+                <div class="mono" style="font-size:9.5px;letter-spacing:.06em;color:{{ accent }}">Walk me back to tonight's base</div>
+                <div style="margin-top:8px;font:400 14px/1.5 Geist,sans-serif;color:var(--ink);text-wrap:pretty">{{ sosBase.addr }}</div>
+              </a>
+            </sc-if>
+
+            <div>
+              <div class="mono" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)">Singapore, around the clock</div>
+              <div style="margin-top:11px;display:flex;flex-direction:column;gap:8px">
+                <a href="tel:+6563798800" class="press" style="display:flex;align-items:center;gap:13px;padding:15px 16px;border-radius:var(--r-lg);background:var(--surf);border:1px solid var(--line);box-shadow:var(--sh),var(--inset);text-decoration:none">
+                  <div style="flex:1;min-width:0">
+                    <div class="mono" style="font-size:15px;font-weight:500;color:var(--ink)">+65 6379 8800</div>
+                    <div style="margin-top:5px;font:400 11.5px/1.5 Geist,sans-serif;color:var(--muted);text-wrap:pretty">MFA Duty Office — lost passports, arrests, hospital. Staffed 24 hours.</div>
+                  </div>
+                  <span style="flex:none;font-size:14px;color:{{ accent }}">↗</span>
+                </a>
+                <a href="tel:+6563798855" class="press" style="display:flex;align-items:center;gap:13px;padding:15px 16px;border-radius:var(--r-lg);background:var(--surf);border:1px solid var(--line);box-shadow:var(--sh),var(--inset);text-decoration:none">
+                  <div style="flex:1;min-width:0">
+                    <div class="mono" style="font-size:15px;font-weight:500;color:var(--ink)">+65 6379 8855</div>
+                    <div style="margin-top:5px;font:400 11.5px/1.5 Geist,sans-serif;color:var(--muted)">The same office, second line.</div>
+                  </div>
+                  <span style="flex:none;font-size:14px;color:{{ accent }}">↗</span>
+                </a>
+              </div>
+              <div style="margin-top:10px;font:400 11.5px/1.55 Geist,sans-serif;color:var(--faint);text-wrap:pretty">There is no Singapore embassy in Rome — only an Honorary Consulate-General, whose address the directories disagree on. Check rome.mfa.gov.sg. The duty office above is the line that always answers.</div>
+            </div>
+
+            <div>
+              <div class="mono" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)">Say it in Italian</div>
+              <div style="margin-top:11px;display:flex;flex-direction:column;gap:9px">
+                <div style="padding:14px 15px;border-radius:var(--r-lg);background:var(--elev);border:1px solid var(--line)">
+                  <div style="font:500 14.5px/1.4 Geist,sans-serif;color:var(--ink)">Serve un medico</div>
+                  <div class="mono" style="margin-top:6px;font-size:10.5px;color:var(--muted)">SER-veh oon MEH-dee-ko · We need a doctor</div>
+                </div>
+                <div style="padding:14px 15px;border-radius:var(--r-lg);background:var(--elev);border:1px solid var(--line)">
+                  <div style="font:500 14.5px/1.4 Geist,sans-serif;color:var(--ink)">Dov'è la farmacia più vicina?</div>
+                  <div class="mono" style="margin-top:6px;font-size:10.5px;color:var(--muted)">do-VEH la far-ma-CHEE-a pyoo vee-CHEE-na · Where is the nearest pharmacy?</div>
+                </div>
+                <div style="padding:14px 15px;border-radius:var(--r-lg);background:var(--elev);border:1px solid var(--line)">
+                  <div style="font:500 14.5px/1.4 Geist,sans-serif;color:var(--ink)">Lei non può mangiare calamari</div>
+                  <div class="mono" style="margin-top:6px;font-size:10.5px;color:var(--muted)">lay non pwo man-JAH-reh ka-la-MAH-ree · She cannot eat squid</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="padding:15px 16px;border-radius:var(--r-lg);background:var(--elev);border:1px solid var(--line)">
+              <div class="mono" style="font-size:9.5px;letter-spacing:.06em;color:var(--faint)">Both Rome addresses</div>
+              <div style="margin-top:9px;font:400 13px/1.7 Geist,sans-serif;color:var(--body);text-wrap:pretty">Via Rattazzi 2F, Esquilino — 24 to 26 Sept, host Geneve.<br />Via Agostino Valiero 12, Monteverde — 27 to 30 Sept, hosts Lorenzo &amp; Maria Pia.</div>
+            </div>
           </div>
         </sc-if>
 
@@ -734,7 +879,7 @@ const DAYS = [
     S("13:40", "Dorsoduro browse", "shop", { h: "Living in the Past opens at noon, so this timing works.", sh: ["Gelateria il Doge", "Vintageria Venezia Le Chic", "Living in the Past (vinyl)", "La Casa Di Loto"], tr: "gelato", b: ["Some hours unposted"], x: "Walk 3 min" }),
     S("14:23", "Coffee: Majer", "meal", { h: "Fri 7am – 8pm.", r: "walkin", a: "Majer, Venice", x: "Walk 5 min" }),
     S("14:50", "Church of San Rocco", "church", { p: "free", x: "Next door" }),
-    S("15:05", "Scuola Grande di San Rocco", "sight", { h: "9:30am – 6pm daily.", p: "€10–14", w: "A full hour now that the Frari is off the plan — the Tintorettos deserve it.", rest: "Grandma & Sarah at Lunula Caffetteria, 2 min away, open till 6pm", a: "Scuola Grande di San Rocco, Venice", x: "Walk 3 min" }),
+    S("15:05", "Scuola Grande di San Rocco", "sight", { h: "9:30am – 6pm daily.", p: "€10–14", w: "A full hour now that the Frari is off the plan — the Tintorettos deserve it.", rest: "Grandma & Sarah at Lunula Caffetteria, 2 min away, open till 6pm", re: "16:05 · outside Scuola Grande di San Rocco, then walk home together", a: "Scuola Grande di San Rocco, Venice", x: "Walk 3 min" }),
     S("16:08", "Buffer — walk home at a relaxed pace", "free", { w: "Deliberately empty. First day, six people, long flight." }),
     S("17:30", "Check in & freshen up at Corte Pisani", "stay", { h: "Your 5:30pm slot.", a: "Corte Pisani 1178, Santa Croce, Venice", x: "Walk 3 min" }),
     S("18:00", "Grocery run: Conad", "errand", { h: "Open Friday till 9pm.", w: "Groceries done before 7pm, per the trip rule.", a: "Conad, Santa Croce, Venice", x: "Walk 3 min home, 4 min to dinner" }),
@@ -755,7 +900,7 @@ const DAYS = [
     S("11:45", "Bar All'Arco cicchetti", "meal", { h: "Sat 10am – 2:30pm · closed Sundays.", r: "walkin", a: "Bar All'Arco, Venice", x: "Walk 5 min" }),
     S("12:20", "QUORAMI + Sangueblu Vintage", "shop", { h: "11am – 6:30pm.", sh: ["QUORAMI (belts)", "Sangueblu Vintage"], x: "Walk 5 min" }),
     S("13:00", "Lunch: L'Bacaro de' Bischeri", "meal", { r: "none", w: "No reservation system — walk in.", a: "L'Bacaro de' Bischeri, Venice", x: "Walk 15 min" }),
-    S("14:15", "St Mark's Campanile", "ticket", { h: "Lift to the top, no stairs.", p: "~€12 pp", rest: "Grandma & Sarah decide on the day; everyone else free-explores Piazza San Marco and La Fenice either way", a: "Campanile di San Marco, Venice", x: "Short walk" }),
+    S("14:15", "St Mark's Campanile", "ticket", { h: "Lift to the top, no stairs.", p: "~€12 pp", rest: "Grandma & Sarah decide on the day; everyone else free-explores Piazza San Marco and La Fenice either way", re: "14:45 · the café on Piazza San Marco — the next stop is the reunion", a: "Campanile di San Marco, Venice", x: "Short walk" }),
     S("14:45", "Rest block: café on Piazza San Marco", "rest", { w: "Group reunites here regardless of who climbed." }),
     S("15:30", "Gondola ride", "sight", { h: "9am – 9pm daily.", x: "Walk 3 min" }),
     S("16:00", "Libreria Acqua Alta", "shop", { a: "Libreria Acqua Alta, Venice", x: "Walk 4 min" }),
@@ -875,7 +1020,7 @@ const DAYS = [
     S("12:15", "Bag drop at Via Rattazzi 2F", "stay", { h: "Check-in later, around 3pm.", w: "Host: Geneve.", a: "Via Rattazzi 2F, Rome", x: "Walk 8 min" }),
     S("12:30", "Lunch: Mizio's Street Food", "meal", { r: "confirmed", b: ["4.7 ★", "€1–10", "No reservation needed"], a: "Mizio's Street Food, Rome", x: "Walk 8 min" }),
     S("13:20", "Monti neighbourhood", "shop", { sh: ["La Nuova Piazzetta", "Humana Vintage Roma Monti", "Mr. 100 Tiramisù"], tr: "tiramisu", w: "Extended block — small plates at Mr. 100 if anyone's peckish.", x: "Walk 10 min" }),
-    S("14:45", "Rest block: café in Monti", "rest", { rest: "Grandma & Sarah sit this one out properly", x: "Walk 10 min" }),
+    S("14:45", "Rest block: café in Monti", "rest", { rest: "Grandma & Sarah sit this one out properly", re: "15:10 · back at the café, then everyone walks to Via Rattazzi together", x: "Walk 10 min" }),
     S("15:15", "Check in at Via Rattazzi 2F", "stay", { w: "Monti ran a little long — worth it for the browsing.", a: "Via Rattazzi 2F, Rome", x: "Walk 10 min" }),
     S("15:15", "Buffer / rest near the Airbnb", "free", {}),
     S("15:45", "Chiesa di Sant'Ignazio di Loyola — optional", "church", { b: ["4.8 ★"], w: "The trompe-l'œil ceiling; a quick stop, not a sit-down.", a: "Chiesa di Sant'Ignazio di Loyola, Rome", x: "Walk 10 min" }),
@@ -934,10 +1079,10 @@ const DAYS = [
     "Checkout 10:30 · train to the airport 16:12 · Rome by 20:20 · late dinner at 21:30", "19:07", "28° / 21°", "family",
     "Ceci's actual birthday. The day is mostly travel, so the celebration is the late dinner at CasaMora — which still needs booking.", [
     S("07:30", "Piazza Marina & the Mura delle Cattive", "sight", { w: "The old sea wall above Foro Italico, right beside Porta Felice.", tr: "photo", a: "Mura delle Cattive, Palermo", x: "Short walk" }),
-    S("09:00", "Kalsa district wander", "free", { sh: ["Palazzo Abatellis — Antonello da Messina's Annunziata"], w: "Discretionary given the time; lovely if anyone's keen.", x: "Short walk" }),
+    S("09:00", "Kalsa district wander", "free", { sh: ["Palazzo Abatellis — Antonello da Messina's Annunziata"], w: "Discretionary given the time; lovely if anyone's keen.", rest: "Skip it and stay at the apartment if you'd rather", re: "10:30 · Attico SensoCanti for checkout — hard deadline, not a suggestion", x: "Short walk" }),
     S("10:30", "Check out of Attico Sesto Canto", "stay", { a: "Via Vittorio Emanuele, Palermo" }),
     S("11:00", "Lunch: Sicily Street Food", "meal", { w: "Second chance at cassata or cannolo if yesterday got away from you.", r: "walkin", tr: "tiramisu", a: "Sicily Street Food, Palermo" }),
-    S("12:30", "Free & easy — Centro Ricambi Moto (Ramesh)", "shop", { r: "suggested", sh: ["Centro Ricambi Moto - Ramesh", "Via Roma / Via Maqueda corridor", "Mercato Vucciria"], w: "The shopping suggestion for the block: the Via Roma–Maqueda stretch, with the Vucciria if you want the noise.", x: "Palermo Centrale" }),
+    S("12:30", "Free & easy — Centro Ricambi Moto (Ramesh)", "shop", { r: "suggested", sh: ["Centro Ricambi Moto - Ramesh", "Via Roma / Via Maqueda corridor", "Mercato Vucciria"], rest: "Ramesh at the moto shop; everyone else on the Via Roma / Maqueda stretch", re: "15:30 · Palermo Centrale, bags in hand, for the 16:12 train", w: "The shopping suggestion for the block: the Via Roma–Maqueda stretch, with the Vucciria if you want the noise.", x: "Palermo Centrale" }),
     S("16:12", "Trenitalia RE 21749 · Palermo Centrale → Airport", "travel", { h: "Arrives 17:14.", a: "Palermo Centrale station" }),
     S("19:05", "ITA AZ1794 · Palermo → Rome Fiumicino", "travel", { h: "1h 15m; lands 20:20 at T1.", b: ["Sarah: ref ZZ385T", "the other five: ref ZYVPTF"], w: "Two bookings on the same flight — Economy Classic for Sarah, Economy Light for everyone else." }),
     S("20:20", "Land FCO Terminal 1", "travel", { x: "Transfer 45–50 min" }),
@@ -955,10 +1100,10 @@ const DAYS = [
     S("09:00", "Trastevere wander — Piazza Trilussa, Ponte Sisto", "photo", { tr: "photo", a: "Ponte Sisto, Rome", x: "Walk 5 min" }),
     S("09:45", "Coffee: Bar San Calisto", "meal", { b: ["4.5 ★"], r: "walkin", a: "Bar San Calisto, Rome", x: "Short walk" }),
     S("10:15", "Trastevere vintage crawl", "shop", { h: "90 minutes.", sh: ["Blue Goose", "Pulp Vintage", "Pifebo Vintage Shop", "Humana Vintage Roma Trastevere", "Babastyles", "VINTACHIC", "Second Hand Brandstore", "Vesti di Messalina", "Mercantile Vintage Selection", "Ciao Vintage", "REVOLUTION VINTAGE", "SeryMoon vintage", "Two Sizes"], tr: "tiramisu", x: "Short walks throughout" }),
-    S("11:45", "Rest block: café in Trastevere", "rest", { rest: "Grandma & Sarah sit while the others finish the crawl", x: "Walk 5 min" }),
+    S("11:45", "Rest block: café in Trastevere", "rest", { rest: "Grandma & Sarah sit while the others finish the crawl", re: "12:00 · at Mimì e Cocò, Via Arenula — lunch is the reunion", x: "Walk 5 min" }),
     S("12:00", "Lunch: Mimì e Cocò Roma", "meal", { r: "confirmed", b: ["Via Arenula"], a: "Mimì e Cocò, Via Arenula, Rome", x: "Walk 10–15 min" }),
     S("13:15", "Villa Doria Pamphili", "sight", { w: "Rome's largest park, and an easy walk from Airbnb 2.", a: "Villa Doria Pamphili, Rome", x: "Walk 15–20 min" }),
-    S("14:45", "Rest block: café on the way back", "rest", {}),
+    S("14:45", "Rest block: café on the way back", "rest", { rest: "Anyone who's had enough of the park", re: "15:45 · back at Airbnb 2 for the free block before aperitivo" }),
     S("15:45", "Free time — browse more, or feet up at the Airbnb", "free", { w: "Buffer before the evening block. Use it." }),
     S("17:30", "Aperitivo: Big Hilda Public Bar", "meal", { h: "Opens 5pm, Testaccio.", r: "walkin", a: "Big Hilda Public Bar, Rome", x: "Walk or ride 10 min" }),
     S("18:15", "Gianicolo — Piazzale Giuseppe Garibaldi", "sight", { h: "Sunset around 19:00. Open terrace, no ticket, no closing time.", fl: "Checked: Terrazza delle Quadrighe is the rooftop of the Vittoriano at Piazza Venezia — across the river, and you are already there on the 29th. The Gianicolo viewpoint is Piazzale Giuseppe Garibaldi, a walk up from Trastevere. Corrected here.", w: "Moved to sunset timing for the light; the Keyhole of the Order of Malta is omitted per your note.", tr: "photo", a: "Piazzale Giuseppe Garibaldi, Gianicolo, Rome", x: "Walk 15 min" }),
@@ -974,12 +1119,12 @@ const DAYS = [
     S("07:35", "Breakfast buffer near Piazza Venezia", "meal", { h: "The Vittoriano opens 9:30, not 9:00 — this block is longer for that reason.", r: "walkin", x: "Short walk" }),
     S("09:30", "Altar of the Fatherland — Vittoriano", "ticket", { h: "Opens 9:30am; a full hour booked in.", a: "Altare della Patria, Rome", x: "Short walk" }),
     S("10:30", "Extra time on the Vittoriano terraces", "sight", { tr: "photo", x: "Walk 15 min" }),
-    S("11:00", "Rest block: Caffetteria Italia al Vittoriano", "rest", { x: "Walk 15 min" }),
+    S("11:00", "Rest block: Caffetteria Italia al Vittoriano", "rest", { rest: "Whoever wants to sit rather than do the terraces twice", re: "11:45 · at 200 Gradi for lunch", x: "Walk 15 min" }),
     S("11:45", "Lunch: 200 Gradi", "meal", { r: "walkin", b: ["4.6 ★", "€10–20", "No reservation needed"], a: "200 Gradi, Rome", x: "Ride 15 min" }),
     S("13:00", "Roseto di Roma + Villa Borghese lake", "sight", { h: "1.5 hrs combined.", p: "rowboats ~€5, pay on the spot", w: "Galleria Borghese came out of the plan for this — rowboats by the Temple of Aesculapius, and the garden walk works even if the roses are past.", a: "Villa Borghese lake, Rome", x: "Walk 20 min" }),
     S("15:00", "Piazza del Popolo shopping", "shop", { h: "Two full hours, as asked.", sh: ["Via del Babuino", "Via del Corso", "Via di Ripetta", "Mercatino del libro (4.1)"], a: "Piazza del Popolo, Rome", x: "Walk down Via del Corso" }),
     S("17:00", "Via del Corso / Via Condotti corridor", "shop", { h: "One hour — the whole block ends by 6pm as you wanted.", sh: ["RINASCENTE", "Longchamp", "ARKET", "Kiko Milano", "Furla", "Fausto Santini", "Benheart Roma", "Coccinelle", "Geox", "Velasca", "Elena Lera", "LeVigAto", "Schostal Originals", "Blu Studio", "Campomarzio70", "Essenzialmente Laura", "Emporio Centrale", "Gran Cafè Marcel", "Booktique", "BIFFI"], w: "Pick a handful, not all twenty.", x: "Walk 10 min" }),
-    S("18:00", "Rest block: café near Piazza di Spagna", "rest", { x: "Walk 5 min" }),
+    S("18:00", "Rest block: café near Piazza di Spagna", "rest", { rest: "Anyone done with three hours of shopping", re: "18:20 · the foot of the Spanish Steps", x: "Walk 5 min" }),
     S("18:20", "Piazza di Spagna & the Spanish Steps", "sight", { tr: "photo", a: "Piazza di Spagna, Rome" }),
     S("19:00", "laFeltrinelli or Altroquando - Libreria e Pub", "shop", {}),
     S("20:00", "Dinner: Ristorante Pancrazio dal 1922", "meal", { r: "confirmed", b: ["4.7 ★", "Reservable"], occ: 1, w: "The anniversary dinner, swapped in by the planner: closer to the Spanish Steps stop than the Prosciutteria, and it takes a reservation — which the Prosciutteria never did.", a: "Ristorante Pancrazio dal 1922, Rome" }),
@@ -1638,15 +1783,20 @@ class Component extends DCLogic {
     if (daysOut > 15 || daysOut < -1) return; // forecast endpoint only covers ~16 days
     try {
       const u = "https://api.open-meteo.com/v1/forecast?latitude=" + co[0] + "&longitude=" + co[1] +
-        "&daily=temperature_2m_max,temperature_2m_min&timezone=auto&start_date=" + d.date + "&end_date=" + d.date;
+        "&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum&hourly=relative_humidity_2m&timezone=auto&start_date=" + d.date + "&end_date=" + d.date;
       const r = await fetch(u);
       if (!r.ok) return;
       const j = await r.json();
       const hi = j && j.daily && j.daily.temperature_2m_max && j.daily.temperature_2m_max[0];
       const lo = j && j.daily && j.daily.temperature_2m_min && j.daily.temperature_2m_min[0];
+      const pop = j && j.daily && j.daily.precipitation_probability_max ? j.daily.precipitation_probability_max[0] : null;
+      const mm = j && j.daily && j.daily.precipitation_sum ? j.daily.precipitation_sum[0] : null;
+      const hum = j && j.hourly && j.hourly.relative_humidity_2m
+        ? Math.round(j.hourly.relative_humidity_2m.slice(8, 21).reduce((a, b) => a + b, 0) / j.hourly.relative_humidity_2m.slice(8, 21).length)
+        : null;
       if (hi != null) {
         const wx = Object.assign({}, this.state.wx);
-        wx[key] = Math.round(hi) + "° / " + Math.round(lo) + "°";
+        wx[key] = { t: Math.round(hi) + "° / " + Math.round(lo) + "°", pop: pop, hum: hum, mm: mm };
         this.setState({ wx }); this.save({ wx });
       }
     } catch (e) {}
@@ -1685,6 +1835,8 @@ class Component extends DCLogic {
       const h = Math.sin(dLa / 2) ** 2 + Math.cos(A.lat * r) * Math.cos(B.lat * r) * Math.sin(dLo / 2) ** 2;
       return tot + 2 * R2 * Math.asin(Math.sqrt(h));
     }, 0).toFixed(0);
+    const wxLive = st.wx[d.leg + d.date] || null;
+    const brief = BRIEF[d.leg + d.date] || {};
     const decideOpen = DECIDE.reduce((n, sec) => n + sec.items.filter((it, i) => !st.ticks["decide" + sec.title + i]).length, 0);
     const ease = st.tick;
     const dep = new Date("2026-09-17T23:05:00+08:00").getTime();
@@ -1803,12 +1955,65 @@ class Component extends DCLogic {
         kicker: d.kicker, title: d.title, sub: d.sub, sunset: d.sunset, insight: d.insight,
         occ: !!d.occ, occLabel: d.occ ? d.occ.label : "", occNote: d.occ ? d.occ.note : ""
       },
-      wxLabel: st.wx[d.leg + d.date] ? CITY[d.leg] : CITY[d.leg] + " avg",
-      wxValue: st.wx[d.leg + d.date] || AVG[d.leg] || d.wx,
+      wxLabel: wxLive ? CITY[d.leg] : CITY[d.leg] + " avg",
+      wxValue: (wxLive && wxLive.t) || AVG[d.leg] || d.wx,
+
+      rainValue: wxLive && wxLive.pop != null ? wxLive.pop + "%" : "Sep avg",
+      rainColor: wxLive && wxLive.pop != null && wxLive.pop >= 40 ? "var(--terra)" : "var(--ink)",
+      humValue: wxLive && wxLive.hum != null ? wxLive.hum + "%" : (d.leg === "P" ? "70%" : d.leg === "T" ? "80%" : "65%"),
+      humColor: wxLive && wxLive.hum != null && wxLive.hum >= 75 ? "var(--brass)" : "var(--ink)",
+      wetPlan: !!(wxLive && wxLive.pop != null && wxLive.pop >= 40 && brief.rain),
+      wetPlanText: brief.rain || "",
+      wetPlanHead: wxLive && wxLive.pop != null ? wxLive.pop + "% chance of rain today — the plan for it" : "",
       pace: span ? span + "h" : "—",
       paceLabel: d.leg === "T" ? "In transit" : span && span >= 12 ? "On foot · long" : "On foot",
       paceColor: span && span >= 12 ? "var(--terra)" : accent,
       insightKind: iKind[0], insightColor: iKind[1], insightMark: iKind[2],
+
+      tonight: (function () {
+        if (!isToday || last == null || nowMin < last + 30) return null;
+        const nx = DAYS[st.di + 1];
+        if (!nx) return { hasNext: false, title: "That's the trip — thirteen days, four cities, and home.", lines: [], when: "", wake: "", kicker: "The last night" };
+        const sameDay = nx.date === d.date;
+        const nxTimes = nx.stops.map(x => mins(x.t)).filter(x => x != null);
+        const wake = nxTimes.length ? hhmm(nxTimes[0]) : "—";
+        const early = nxTimes.length && nxTimes[0] < 420;
+        const lines = [];
+        const fixed = nx.stops.filter(x => x.r === "confirmed" || x.k === "ticket");
+        if (fixed.length) lines.push({ k: "Booked", v: fixed.map(x => x.t + " " + x.n).slice(0, 3).join(" · ") });
+        const travel = nx.stops.filter(x => x.k === "travel" && /Italo|TK|ITA |Aeroitalia|Trenitalia/.test(x.n));
+        if (travel.length) lines.push({ k: "Moving", v: travel.map(x => x.t + " " + x.n).join(" · ") });
+        const stay = nx.stops.filter(x => x.k === "stay");
+        if (stay.length) lines.push({ k: "Bags", v: stay.map(x => x.t + " " + x.n).join(" · ") });
+        const nb = BRIEF[nx.leg + nx.date] || {};
+        if (nb.wear) lines.push({ k: "Wear", v: nb.wear });
+        return {
+          hasNext: true,
+          kicker: sameDay ? "Later today" : early ? "Early start tomorrow" : "Tonight",
+          title: nx.title,
+          when: nx.kicker.split("·")[0].trim(),
+          wake: (sameDay ? "Next leg leaves at " : "Out the door at ") + wake,
+          lines: lines,
+          goLabel: sameDay ? "Open the next leg" : "Open tomorrow",
+          go: () => this.setState({ di: st.di + 1, open: -1 })
+        };
+      })(),
+      dayProgress: (function () {
+        if (!isToday || first == null || last == null) return null;
+        const end = last + 40;
+        if (nowMin < first || nowMin > end) return null;
+        const timed = d.stops.map((x, i) => ({ i, m: mins(x.t) })).filter(x => x.m != null);
+        const doneCount = timed.filter(x => st.done[st.di + ":" + x.i]).length;
+        const shouldBe = timed.filter(x => x.m <= nowMin).length;
+        const drift = doneCount - shouldBe;
+        return {
+          pct: ((nowMin - first) / (end - first)) * 100 + "%",
+          clock: hhmm(nowMin),
+          state: drift >= 1 ? "Ahead of the plan" : drift === 0 ? "Bang on the plan" : drift === -1 ? "One stop behind" : Math.abs(drift) + " stops behind",
+          color: drift >= 0 ? "var(--olive)" : drift === -1 ? "var(--brass)" : "var(--terra)",
+          detail: shouldBe + " planned by now · " + doneCount + " ticked"
+        };
+      })(),
 
       /* ── expenditure ───────────────────────────────── */
       spend: (() => {
@@ -2051,10 +2256,7 @@ class Component extends DCLogic {
       })(),
       briefOpen: st.briefOpen, briefChev: st.briefOpen ? "▴" : "▾",
       toggleBrief: () => this.setState({ briefOpen: !st.briefOpen }),
-      briefRows: (() => {
-        const b = BRIEF[d.leg + d.date] || {};
-        return BRIEF_ROWS.filter(r => b[r[0]]).map(r => ({ k: r[1], v: b[r[0]] }));
-      })(),
+      briefRows: BRIEF_ROWS.filter(r => brief[r[0]]).map(r => ({ k: r[1], v: brief[r[0]] })),
       doneLabel: doneN + "/" + stopCount, dayBar: Math.round((doneN / Math.max(stopCount, 1)) * 100) + "%",
       dayComplete: doneN >= stopCount && stopCount > 0,
       resetDay: () => { const done = Object.assign({}, st.done); d.stops.forEach((s, i) => delete done[this.key(st.di, i)]); this.setState({ done }); this.save({ done }); },
@@ -2071,27 +2273,42 @@ class Component extends DCLogic {
         if (s.p) bdg(s.p, "flat");
         (s.b || []).forEach(b => bdg(b, "flat"));
         if (s.tr) bdg(TRAILNAME[s.tr], "warn");
-        if (s.rest) bdg("Rest option", "warn");
+        if (s.rest) bdg(s.re ? "Group splits here" : "Rest option", "warn");
         if (s.fl) bdg("Ticket differs", "bad");
         const rows = [];
         if (s.h) rows.push({ k: "Hours", v: s.h, c: "var(--body)" });
         if (s.fl) rows.push({ k: "Flag", v: s.fl, c: "var(--terra)" });
         if (s.w) rows.push({ k: "Why", v: s.w, c: "var(--body)" });
-        if (s.rest) rows.push({ k: "Rest", v: s.rest, c: "var(--body)" });
+        if (s.rest) rows.push({ k: "Splits", v: s.rest, c: "var(--body)" });
+        if (s.re) rows.push({ k: "Regroup", v: s.re, c: "var(--brass)" });
         if (s.a) rows.push({ k: "Where", v: s.a, c: "var(--muted)" });
         if (s.x) rows.push({ k: "Next", v: s.x, c: "var(--olive)" });
-        // Named places without a stored address still deserve a map link: strip the
-        // meal prefix and search the name in the right city. Vague blocks get nothing.
-        const vague = /undecided|unhurried|buffer|free time|last errand|extra time|drop bags|wander|stroll|browse|walk|depart|return|rest block|packing|optional nightcap/i;
-        const bare = String(s.n)
-          .replace(/^(Coffee|Lunch|Dinner|Breakfast|Aperitivo|Dessert|Bacaro \d+|Gelato)\s*[:—-]\s*/i, "")
-          .replace(/\s+—.*$/, "")
-          .trim();
-        const target = s.a || (!vague.test(s.n) && bare.length > 3 ? bare + ", " + (CITY[d.leg] || "Italy") : "");
+        // Linkability is a property of the data, never of the prose. A stop links only
+        // when it carries an address, an explicit q: search term, or is a kind that is
+        // always a place. travel / free / rest / note / errand never link on their own.
+        const PLACE_KINDS = { sight: 1, ticket: 1, church: 1, market: 1, shop: 1, meal: 1, stay: 1, photo: 1 };
+        const isCrawl = !!(s.sh && s.sh.length);
+        const named = PLACE_KINDS[s.k] && !isCrawl
+          ? String(s.n)
+              .replace(/^(Coffee|Lunch|Dinner|Breakfast|Aperitivo|Dessert|Bacaro \d+|Gelato)\s*[:—-]\s*/i, "")
+              .replace(/\s+[—–-]\s+(undecided|optional|suggestion|pick).*$/i, "")
+              .trim()
+          : "";
+        const linkable = named && named.length > 3 && !/\b(undecided|optional|suggestion|by design|pick on arrival|pick one|play by ear)\b/i.test(named);
+        const target = s.a || (s.q ? s.q : linkable ? named + ", " + (CITY[d.leg] || "Italy") : "");
         const dest = target ? encodeURIComponent(target) : "";
         return {
           t: s.t, n: s.n, tag: s.occ ? "Occasion" : k.tag, badges, rows,
           showPart: !!part && part !== prevPart, partLabel: part,
+          partCount: (function () {
+            if (!part) return "";
+            const n = d.stops.filter(x => {
+              const m2 = mins(x.t);
+              if (m2 == null) return false;
+              return (m2 < 720 ? "Morning" : m2 < 1020 ? "Afternoon" : "Evening") === part;
+            }).length;
+            return n + (n === 1 ? " stop" : " stops");
+          })(),
           hasRows: rows.length > 0,
           hasShops: !!(s.sh && s.sh.length),
           shopCount: (s.sh || []).length + (s.sh && s.sh.length === 1 ? " stop" : " stops") + " · pick as you go",
@@ -2126,8 +2343,39 @@ class Component extends DCLogic {
           pad: k.compact ? "12px 14px" : "15px 16px",
           timeFs: k.compact ? "12px" : "13px",
           nameFs: k.compact ? "13.5px" : "15px",
-          nameWeight: k.compact ? "400" : "500",
+          nameWeight: (s.k === "ticket" || s.occ) ? "400" : k.compact ? "400" : "500",
           opacity: isDone ? "0.5" : curIdx === i ? "1" : isToday && curIdx > i ? "0.62" : "1",
+          isConnector: k.compact && !s.a && !s.b && !s.fl && !s.rest,
+          isCard: !(k.compact && !s.a && !s.b && !s.fl && !s.rest),
+          connMeta: (function () {
+            const m = /(\d+\s*(?:–|-|to)?\s*\d*\s*(?:min|h|hr|hrs|hours))/i.exec((s.h || "") + " " + (s.x || ""));
+            return m ? m[1].replace(/\s+/g, " ") : "";
+          })(),
+          isAnchor: !!(s.k === "ticket" || (s.r === "confirmed" && s.k === "meal") || s.occ),
+          anchorLabel: s.occ ? "The occasion" : s.k === "ticket" ? (s.r === "confirmed" ? "Booked · be on time" : "Timed entry") : "Table booked",
+          nameFs: (s.k === "ticket" || s.occ) ? "20px" : k.compact ? "14px" : "15.5px",
+          nameFam: (s.k === "ticket" || s.occ) ? "'Instrument Serif',Georgia,serif" : "Geist,sans-serif",
+          nameTrack: (s.k === "ticket" || s.occ) ? "-.01em" : "0",
+          countdown: (function () {
+            if (!isToday || isDone) return "";
+            const m = mins(s.t);
+            if (m == null) return "";
+            const gap = m - nowMin;
+            if (gap > 300 || gap < -180) return "";
+            if (gap > 0) return ("in " + (gap >= 60 ? Math.floor(gap / 60) + "h " + (gap % 60 ? (gap % 60) + "m" : "") : gap + " min")).trim();
+            if (gap > -60) return "now";
+            return Math.floor(-gap / 60) + "h ago";
+          })(),
+          countdownColor: (function () {
+            if (!isToday || isDone) return "var(--faint)";
+            const m = mins(s.t);
+            if (m == null) return "var(--faint)";
+            const gap = m - nowMin;
+            if (gap <= 0 && gap > -60) return accent;
+            if (gap > 0 && gap <= 30) return "var(--brass)";
+            if (gap <= -60) return "var(--terra)";
+            return "var(--faint)";
+          })(),
           strike: isDone ? "line-through" : "none",
           tick: isDone ? "✓" : curIdx === i ? "◉" : "▾",
           tickColor: isDone ? "var(--olive)" : curIdx === i ? accent : "var(--faint)",
@@ -2161,12 +2409,25 @@ class Component extends DCLogic {
       },
       openCurrency: () => this.setState({ panel: "currency" }),
       openSpend: () => this.setState({ panel: "spend" }),
+      openSos: () => this.setState({ panel: "sos" }),
+      isSos: st.panel === "sos",
+      sosBase: (function () {
+        /* the bed you're actually in tonight — today's, else the last one checked into */
+        let a = "";
+        for (let i = st.di; i >= 0 && !a; i--) {
+          const stay = [].concat(DAYS[i].stops).reverse().find(x => x.k === "stay" && x.a);
+          if (stay) a = stay.a;
+        }
+        return { addr: a, map: a ? "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(a) + "&travelmode=walking" : "#", has: !!a };
+      })(),
+      sosPharmacy: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("farmacia " + (CITY[d.leg] || "Italia")),
+      sosHospital: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("pronto soccorso " + (CITY[d.leg] || "Italia")),
       openSearch: () => this.setState({ panel: "search" }),
       openMore: () => this.setState({ panel: "more" }),
       goToday: () => { const i = DAYS.findIndex(dd => dd.date === todayISO); this.setState({ di: i >= 0 ? i : 0, open: -1, panel: null, overviewOpen: i < 0 }); },
       closePanel: () => this.setState({ panel: null, sheet: null }),
       panelOpen: !!st.panel,
-      panelTitle: st.panel === "currency" ? "Singapore dollars to euros" : st.panel === "search" ? "Search the whole trip" : st.panel === "more" ? "More" : st.panel === "journey" ? "One journey, four cities" : st.panel === "stamps" ? "Passport" : st.panel === "spend" ? "What we've spent" : st.panel === "filler" ? "If you're running early" : st.panel === "recap" ? "The trip, looking back" : sheet ? sheet.title : "",
+      panelTitle: st.panel === "currency" ? "Singapore dollars to euros" : st.panel === "search" ? "Search the whole trip" : st.panel === "more" ? "More" : st.panel === "journey" ? "One journey, four cities" : st.panel === "stamps" ? "Passport" : st.panel === "sos" ? "If something goes wrong" : st.panel === "spend" ? "What we've spent" : st.panel === "filler" ? "If you're running early" : st.panel === "recap" ? "The trip, looking back" : sheet ? sheet.title : "",
       isJourney: st.panel === "journey", isStamps: st.panel === "stamps",
       isSpend: st.panel === "spend", isFiller: st.panel === "filler", isRecap: st.panel === "recap",
       isArrival: st.panel === "arrival",
@@ -2202,6 +2463,7 @@ class Component extends DCLogic {
         { label: "Checked against the web", mark: "✽", meta: "11 Aug 2026", go: () => this.setState({ panel: "sheet", sheet: "sources" }) },
         { label: "Share today to the group chat", mark: "↗", meta: "Times & names", go: () => { this.setState({ panel: null }); this.shareDay(); } },
         { label: "Navigate to tonight's base", mark: "⌂", meta: leg.name, go: () => { const stay = [].concat(d.stops).reverse().find(s => s.k === "stay" && s.a) || d.stops.find(s => s.a); if (stay) window.open("https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(stay.a) + "&travelmode=walking", "_blank"); } },
+        { label: "How this app works", mark: "?", meta: "The guide", go: () => window.open("https://turbocheese.github.io/Italy_Itinerary_Guide/", "_blank") },
         { label: "Print the master plan", mark: "⎙", meta: DAYS.length + " days", go: () => { this.setState({ panel: null }); setTimeout(() => window.print(), 350); } }
       ],
       sheetSections: sheet ? sheet.sections.map(sec => ({
