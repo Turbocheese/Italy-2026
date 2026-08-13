@@ -2,7 +2,7 @@
    Navigations and app code are network-first so a corrected itinerary always wins;
    the cached copy is the fallback when there's no signal. Only immutable assets
    (icon, fonts) are cache-first. Live data is network-first with a cached fallback. */
-const VERSION = "tour-ditalia-v18";
+const VERSION = "tour-ditalia-v28";
 const SHELL = [
   "./",
   "./Italy%202026.dc.html",
